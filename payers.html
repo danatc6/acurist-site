@@ -1,1 +1,237 @@
-<!DOCTYPE html><html><head><title>Acurist - payers</title></head><body><h1>Acurist.AI</h1><p>payers - full content deploying</p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acurist — For Payers & Insurers</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cream:#FAF7F2;--warm-white:#FFFEF9;--sand:#F0EAE0;--blush:#F5EBE8;--terracotta:#C4694F;--terra-light:#E8927A;--terra-dark:#9B4A35;--sage:#7A9E8E;--sage-dark:#4A7A68;--charcoal:#3D3530;--light-text:#6B5E58;--warm-gray:#8A7E78;--blue:#4A6E9E;--blue-light:#EEF3F8;--serif:'Lora',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--charcoal);font-size:16px;line-height:1.6;overflow-x:hidden}
+nav{background:var(--warm-white);border-bottom:1px solid rgba(196,105,79,0.12);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:70px;position:sticky;top:0;z-index:100}
+.logo{font-family:var(--serif);font-size:22px;color:var(--terra-dark);font-weight:600;text-decoration:none}
+.logo span{color:var(--sage-dark)}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+.nav-links a{font-size:14px;color:var(--light-text);text-decoration:none;transition:color 0.2s}
+.nav-cta{background:var(--terracotta)!important;color:white!important;padding:9px 22px;border-radius:50px;font-weight:500!important}
+.btn-primary{background:var(--terracotta);color:white;padding:14px 30px;border-radius:50px;font-size:15px;font-weight:500;border:none;cursor:pointer;text-decoration:none;display:inline-block;font-family:var(--sans)}
+.btn-secondary{background:transparent;color:var(--charcoal);padding:14px 30px;border-radius:50px;font-size:15px;border:1.5px solid rgba(61,53,48,0.2);cursor:pointer;text-decoration:none;display:inline-block;font-family:var(--sans)}
+.section-eyebrow{font-size:12px;font-weight:500;color:var(--terracotta);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:14px}
+.section-title{font-family:var(--serif);font-size:38px;font-weight:600;color:var(--charcoal);margin-bottom:14px;letter-spacing:-0.3px}
+.act-card{background:white;border-radius:20px;padding:28px;box-shadow:0 8px 40px rgba(61,53,48,0.1);border:1px solid rgba(196,105,79,0.08)}
+.cost-delta{background:var(--blush);border-radius:14px;padding:20px;margin-bottom:16px;text-align:center}
+.cost-delta-num{font-family:var(--serif);font-size:36px;font-weight:600;color:var(--terracotta);line-height:1}
+.cost-compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.cost-box{background:var(--cream);border-radius:12px;padding:14px;text-align:center}
+.cost-box-num{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--charcoal)}
+.pmpm-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(196,105,79,0.08);font-size:13px}
+.pmpm-row:last-child{border-bottom:none}
+.pmpm-val.green{color:var(--sage-dark)}
+.offers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1100px;margin:0 auto}
+.offer-card{background:var(--cream);border-radius:20px;padding:32px;border:1px solid rgba(196,105,79,0.08)}
+.offer-card h3{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--charcoal);margin-bottom:10px}
+.offer-card p{font-size:14px;color:var(--light-text);line-height:1.65;font-weight:300}
+.pricing-table{background:white;border-radius:20px;border:1px solid rgba(196,105,79,0.1);overflow:hidden;margin-top:40px}
+.pt-header{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;background:var(--sand);padding:16px 24px;font-size:12px;font-weight:500;color:var(--warm-gray);text-transform:uppercase}
+.pt-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:18px 24px;border-bottom:1px solid rgba(196,105,79,0.07);align-items:center}
+.pt-row:last-child{border-bottom:none}
+.pt-row:nth-child(even){background:var(--cream)}
+.pt-name{font-size:14px;font-weight:500;color:var(--charcoal)}
+.pt-price{font-size:14px;font-weight:500;color:var(--terracotta);text-align:center}
+.pt-who{font-size:12px;color:var(--light-text);text-align:center}
+.funnel-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.funnel-step{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid rgba(196,105,79,0.1)}
+.funnel-step:last-child{border-bottom:none}
+.fs-num{width:36px;height:36px;border-radius:50%;background:var(--blue-light);color:var(--blue);font-family:var(--serif);font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.fs-content h4{font-size:15px;font-weight:500;color:var(--charcoal);margin-bottom:4px}
+.fs-content p{font-size:13px;color:var(--light-text);line-height:1.6;font-weight:300}
+.fs-timing{font-size:11px;color:var(--terracotta);font-weight:500;margin-top:6px}
+.dashboard-mock{background:white;border-radius:20px;padding:24px;border:1px solid rgba(196,105,79,0.1)}
+.dm-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.dm-stat{background:var(--cream);border-radius:10px;padding:14px}
+.dm-stat-num{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--terracotta)}
+.dm-row{display:flex;justify-content:space-between;font-size:12px;padding:9px 0;border-bottom:1px solid rgba(196,105,79,0.07)}
+.dm-row:last-child{border-bottom:none}
+.dm-val.green{color:var(--sage-dark)}
+.form-card{background:white;border-radius:24px;padding:48px;max-width:600px;margin:0 auto;border:1px solid rgba(196,105,79,0.1)}
+.form-card h2{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--charcoal);margin-bottom:10px}
+.form-card p{font-size:15px;color:var(--light-text);margin-bottom:32px;font-weight:300;line-height:1.6}
+.form-group{text-align:left;margin-bottom:18px}
+.form-group label{display:block;font-size:13px;font-weight:500;color:var(--charcoal);margin-bottom:6px}
+.form-group input,.form-group select{width:100%;padding:12px 16px;border:1.5px solid rgba(196,105,79,0.2);border-radius:10px;font-size:14px;font-family:var(--sans);color:var(--charcoal);background:var(--cream);outline:none}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-submit{width:100%;background:var(--terracotta);color:white;padding:14px;border-radius:50px;font-size:15px;font-weight:500;border:none;cursor:pointer;font-family:var(--sans);margin-top:8px}
+.form-trust{font-size:12px;color:var(--warm-gray);margin-top:14px}
+.cta-band{background:linear-gradient(135deg,var(--terra-dark) 0%,#7A4A35 100%);padding:80px 5%;text-align:center;position:relative;overflow:hidden}
+.cta-band h2{font-family:var(--serif);font-size:40px;font-weight:600;color:white;margin-bottom:16px;position:relative;z-index:1}
+.cta-band p{font-size:17px;color:rgba(255,255,255,0.75);margin-bottom:36px;position:relative;z-index:1;font-weight:300;max-width:520px;margin-left:auto;margin-right:auto}
+.btn-white{background:white;color:var(--terra-dark);padding:14px 30px;border-radius:50px;font-size:15px;font-weight:500;border:none;cursor:pointer;text-decoration:none;font-family:var(--sans);position:relative;z-index:1;display:inline-block}
+footer{background:var(--charcoal);color:rgba(255,255,255,0.45);padding:48px 5%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:40px}
+.footer-logo{font-family:var(--serif);font-size:20px;color:rgba(255,255,255,0.85);font-weight:600;text-decoration:none}
+.footer-links{display:flex;gap:28px;justify-content:center;list-style:none;flex-wrap:wrap}
+.footer-links a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:13px}
+.footer-copy{font-size:12px;text-align:right}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">acurist<span>.ai</span></a>
+  <ul class="nav-links">
+    <li><a href="patients.html">For Patients</a></li>
+    <li><a href="physicians.html">For Physicians</a></li>
+    <li><a href="health-systems.html">For Health Systems</a></li>
+    <li><a href="payers.html" style="color:var(--terracotta)">For Payers</a></li>
+    <li><a href="#pilot" class="nav-cta">Run a Pilot</a></li>
+  </ul>
+</nav>
+<section style="background:var(--warm-white);padding:100px 5% 90px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+  <div>
+    <div style="display:inline-flex;align-items:center;gap:8px;background:var(--blue-light);color:var(--blue);font-size:12px;font-weight:500;padding:6px 16px;border-radius:50px;margin-bottom:28px;text-transform:uppercase;letter-spacing:0.5px">For Payers, Medicare Advantage & Insurers</div>
+    <h1 style="font-family:var(--serif);font-size:48px;line-height:1.15;font-weight:600;margin-bottom:24px">Identify risk earlier.<br><em style="color:var(--terracotta);font-style:italic">Lower long-term cost of care.</em></h1>
+    <p style="font-size:17px;color:var(--light-text);line-height:1.75;margin-bottom:24px;font-weight:300">Acurist delivers population-scale cognitive risk stratification, targeted Individual Care Plans, and measurable reductions in LTC placements and total cost of care — with PMPM pricing tied to performance.</p>
+    <ul style="list-style:none;margin-bottom:36px;display:flex;flex-direction:column;gap:10px">
+      <li style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="background:var(--blue-light);color:var(--blue);width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">✓</span>Claims-driven targeting to find members most likely to benefit</li>
+      <li style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="background:var(--blue-light);color:var(--blue);width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">✓</span>Actuarially defensible PMPM model with shared savings on LTC avoidance</li>
+      <li style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="background:var(--blue-light);color:var(--blue);width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">✓</span>Star/HEDIS uplift through improved AWV capture and care plan completion</li>
+      <li style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="background:var(--blue-light);color:var(--blue);width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">✓</span>50k cohort pilot with 12-month outcomes and actuarial appendix</li>
+    </ul>
+    <a href="#pilot" class="btn-primary" style="margin-right:14px">Run a Claims-Driven Pilot</a>
+    <a href="#math" class="btn-secondary">See the actuarial model</a>
+  </div>
+  <div class="act-card">
+    <div style="font-size:12px;font-weight:500;color:var(--warm-gray);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:20px">The Actuarial Case</div>
+    <div class="cost-delta">
+      <div class="cost-delta-num">$10,058</div>
+      <div style="font-size:13px;color:var(--terra-dark);margin-top:4px">Annual cost delta: MCI→ADRD progressors vs. stable MCI</div>
+    </div>
+    <div class="cost-compare">
+      <div class="cost-box"><div class="cost-box-num">$34,599</div><div style="font-size:11px;color:var(--warm-gray);margin-top:4px;line-height:1.4">Avg. annual cost<br>MCI→ADRD progressors</div></div>
+      <div class="cost-box"><div class="cost-box-num">$24,541</div><div style="font-size:11px;color:var(--warm-gray);margin-top:4px;line-height:1.4">Avg. annual cost<br>Stable MCI members</div></div>
+    </div>
+    <div class="pmpm-row"><span style="color:var(--light-text)">MCI prevalence in 65+ population</span><span>Up to 42%</span></div>
+    <div class="pmpm-row"><span style="color:var(--light-text)">% unaware they have MCI</span><span>∼60%</span></div>
+    <div class="pmpm-row"><span style="color:var(--light-text)">Annual progression rate (untreated)</span><span>15%/year</span></div>
+    <div class="pmpm-row"><span style="color:var(--light-text)">Acurist program PMPM cost</span><span class="pmpm-val green">$0.50</span></div>
+    <div class="pmpm-row"><span style="color:var(--light-text)">Conservative net ROI (50k pop.)</span><span class="pmpm-val green">$8.1M / 27×</span></div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px">
+      <span style="background:var(--cream);border:1px solid rgba(196,105,79,0.12);border-radius:50px;padding:6px 14px;font-size:11px;color:var(--light-text);font-weight:500">LTC placements avoided</span>
+      <span style="background:var(--cream);border:1px solid rgba(196,105,79,0.12);border-radius:50px;padding:6px 14px;font-size:11px;color:var(--light-text);font-weight:500">Star/HEDIS uplift</span>
+      <span style="background:var(--cream);border:1px solid rgba(196,105,79,0.12);border-radius:50px;padding:6px 14px;font-size:11px;color:var(--light-text);font-weight:500">TCOC reduction</span>
+      <span style="background:var(--cream);border:1px solid rgba(196,105,79,0.12);border-radius:50px;padding:6px 14px;font-size:11px;color:var(--light-text);font-weight:500">Net actuarial savings</span>
+    </div>
+  </div>
+</section>
+<section id="math" style="background:var(--cream);padding:80px 5%;text-align:center">
+  <div style="max-width:900px;margin:0 auto">
+    <div class="section-eyebrow">The Business Case</div>
+    <div style="font-family:var(--serif);font-size:26px;font-weight:600;color:var(--charcoal);line-height:1.4;margin-bottom:20px">For every 50,000 members, a <span style="color:var(--terracotta)">15% MCI prevalence rate</span> means 7,500 members at risk — and a <span style="color:var(--terracotta)">$75M+ cost exposure</span> from unmanaged progression.</div>
+    <p style="font-size:16px;color:var(--light-text);line-height:1.75;font-weight:300">Published claims data shows that patients who progress from MCI to Alzheimer's Disease incur $10,058 more per year in total medical costs than stable MCI patients. Early identification and routing to targeted Individual Care Plans is the most actuarially defensible intervention available — and Acurist is the only platform that makes it scalable.</p>
+  </div>
+</section>
+<section style="background:var(--warm-white);padding:100px 5%">
+  <div class="section-eyebrow" style="text-align:center">What Acurist Delivers</div>
+  <h2 class="section-title" style="text-align:center;max-width:600px;margin:0 auto 52px">A complete population health program — not just a screening tool</h2>
+  <div class="offers-grid">
+    <div class="offer-card"><div style="font-size:26px;margin-bottom:16px">🎯</div><h3>Claims-Aware Risk Stratification</h3><p>We combine claims signals with screening results to identify members most likely to progress — and most likely to benefit from intervention — using your own data.</p></div>
+    <div class="offer-card"><div style="font-size:26px;margin-bottom:16px">📊</div><h3>Payer Dashboards</h3><p>Cohort lists, screening funnel conversion, ICP status, AWV capture, and savings attribution by member — in a real-time dashboard built for population health teams.</p></div>
+    <div class="offer-card"><div style="font-size:26px;margin-bottom:16px">📋</div><h3>Individual Care Plans (ICP)</h3><p>Scalable care pathways, medication review prompts, community resource referrals, and caregiver support — automatically triggered by screening results.</p></div>
+    <div class="offer-card"><div style="font-size:26px;margin-bottom:16px">🔗</div><h3>Provider Network Enablement</h3><p>Referral playbooks, PCP risk summaries, and AWV capture incentives that connect your member screening program to your provider network.</p></div>
+    <div class="offer-card"><div style="font-size:26px;margin-bottom:16px">📈</div><h3>Actuarial Appendix & Validation</h3><p>Sensitivity tables, attribution methodology, quarterly reconciliation, and retrospective claims/EHR linkage analysis — everything your Chief Actuary needs.</p></div>
+    <div class="offer-card"><div style="font-size:26px;margin-bottom:16px">⭐</div><h3>Star/HEDIS Uplift</h3><p>Cognitive assessment and care plan completion directly supports AWV quality measures. Systematically improve the metrics that matter most to MA plan ratings.</p></div>
+  </div>
+</section>
+<section style="background:var(--cream);padding:100px 5%;text-align:center">
+  <div class="section-eyebrow">Pricing Model</div>
+  <h2 class="section-title">PMPM + performance. Shared savings when it works.</h2>
+  <p style="font-size:16px;color:var(--light-text);font-weight:300;max-width:540px;margin:0 auto;line-height:1.75">We align our incentives with yours. Base PMPM covers program operations. Performance bonuses and shared savings are tied to actual outcomes.</p>
+  <div class="pricing-table">
+    <div class="pt-header"><span>Tier</span><span style="text-align:center">Pricing</span><span style="text-align:center">Primary Buyer</span><span style="text-align:center">Best For</span></div>
+    <div class="pt-row"><div class="pt-name">General Cohort PMPM<small style="display:block;font-size:12px;color:var(--warm-gray);font-weight:300;margin-top:2px">Population-wide screening + ICP</small></div><div class="pt-price">$15–25 PMPM</div><div class="pt-who">Medicare Advantage Plans</div><div style="font-size:12px;color:var(--warm-gray);text-align:center">All 65+ members</div></div>
+    <div class="pt-row"><div class="pt-name">High-Risk Cohort PMPM<small style="display:block;font-size:12px;color:var(--warm-gray);font-weight:300;margin-top:2px">Claims-targeted, elevated risk</small></div><div class="pt-price">$30–50 PMPM</div><div class="pt-who">CMO · Chief Actuary</div><div style="font-size:12px;color:var(--warm-gray);text-align:center">Comorbidity cohorts</div></div>
+    <div class="pt-row"><div class="pt-name">Performance Bonuses<small style="display:block;font-size:12px;color:var(--warm-gray);font-weight:300;margin-top:2px">ICP completion, AWV capture</small></div><div class="pt-price">+$X per event</div><div class="pt-who">VP Population Health</div><div style="font-size:12px;color:var(--warm-gray);text-align:center">Outcome-linked</div></div>
+    <div class="pt-row"><div class="pt-name">Shared Savings<small style="display:block;font-size:12px;color:var(--warm-gray);font-weight:300;margin-top:2px">LTC/hospitalization avoidance</small></div><div class="pt-price">% of avoided cost</div><div class="pt-who">Finance · Contracting</div><div style="font-size:12px;color:var(--warm-gray);text-align:center">Larger systems</div></div>
+  </div>
+</section>
+<section style="background:var(--warm-white);padding:100px 5%">
+  <div class="funnel-inner">
+    <div>
+      <div class="section-eyebrow">Implementation Timeline</div>
+      <h2 class="section-title">50k cohort pilot. 12-month outcomes. Actuarial appendix.</h2>
+      <p style="font-size:15px;color:var(--light-text);font-weight:300;margin-bottom:32px;line-height:1.75">A phased rollout that gives your actuarial and quality teams the data they need to validate the investment.</p>
+      <div>
+        <div class="funnel-step"><div class="fs-num">1</div><div class="fs-content"><h4>Discovery & actuarial calibration</h4><p>Data ingestion, cohort selection, baseline KPI extraction. We build three scenarios using your actual age distribution, AWV rates, and LTC placement history.</p><div class="fs-timing">Weeks 1–6</div></div></div>
+        <div class="funnel-step"><div class="fs-num">2</div><div class="fs-content"><h4>Pilot screening deployment</h4><p>Memory Screen → MCI Screen across your 50k cohort. Remote delivery via telehealth or member-facing web. Confirm positives, deliver Individual Care Plans.</p><div class="fs-timing">Weeks 6–18</div></div></div>
+        <div class="funnel-step"><div class="fs-num">3</div><div class="fs-content"><h4>Care pathway operationalization</h4><p>Integrate with CCM workflows, payer dashboards, and claims feeds. Quarterly actuarial reconciliation begins.</p><div class="fs-timing">Months 3–6</div></div></div>
+        <div class="funnel-step"><div class="fs-num">4</div><div class="fs-content"><h4>12-month outcomes measurement</h4><p>LTC placements, utilization trends, Star/HEDIS deltas, and net actuarial savings — measured, attributed, and reconciled against baseline.</p><div class="fs-timing">Month 12</div></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="dashboard-mock">
+        <div style="font-size:12px;font-weight:500;color:var(--warm-gray);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:16px">Sample Payer Dashboard — Population View</div>
+        <div class="dm-stats">
+          <div class="dm-stat"><div class="dm-stat-num">5,400</div><div style="font-size:11px;color:var(--warm-gray);margin-top:3px">Confirmed MCI members</div></div>
+          <div class="dm-stat"><div class="dm-stat-num">$4.97M</div><div style="font-size:11px;color:var(--warm-gray);margin-top:3px">Avoidable cost identified</div></div>
+          <div class="dm-stat"><div class="dm-stat-num">82%</div><div style="font-size:11px;color:var(--warm-gray);margin-top:3px">ICP completion rate</div></div>
+          <div class="dm-stat"><div class="dm-stat-num">+0.4★</div><div style="font-size:11px;color:var(--warm-gray);margin-top:3px">Star rating uplift (est.)</div></div>
+        </div>
+        <div>
+          <div class="dm-row"><span style="color:var(--warm-gray)">Screened (of 50k eligible)</span><span>40,000 (80%)</span></div>
+          <div class="dm-row"><span style="color:var(--warm-gray)">Confirmed MCI (90%)</span><span>5,400</span></div>
+          <div class="dm-row"><span style="color:var(--warm-gray)">ICPs delivered</span><span class="dm-val green">4,428 (82%)</span></div>
+          <div class="dm-row"><span style="color:var(--warm-gray)">AWV capture uplift</span><span class="dm-val green">+$300K</span></div>
+          <div class="dm-row"><span style="color:var(--warm-gray)">LTC placements avoided</span><span class="dm-val green">270 members</span></div>
+          <div class="dm-row"><span style="color:var(--warm-gray)">Net actuarial savings</span><span class="dm-val green">$10.6M (35×)</span></div>
+          <div class="dm-row"><span style="color:var(--warm-gray)">Program cost</span><span style="color:#BA7517">$300K ($0.50 PMPM)</span></div>
+        </div>
+      </div>
+      <div style="background:var(--blue-light);border-radius:16px;padding:22px;margin-top:20px;border:1px solid rgba(74,110,158,0.15)">
+        <h4 style="font-size:15px;font-weight:600;color:var(--blue);margin-bottom:8px;font-family:var(--serif)">The Pilot Ask</h4>
+        <p style="font-size:13px;color:var(--blue);line-height:1.6;opacity:0.85">50k cohort (or targeted high-risk segment) · 6–12 weeks screening · 12 months outcomes measurement · Actuarial appendix with sensitivity tables · Shared savings reconciliation at 12 months.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="pilot" style="background:var(--cream);padding:100px 5%;text-align:center">
+  <div class="section-eyebrow">Run a Claims-Driven Pilot</div>
+  <div class="form-card">
+    <h2>Let's build your actuarial case.</h2>
+    <p>Share your population details and we'll deliver a custom ROI model — with three scenarios built from your actual claims data — before any commitment.</p>
+    <div class="form-row">
+      <div class="form-group"><label>First Name</label><input type="text" placeholder="Sarah"></div>
+      <div class="form-group"><label>Last Name</label><input type="text" placeholder="Mitchell"></div>
+    </div>
+    <div class="form-group"><label>Title</label><input type="text" placeholder="Chief Actuary / VP Population Health"></div>
+    <div class="form-group"><label>Organization</label><input type="text" placeholder="Apex Health Plan"></div>
+    <div class="form-group"><label>Email</label><input type="email" placeholder="smitchell@apexhealthplan.com"></div>
+    <div class="form-group"><label>Member population size</label>
+      <select><option>Under 50,000 members</option><option>50,000–200,000 members</option><option>200,000–500,000 members</option><option>500,000+ members</option></select>
+    </div>
+    <div class="form-group"><label>Plan type</label>
+      <select><option>Medicare Advantage</option><option>Commercial / PPO</option><option>Medicaid / Dual Eligible</option><option>Long-Term Care Insurance</option><option>Other</option></select>
+    </div>
+    <div class="form-group"><label>Primary goal</label>
+      <select><option>LTC placement reduction / actuarial savings</option><option>Star/HEDIS rating improvement</option><option>Population risk stratification</option><option>Total cost of care reduction</option></select>
+    </div>
+    <button class="form-submit">Request My Actuarial Case</button>
+    <p class="form-trust">Custom 3-scenario ROI model before any pilot commitment · HIPAA compliant · Actuarial appendix included</p>
+  </div>
+</section>
+<section class="cta-band">
+  <h2>Identify risk earlier.<br>Target interventions.<br>Lower long-term cost of care.</h2>
+  <p>50k cohort pilot. 12-month outcomes. Actuarial savings tied to performance.</p>
+  <a href="#pilot" class="btn-white">Run a Claims-Driven Pilot</a>
+</section>
+<footer>
+  <a href="index.html" class="footer-logo">acurist.ai</a>
+  <ul class="footer-links">
+    <li><a href="patients.html">Patients</a></li>
+    <li><a href="physicians.html">Physicians</a></li>
+    <li><a href="health-systems.html">Health Systems</a></li>
+    <li><a href="payers.html">Payers</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Acurist.AI LLC.<br>All rights reserved.</div>
+</footer>
+</body>
+</html>
