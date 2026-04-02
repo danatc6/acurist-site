@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acurist &mdash; Start Your Clinic Pilot</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0A1628;--navy-mid:#1A3A5C;--teal:#1B6CA8;--teal-pale:#EBF5FB;
+  --white:#FFFFFF;--off-white:#F8FBFE;--gray-light:#F0F4F8;--gray-mid:#8499B1;
+  --gray-dark:#4A6080;--charcoal:#1C2B3A;--green:#1A7A5E;--green-light:#E8F8F4;
+  --amber:#F39C12;--amber-light:#FEF9EC;
+  --serif:'Georgia',serif;--sans:'DM Sans','Segoe UI',system-ui,sans-serif
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--white);color:var(--charcoal);font-size:16px;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+nav{background:var(--white);border-bottom:1px solid rgba(10,22,40,0.1);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:72px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(10,22,40,0.06)}
+.logo img{height:36px;width:auto;display:block}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{font-size:14px;color:var(--gray-dark);font-weight:400}
+.nav-links a:hover{color:var(--teal)}
+.nav-cta{background:var(--teal)!important;color:white!important;padding:10px 24px;border-radius:6px;font-weight:500!important;font-size:14px!important}
+.btn-primary{background:var(--teal);color:white;padding:14px 32px;border-radius:6px;font-size:15px;font-weight:500;border:none;cursor:pointer;text-decoration:none;display:inline-block;font-family:var(--sans);transition:background 0.2s}
+.btn-primary:hover{background:var(--navy-mid)}
+.btn-white{background:white;color:var(--navy-mid);padding:14px 32px;border-radius:6px;font-size:15px;font-weight:500;border:none;cursor:pointer;text-decoration:none;display:inline-block;font-family:var(--sans)}
+.btn-outline{background:transparent;color:var(--teal);padding:12px 28px;border-radius:6px;font-size:14px;font-weight:500;border:2px solid var(--teal);cursor:pointer;text-decoration:none;display:inline-block;font-family:var(--sans);transition:all 0.2s}
+.btn-outline:hover{background:var(--teal);color:white}
+.section-eyebrow{font-size:12px;font-weight:600;color:var(--teal);letter-spacing:1.4px;text-transform:uppercase;margin-bottom:14px}
+.section-title{font-family:var(--serif);font-size:36px;font-weight:700;color:var(--navy);margin-bottom:16px;line-height:1.25}
+
+/* HERO BAND */
+.hero-band{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);padding:64px 5% 52px;text-align:center}
+.hero-band .eyebrow{display:inline-block;background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.9);font-size:12px;font-weight:500;padding:5px 16px;border-radius:50px;margin-bottom:20px;letter-spacing:0.5px;text-transform:uppercase;border:1px solid rgba(255,255,255,0.2)}
+.hero-band h1{font-family:var(--serif);font-size:44px;color:white;font-weight:700;margin-bottom:14px;line-height:1.2}
+.hero-band h1 em{color:#7EC8E3;font-style:italic}
+.hero-band p{font-size:17px;color:rgba(255,255,255,0.78);max-width:600px;margin:0 auto;line-height:1.75;font-weight:300}
+.trial-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:8px 20px;margin-top:24px;color:white;font-size:14px;font-weight:500}
+.trial-badge .dot{width:8px;height:8px;border-radius:50%;background:#27AE60;flex-shrink:0}
+
+/* MAIN LAYOUT */
+.main-grid{max-width:1140px;margin:0 auto;padding:60px 5%;display:grid;grid-template-columns:1fr 420px;gap:64px;align-items:start}
+
+/* FORM CARD */
+.form-card{background:white;border-radius:16px;padding:40px;border:1px solid rgba(10,22,40,0.1);box-shadow:0 8px 48px rgba(10,22,40,0.08);position:sticky;top:92px}
+.form-card-header{margin-bottom:28px}
+.form-card-header h2{font-family:var(--serif);font-size:24px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.form-card-header p{font-size:14px;color:var(--gray-dark);line-height:1.6}
+.trial-callout{background:var(--green-light);border:1px solid rgba(26,122,94,0.2);border-radius:8px;padding:12px 16px;margin-bottom:24px;display:flex;align-items:flex-start;gap:10px}
+.trial-callout-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.trial-callout-text{font-size:13px;color:var(--green);line-height:1.55;font-weight:500}
+.form-group{text-align:left;margin-bottom:16px}
+.form-group label{display:block;font-size:12px;font-weight:600;color:var(--charcoal);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border:1.5px solid rgba(10,22,40,0.15);border-radius:6px;font-size:14px;font-family:var(--sans);color:var(--charcoal);background:var(--off-white);outline:none;transition:border-color 0.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--teal);background:white}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-submit{width:100%;background:var(--teal);color:white;padding:14px;border-radius:6px;font-size:15px;font-weight:600;border:none;cursor:pointer;font-family:var(--sans);margin-top:6px;transition:background 0.2s;letter-spacing:0.2px}
+.form-submit:hover{background:var(--navy-mid)}
+.form-divider{display:flex;align-items:center;gap:12px;margin:16px 0}
+.form-divider::before,.form-divider::after{content:'';flex:1;height:1px;background:rgba(10,22,40,0.1)}
+.form-divider span{font-size:12px;color:var(--gray-mid)}
+.mciscreen-btn{width:100%;background:var(--navy);color:white;padding:13px;border-radius:6px;font-size:14px;font-weight:500;border:none;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;transition:background 0.2s}
+.mciscreen-btn:hover{background:#243B55}
+.form-trust{font-size:11px;color:var(--gray-mid);margin-top:14px;text-align:center;line-height:1.6}
+
+/* LEFT CONTENT */
+.content-left{}
+
+/* HOW IT WORKS */
+.how-section{margin-bottom:52px}
+.how-section h2{font-family:var(--serif);font-size:28px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.how-section > p{font-size:15px;color:var(--gray-dark);margin-bottom:32px;line-height:1.7}
+.step-list{display:flex;flex-direction:column;gap:0}
+.step-item{display:flex;gap:20px;padding:22px 0;border-bottom:1px solid rgba(10,22,40,0.07)}
+.step-item:last-child{border-bottom:none}
+.step-num{width:40px;height:40px;border-radius:50%;background:var(--teal);color:white;font-family:var(--serif);font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-body h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:5px}
+.step-body p{font-size:14px;color:var(--gray-dark);line-height:1.65}
+.step-body .step-note{display:inline-flex;align-items:center;gap:6px;background:var(--amber-light);border:1px solid rgba(243,156,18,0.25);border-radius:50px;padding:4px 12px;font-size:12px;color:#9A6400;font-weight:500;margin-top:8px}
+.step-link{display:inline-flex;align-items:center;gap:6px;color:var(--teal);font-size:13px;font-weight:600;margin-top:8px;text-decoration:none}
+.step-link:hover{text-decoration:underline}
+
+/* PRICING CARD */
+.pricing-card{background:var(--teal-pale);border:1px solid rgba(27,108,168,0.15);border-radius:12px;padding:24px;margin-bottom:40px}
+.pricing-card h3{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--navy);margin-bottom:16px}
+.price-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(27,108,168,0.12);font-size:14px}
+.price-row:last-of-type{border-bottom:none}
+.price-label{color:var(--gray-dark)}
+.price-value{font-weight:700;color:var(--navy)}
+.price-value.green{color:var(--green)}
+.price-value.teal{color:var(--teal)}
+
+/* VIDEO SECTION */
+.video-section{margin-bottom:48px}
+.video-section h2{font-family:var(--serif);font-size:28px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.video-section > p{font-size:15px;color:var(--gray-dark);margin-bottom:20px;line-height:1.7}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;box-shadow:0 8px 32px rgba(10,22,40,0.12)}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:12px}
+.video-caption{font-size:13px;color:var(--gray-mid);margin-top:10px;text-align:center}
+
+/* ACCOUNT SETUP */
+.account-section{margin-bottom:48px}
+.account-section h2{font-family:var(--serif);font-size:28px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.account-section > p{font-size:15px;color:var(--gray-dark);margin-bottom:24px;line-height:1.7}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.info-card{background:var(--gray-light);border-radius:10px;padding:20px}
+.info-card-icon{font-size:24px;margin-bottom:10px}
+.info-card h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.info-card p{font-size:13px;color:var(--gray-dark);line-height:1.6}
+.admin-note{background:var(--navy);border-radius:10px;padding:20px 24px;margin-top:16px;display:flex;gap:14px;align-items:flex-start}
+.admin-note-icon{font-size:22px;flex-shrink:0}
+.admin-note p{font-size:13px;color:rgba(255,255,255,0.85);line-height:1.65}
+.admin-note strong{color:white}
+
+/* RESOURCES */
+.resources-section{margin-bottom:48px}
+.resources-section h2{font-family:var(--serif);font-size:28px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.resources-section > p{font-size:15px;color:var(--gray-dark);margin-bottom:24px;line-height:1.7}
+.resource-list{display:flex;flex-direction:column;gap:12px}
+.resource-item{display:flex;align-items:center;justify-content:space-between;background:white;border:1px solid rgba(10,22,40,0.1);border-radius:10px;padding:16px 20px;transition:border-color 0.2s,box-shadow 0.2s}
+.resource-item:hover{border-color:var(--teal);box-shadow:0 4px 16px rgba(10,22,40,0.06)}
+.resource-item-left{display:flex;align-items:center;gap:14px}
+.resource-icon{width:40px;height:40px;border-radius:8px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.resource-title{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:2px}
+.resource-desc{font-size:12px;color:var(--gray-mid)}
+.resource-btn{font-size:12px;font-weight:600;color:var(--teal);white-space:nowrap;display:flex;align-items:center;gap:4px}
+
+/* FOOTER */
+footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:56px 5% 36px}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-logo img{height:32px;width:auto;margin-bottom:16px;filter:brightness(0) invert(1) opacity(0.85)}
+.footer-tagline{font-size:13px;line-height:1.7;color:rgba(255,255,255,0.4)}
+.footer-col h4{font-size:12px;font-weight:600;color:rgba(255,255,255,0.7);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:10px}
+.footer-col ul li a{font-size:13px;color:rgba(255,255,255,0.4)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-badges{display:flex;gap:16px;align-items:center}
+.footer-badges img{height:28px;filter:brightness(0) invert(1) opacity(0.45)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.3)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><img src="https://www.acurist.ai/hubfs/Acurist%20logo%20without%20tag_103024.png" alt="Acurist"></a>
+  <ul class="nav-links">
+    <li><a href="patients.html">For Patients</a></li>
+    <li><a href="physicians.html">For Physicians</a></li>
+    <li><a href="health-systems.html">For Health Systems</a></li>
+    <li><a href="payers.html">For Payers</a></li>
+    <li><a href="patients.html#screen" class="nav-cta">Take the Free Memory Screen</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero-band">
+  <div class="eyebrow">Physician &amp; Clinic Enrollment</div>
+  <h1>Start offering the MCI Screen in <em>your practice.</em></h1>
+  <p>Set up your clinic account in minutes. No IT integration required to get started. Train your staff with one short video. Begin screening patients this week.</p>
+  <div class="trial-badge"><span class="dot"></span>Free 15-day trial &mdash; no credit card required to start</div>
+</div>
+
+<!-- MAIN GRID -->
+<div class="main-grid">
+
+  <!-- LEFT: CONTENT -->
+  <div class="content-left">
+
+    <!-- HOW IT WORKS -->
+    <div class="how-section">
+      <div class="section-eyebrow">How to Get Started</div>
+      <h2>Your clinic is up and running in 4 steps.</h2>
+      <p>The entire setup process takes under 15 minutes. Any staff member can administer the test &mdash; no specialist credentials required.</p>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Create your free account at MCI Screen</h3>
+            <p>Visit <strong>mciscreen.com</strong> and click &ldquo;Free 15-Day Trial&rdquo; or the &ldquo;Get Started&rdquo; tab. Complete the short registration form &mdash; your staff can complete it on the practice&rsquo;s behalf.</p>
+            <div class="step-note">&#9888;&#65039; Important: enter your Acurist representative&rsquo;s name in the &ldquo;Where did you hear about us?&rdquo; field</div>
+            <a href="https://mciscreen.com/get-started/" target="_blank" class="step-link">Go to mciscreen.com/get-started &rarr;</a>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Set up user accounts for your team</h3>
+            <p>Each staff member who will administer the MCI Screen should have their own user account. This ensures tight control over patient data access. All accounts within the practice can be &ldquo;grouped&rdquo; so every user can see the practice&rsquo;s full screening history.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Train your staff (10 minutes)</h3>
+            <p>Watch the MCI Screen Demonstration Video with Q&amp;A below. No specific credentials or clinical background required &mdash; good patient interaction skills are the only requirement. Most staff are ready to administer after a single viewing.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>Begin screening patients</h3>
+            <p>The MCI Screen is fully guided and runs online &mdash; no software to download. Administer from any computer, tablet, or phone. The report generates instantly and is ready before the physician enters the room.</p>
+            <div class="step-note">&#128197; After your 15-day trial, assessments are billed at $79 per assessment via credit card or invoice</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="pricing-card">
+      <h3>Simple, transparent pricing</h3>
+      <div class="price-row"><span class="price-label">Free 15-day trial</span><span class="price-value green">$0 &mdash; no credit card required</span></div>
+      <div class="price-row"><span class="price-label">Per assessment (after trial)</span><span class="price-value teal">$79 per assessment</span></div>
+      <div class="price-row"><span class="price-label">Medicare reimbursement</span><span class="price-value green">Reimbursable (G0438, 99483 &amp; more)</span></div>
+      <div class="price-row"><span class="price-label">Setup / monthly fee</span><span class="price-value">None</span></div>
+      <div class="price-row"><span class="price-label">Software downloads or IT required</span><span class="price-value">None &mdash; fully online</span></div>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="video-section">
+      <div class="section-eyebrow">Staff Training</div>
+      <h2>MCI Screen Demonstration Video with Q&amp;A</h2>
+      <p>Watch this short video before your first assessment. It walks your staff through the complete administration process, scoring, and how to interpret the report. No prior clinical training required.</p>
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/pDcQPR7NokE"
+          title="MCI Screen Demonstration Video with Q&A"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p class="video-caption">MCI Screen Demonstration Video with Q&amp;A &middot; Required viewing for all test administrators</p>
+    </div>
+
+    <!-- ACCOUNT SETUP -->
+    <div class="account-section">
+      <div class="section-eyebrow">Account Setup</div>
+      <h2>Everything you need to know about your account.</h2>
+      <p>The MCI Screen platform is built for busy clinical practices. Online access, no downloads, HIPAA-compliant, accessible from any device at any time.</p>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-icon">&#128101;</div>
+          <h4>Multiple user accounts</h4>
+          <p>Each staff member who administers the MCI Screen should have their own login for tight control over patient data access.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">&#128279;</div>
+          <h4>Grouped accounts</h4>
+          <p>All users within your practice can be grouped together, giving everyone visibility into the practice&rsquo;s full patient history and screening flow.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">&#128274;</div>
+          <h4>HIPAA &amp; SSL secure</h4>
+          <p>All data exchange and storage complies with HIPAA guidelines. Secured via SSL. No local downloads, no backups to manage.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">&#128241;</div>
+          <h4>Any device, any time</h4>
+          <p>Access patient records, run assessments, and view reports from any internet-enabled computer, tablet, or phone &mdash; in office or via telehealth.</p>
+        </div>
+      </div>
+      <div class="admin-note">
+        <div class="admin-note-icon">&#128203;</div>
+        <p><strong>No credentials required to administer the MCI Screen.</strong> Good patient interaction skills are the only requirement. The assessment is fully guided &mdash; the platform walks both the administrator and patient through every step. One practice session achieves test-retest reliability of 0.83.</p>
+      </div>
+    </div>
+
+    <!-- RESOURCES -->
+    <div class="resources-section">
+      <div class="section-eyebrow">Clinical Resources</div>
+      <h2>Everything you need to implement with confidence.</h2>
+      <p>Download the implementation guides, interpretation guidelines, and clinical studies to share with your physicians and staff.</p>
+      <div class="resource-list">
+        <div class="resource-item">
+          <div class="resource-item-left">
+            <div class="resource-icon">&#128214;</div>
+            <div>
+              <div class="resource-title">Report Interpretation Guidelines</div>
+              <div class="resource-desc">How to read MCI Screen results &mdash; MPI score, overall impression, sub-scores &amp; clinical discussion</div>
+            </div>
+          </div>
+          <a href="https://www.acurist.ai/hubfs/47272843/MCI%20Screen_Report%20Interpration%20Guidelines.pdf" target="_blank" class="resource-btn">Download PDF &rarr;</a>
+        </div>
+        <div class="resource-item">
+          <div class="resource-item-left">
+            <div class="resource-icon">&#128196;</div>
+            <div>
+              <div class="resource-title">Implementation Guide 2024</div>
+              <div class="resource-desc">Step-by-step setup guide for your clinic &mdash; account creation, staff training, and first assessment</div>
+            </div>
+          </div>
+          <a href="https://mciscreen.com/wp-content/uploads/2023/12/MCIS_ImplementationGuide2023.pdf" target="_blank" class="resource-btn">Download PDF &rarr;</a>
+        </div>
+        <div class="resource-item">
+          <div class="resource-item-left">
+            <div class="resource-icon">&#128202;</div>
+            <div>
+              <div class="resource-title">Accuracy Validation Study</div>
+              <div class="resource-desc">Peer-reviewed clinical evidence &mdash; 97.3% accuracy, sensitivity, specificity data</div>
+            </div>
+          </div>
+          <a href="https://www.acurist.ai/hubfs/47272843/MCIS_Accuracy%20Validation.pdf" target="_blank" class="resource-btn">Download PDF &rarr;</a>
+        </div>
+        <div class="resource-item">
+          <div class="resource-item-left">
+            <div class="resource-icon">&#128203;</div>
+            <div>
+              <div class="resource-title">Cognitive Tests Comparison Chart</div>
+              <div class="resource-desc">MCI Screen vs. MMSE, MoCA, Clock Drawing &mdash; accuracy, sensitivity, Medicare reimbursement</div>
+            </div>
+          </div>
+          <a href="https://www.acurist.ai/hubfs/47272843/MCIS_AccuracyValidation.pdf" target="_blank" class="resource-btn">Download PDF &rarr;</a>
+        </div>
+        <div class="resource-item">
+          <div class="resource-item-left">
+            <div class="resource-icon">&#128250;</div>
+            <div>
+              <div class="resource-title">MCI Screen Demonstration Video</div>
+              <div class="resource-desc">Full training video with Q&amp;A &mdash; watch before your first assessment</div>
+            </div>
+          </div>
+          <a href="https://youtu.be/pDcQPR7NokE" target="_blank" class="resource-btn">Watch on YouTube &rarr;</a>
+        </div>
+        <div class="resource-item">
+          <div class="resource-item-left">
+            <div class="resource-icon">&#127760;</div>
+            <div>
+              <div class="resource-title">MCI Screen Platform</div>
+              <div class="resource-desc">mciscreen.com &mdash; your clinic portal, patient records, and assessment administration</div>
+            </div>
+          </div>
+          <a href="https://mciscreen.com/get-started/" target="_blank" class="resource-btn">Visit mciscreen.com &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end content-left -->
+
+  <!-- RIGHT: STICKY FORM -->
+  <div>
+    <div class="form-card">
+      <div class="form-card-header">
+        <h2>Start your free 15-day trial</h2>
+        <p>Share your details and an Acurist representative will contact you to get your account set up &mdash; usually within one business day.</p>
+      </div>
+      <div class="trial-callout">
+        <div class="trial-callout-icon">&#9989;</div>
+        <div class="trial-callout-text">Free 15-day trial &middot; No credit card required &middot; Full access to all features &middot; $79/assessment after trial</div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="Jane"></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"></div>
+      </div>
+      <div class="form-group"><label>Role / Title</label>
+        <select>
+          <option value="">Select your role...</option>
+          <option>Primary Care Physician</option>
+          <option>Neurologist</option>
+          <option>Geriatrician</option>
+          <option>Psychiatrist</option>
+          <option>Nurse Practitioner / PA</option>
+          <option>Practice Manager / Administrator</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Practice / Organization</label><input type="text" placeholder="Smith Family Medicine"></div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="jane@smithfamilymedicine.com"></div>
+      <div class="form-group"><label>Phone</label><input type="tel" placeholder="(555) 000-0000"></div>
+      <div class="form-group"><label>City &amp; State</label><input type="text" placeholder="Los Angeles, CA"></div>
+      <div class="form-group"><label>Approx. patients screened per month</label>
+        <select>
+          <option value="">Select estimate...</option>
+          <option>1&ndash;10 per month (just getting started)</option>
+          <option>10&ndash;50 per month</option>
+          <option>50&ndash;150 per month</option>
+          <option>150+ per month</option>
+        </select>
+      </div>
+      <div class="form-group"><label>How did you hear about us?</label><input type="text" placeholder="Representative name or referral source"></div>
+      <button class="form-submit">Request My Free Trial &rarr;</button>
+      <div class="form-divider"><span>or set up directly</span></div>
+      <a href="https://mciscreen.com/get-started/" target="_blank" class="mciscreen-btn">
+        &#128279; Create account at mciscreen.com
+      </a>
+      <p class="form-trust">HIPAA compliant &middot; SSL secured &middot; No IT integration required<br>Questions? Call <a href="tel:5408786754" style="color:var(--teal)">540-878-6754</a> or <a href="https://www.calendly.com/croomlawrence" target="_blank" style="color:var(--teal)">schedule a call</a></p>
+    </div>
+  </div>
+
+</div><!-- end main-grid -->
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><img src="https://www.acurist.ai/hubfs/Acurist%20logo%20without%20tag_103024.png" alt="Acurist"></div>
+      <p class="footer-tagline">The most accurate AI-powered cognitive assessment &mdash; built on 20 years of peer-reviewed science.</p>
+    </div>
+    <div class="footer-col"><h4>Platform</h4><ul>
+      <li><a href="patients.html">For Patients</a></li>
+      <li><a href="physicians.html">For Physicians</a></li>
+      <li><a href="health-systems.html">For Health Systems</a></li>
+      <li><a href="payers.html">For Payers</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Resources</h4><ul>
+      <li><a href="#">Science</a></li>
+      <li><a href="#">Clinical Studies</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul>
+      <li><a href="tel:5408786754">540-878-6754</a></li>
+      <li><a href="https://www.calendly.com/croomlawrence">Schedule a Demo</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">HIPAA Notice</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-badges">
+      <img src="https://www.acurist.ai/hubfs/hipaa_with_bg-removebg-preview.png" alt="HIPAA">
+      <img src="https://www.acurist.ai/hubfs/hsa%20fsa%20eligible%20logo%20no%20bg.png" alt="HSA/FSA">
+      <img src="https://www.acurist.ai/hubfs/Centers_for_Medicare_and_Medicaid_Services_logo.svg" alt="Medicare">
+    </div>
+    <div class="footer-copy">&copy; 2026 Acurist.AI LLC. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>
