@@ -7,3 +7,1728 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Georgia&display=swap" rel="stylesheet">
   <style>
+    *, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0A1628;
+      --navy-mid: #1A3A5C;
+      --teal: #1B6CA8;
+      --teal-pale: #EBF5FB;
+      --white: #FFFFFF;
+      --off-white: #F8FBFE;
+      --gray-light: #F0F4F8;
+      --gray-mid: #8499B1;
+      --gray-dark: #4A6080;
+      --charcoal: #1C2B3A;
+      --green: #1A7A5E;
+      --green-light: #E8F8F4;
+      --orange: #D4720A;
+      --orange-light: #FEF3E8;
+      --red: #C0392B;
+      --red-light: #FDEDEC;
+      --serif: 'Georgia', serif;
+      --sans: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--white);
+      color: var(--charcoal);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid rgba(10,22,40,0.1);
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(10,22,40,0.06);
+    }
+    .logo img { height: 36px; width: auto; display: block; }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a { font-size: 14px; color: var(--gray-dark); font-weight: 400; }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta {
+      padding: 10px 24px;
+      border-radius: 6px;
+      background: var(--teal);
+      color: var(--white) !important;
+      font-weight: 500;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--navy-mid) !important; }
+
+    /* ── HERO BANNER ── */
+    .assessment-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1B5080 100%);
+      padding: 56px 5% 48px;
+      color: var(--white);
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .assessment-hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: normal;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .assessment-hero h1 em {
+      font-style: italic;
+      color: #7EC8F0;
+    }
+    .assessment-hero p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.75);
+      max-width: 560px;
+      margin: 0 auto 28px;
+      line-height: 1.7;
+    }
+    .progress-wrap {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 8px;
+    }
+    .progress-bar-outer {
+      background: rgba(255,255,255,0.15);
+      border-radius: 20px;
+      height: 6px;
+      overflow: hidden;
+    }
+    .progress-bar-inner {
+      height: 100%;
+      background: linear-gradient(90deg, #7EC8F0, #1B6CA8);
+      border-radius: 20px;
+      transition: width 0.5s ease;
+      width: 0%;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .assessment-main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .section-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--teal-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .section-title h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+    .section-title p {
+      font-size: 13px;
+      color: var(--gray-mid);
+    }
+
+    /* ── QUESTION CARD ── */
+    .q-section {
+      display: none;
+      animation: fadeSlide 0.35s ease;
+    }
+    .q-section.active { display: block; }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .question-card {
+      background: var(--white);
+      border: 1px solid rgba(10,22,40,0.1);
+      border-radius: 14px;
+      padding: 28px 30px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(10,22,40,0.04);
+    }
+    .question-card:last-child { margin-bottom: 0; }
+
+    .q-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .q-text {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+    .q-hint {
+      font-size: 13px;
+      color: var(--gray-mid);
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    /* ── RADIO OPTIONS ── */
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .radio-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(10,22,40,0.1);
+      background: var(--off-white);
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .radio-option:hover {
+      background: rgba(27,108,168,0.04);
+      border-color: rgba(27,108,168,0.2);
+    }
+    .radio-option input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      flex-shrink: 0;
+      margin-top: 1px;
+      accent-color: var(--teal);
+    }
+    .radio-option.selected {
+      background: rgba(27,108,168,0.08);
+      border-color: var(--teal);
+      box-shadow: 0 0 0 2px rgba(27,108,168,0.1);
+    }
+    .radio-label {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+    }
+    .radio-main {
+      font-size: 14px;
+      color: var(--navy);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .radio-sub {
+      font-size: 12px;
+      color: var(--gray-mid);
+      line-height: 1.35;
+    }
+
+    /* ── NAVIGATION ── */
+    .q-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(10,22,40,0.1);
+    }
+    .nav-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .nav-btn.prev {
+      background: var(--gray-light);
+      color: var(--gray-dark);
+    }
+    .nav-btn.prev:hover {
+      background: #E2E8F0;
+      color: var(--charcoal);
+    }
+    .nav-btn.next {
+      background: var(--teal);
+      color: var(--white);
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .nav-btn.next:enabled {
+      opacity: 1;
+      cursor: pointer;
+    }
+    .nav-btn.next:enabled:hover {
+      background: var(--navy-mid);
+    }
+    .nav-placeholder { width: 80px; }
+
+    /* ── RESULTS ── */
+    .results-section {
+      display: none;
+      animation: fadeSlide 0.5s ease;
+    }
+    .results-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1B5080 100%);
+      padding: 40px 5% 32px;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .results-hero .hero-badge {
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.9);
+    }
+    .results-hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: normal;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+
+    /* ── SCORE DISPLAY ── */
+    .score-display {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 20px rgba(10,22,40,0.06);
+      border: 1px solid rgba(10,22,40,0.08);
+    }
+    .score-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .score-number {
+      font-size: 72px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 8px;
+      font-family: var(--sans);
+    }
+    .score-label {
+      font-size: 14px;
+      color: var(--gray-mid);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .tier-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* ── RISK SCALE ── */
+    .risk-scale {
+      position: relative;
+      margin: 24px 0;
+    }
+    .scale-track {
+      height: 12px;
+      background: linear-gradient(90deg, 
+        var(--green) 0%, var(--green) 20%,
+        #E8B547 20%, #E8B547 40%,
+        var(--orange) 40%, var(--orange) 60%,
+        #D65D0E 60%, #D65D0E 80%,
+        var(--red) 80%, var(--red) 100%);
+      border-radius: 6px;
+      position: relative;
+    }
+    .risk-needle {
+      position: absolute;
+      top: -2px;
+      width: 16px;
+      height: 16px;
+      background: var(--white);
+      border: 3px solid var(--navy);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      left: 4%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 10px;
+      color: var(--gray-mid);
+      font-weight: 500;
+    }
+
+    .score-interp {
+      font-size: 15px;
+      color: var(--charcoal);
+      line-height: 1.6;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* ── DOMAIN BREAKDOWN ── */
+    .domain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .domain-card {
+      background: var(--white);
+      border: 1px solid rgba(10,22,40,0.08);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(10,22,40,0.04);
+    }
+    .domain-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .domain-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .domain-status {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+    .domain-status.status-good {
+      background: var(--green-light);
+      color: var(--green);
+    }
+    .domain-status.status-moderate {
+      background: var(--orange-light);
+      color: var(--orange);
+    }
+    .domain-status.status-high {
+      background: var(--red-light);
+      color: var(--red);
+    }
+    .domain-bar-track {
+      height: 6px;
+      background: rgba(10,22,40,0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .domain-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .domain-bar-fill.fill-green { background: var(--green); }
+    .domain-bar-fill.fill-orange { background: var(--orange); }
+    .domain-bar-fill.fill-red { background: var(--red); }
+    .domain-detail {
+      font-size: 12px;
+      color: var(--gray-mid);
+      line-height: 1.4;
+    }
+
+    /* ── ACTION PLAN ── */
+    .action-plan {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .action-card {
+      background: var(--white);
+      border: 1px solid rgba(10,22,40,0.08);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      gap: 16px;
+      box-shadow: 0 2px 8px rgba(10,22,40,0.04);
+    }
+    .action-priority {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .action-priority.priority-high { background: var(--red); }
+    .action-priority.priority-med { background: var(--orange); }
+    .action-priority.priority-low { background: var(--green); }
+    .action-content {
+      flex: 1;
+    }
+    .action-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .evidence-badge {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 8px;
+      background: rgba(27,108,168,0.1);
+      color: var(--teal);
+    }
+    .action-desc {
+      font-size: 13px;
+      color: var(--charcoal);
+      line-height: 1.5;
+    }
+
+    /* ── MOBILE RESPONSIVENESS ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .assessment-main { padding: 32px 20px 60px; }
+      .question-card { padding: 24px 20px; }
+      .radio-group { gap: 8px; }
+      .radio-option { padding: 10px 14px; }
+      .score-display { padding: 24px 20px; }
+      .score-number { font-size: 56px; }
+      .domain-grid { grid-template-columns: 1fr; gap: 16px; }
+      .action-card { padding: 16px; gap: 12px; }
+      .action-priority { width: 28px; height: 28px; font-size: 12px; }
+    }
+
+    @media (max-width: 480px) {
+      .assessment-hero { padding: 40px 5% 32px; }
+      .assessment-hero h1 { font-size: 24px; }
+      .assessment-main { padding: 24px 16px 48px; }
+      .q-nav { flex-direction: column; gap: 12px; }
+      .nav-btn { width: 100%; }
+      .nav-placeholder { display: none; }
+      .score-display { margin: 0 -4px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <img src="data:image/svg+xml,%3Csvg width='120' height='36' viewBox='0 0 120 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.5 7.5h7l5 12.5 5-12.5h7l-9 21h-6l-9-21z' fill='%231B6CA8'/%3E%3Cpath d='M36 10.5c1.5 0 2.7 1.2 2.7 2.7v10.6c0 1.5-1.2 2.7-2.7 2.7s-2.7-1.2-2.7-2.7V13.2c0-1.5 1.2-2.7 2.7-2.7z' fill='%230A1628'/%3E%3Ctext x='48' y='22' font-family='Georgia, serif' font-size='16' fill='%230A1628'%3EAcurist%3C/text%3E%3Ctext x='95' y='22' font-family='DM Sans, sans-serif' font-size='12' fill='%231B6CA8'%3E.AI%3C/text%3E%3C/svg%3E" alt="Acurist.AI">
+  </div>
+  <ul class="nav-links">
+    <li><a href="/">For Patients</a></li>
+    <li><a href="/physicians.html">For Physicians</a></li>
+    <li><a href="/health-systems.html">For Health Systems</a></li>
+    <li><a href="/payers.html">For Payers</a></li>
+    <li><a href="#" class="nav-cta">Take the Free Memory Screen</a></li>
+  </ul>
+</nav>
+
+<section id="assessment-section">
+  <div class="assessment-hero">
+    <div class="hero-badge">Alzheimer's Risk Intelligence™</div>
+    <h1>Your Personalized <em>Risk Profile</em></h1>
+    <p>Evidence-based assessment using the latest research from the 2024 Lancet Commission on Dementia Prevention, FINGER Study, and leading clinical trials.</p>
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Progress</span>
+        <span id="progress-text">0 of 21 questions</span>
+      </div>
+      <div class="progress-bar-outer">
+        <div class="progress-bar-inner" id="progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="assessment-main">
+    <!-- SECTION 1: BASELINE RISK -->
+    <div class="q-section active" id="section-1">
+      <div class="section-header">
+        <div class="section-icon">🧬</div>
+        <div class="section-title">
+          <h2>Baseline Risk Factors</h2>
+          <p>Age, genetics, and family history (20% of total risk assessment)</p>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 1</div>
+        <div class="q-text">What is your current age?</div>
+        <div class="q-hint">Age is the strongest single risk factor for Alzheimer's disease, with risk approximately doubling every 5 years after age 65.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q1" value="0">
+            <div class="radio-label">
+              <div class="radio-main">Under 45 years</div>
+              <div class="radio-sub">Very low baseline risk from age</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q1" value="1">
+            <div class="radio-label">
+              <div class="radio-main">45-54 years</div>
+              <div class="radio-sub">Low baseline risk</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q1" value="2">
+            <div class="radio-label">
+              <div class="radio-main">55-64 years</div>
+              <div class="radio-sub">Mild age-related risk increase</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q1" value="4">
+            <div class="radio-label">
+              <div class="radio-main">65-74 years</div>
+              <div class="radio-sub">Moderate age-related risk</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q1" value="6">
+            <div class="radio-label">
+              <div class="radio-main">75-84 years</div>
+              <div class="radio-sub">Higher age-related risk</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q1" value="8">
+            <div class="radio-label">
+              <div class="radio-main">85 years or older</div>
+              <div class="radio-sub">Highest age-related risk</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 2</div>
+        <div class="q-text">Do you have a parent, sibling, or child who has been diagnosed with Alzheimer's disease or dementia?</div>
+        <div class="q-hint">Family history increases risk, especially if the relative developed symptoms before age 75.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q2" value="0">
+            <div class="radio-label">
+              <div class="radio-main">No family history</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q2" value="2">
+            <div class="radio-label">
+              <div class="radio-main">One first-degree relative, diagnosed after age 75</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q2" value="3">
+            <div class="radio-label">
+              <div class="radio-main">One first-degree relative, diagnosed before age 75</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q2" value="5">
+            <div class="radio-label">
+              <div class="radio-main">Multiple first-degree relatives with dementia</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 3</div>
+        <div class="q-text">What is your biological sex assigned at birth?</div>
+        <div class="q-hint">Women have a slightly higher lifetime risk, partly due to longer life expectancy and hormonal factors.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q3" value="0">
+            <div class="radio-label">
+              <div class="radio-main">Male</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q3" value="2">
+            <div class="radio-label">
+              <div class="radio-main">Female</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 4 (Optional)</div>
+        <div class="q-text">Have you been genetically tested for APOE status?</div>
+        <div class="q-hint">APOE ε4 is a genetic risk factor. Skip this question if you haven't been tested or prefer not to disclose.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q4" value="0">
+            <div class="radio-label">
+              <div class="radio-main">No ε4 alleles (ε2/ε2, ε2/ε3, ε3/ε3)</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q4" value="3">
+            <div class="radio-label">
+              <div class="radio-main">One ε4 allele (ε3/ε4 or ε2/ε4)</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q4" value="5">
+            <div class="radio-label">
+              <div class="radio-main">Two ε4 alleles (ε4/ε4)</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q4" value="0">
+            <div class="radio-label">
+              <div class="radio-main">Prefer not to answer / Not tested</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="q-nav">
+        <div class="nav-placeholder"></div>
+        <button class="nav-btn next" id="next-1" disabled onclick="nextSection(1)">Continue to Health Factors</button>
+      </div>
+    </div>
+
+    <!-- SECTION 2: MODIFIABLE RISK -->
+    <div class="q-section" id="section-2">
+      <div class="section-header">
+        <div class="section-icon">🫀</div>
+        <div class="section-title">
+          <h2>Modifiable Risk Factors</h2>
+          <p>Vascular, sleep, mental health, activity, sensory & cognitive factors (60% of assessment)</p>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 5</div>
+        <div class="q-text">What is your blood pressure status?</div>
+        <div class="q-hint">High blood pressure, especially in midlife, significantly increases dementia risk. The SPRINT-MIND trial showed benefit from intensive BP control.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q5" value="0">
+            <div class="radio-label">
+              <div class="radio-main">Consistently well-controlled (typically <130/80)</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q5" value="2">
+            <div class="radio-label">
+              <div class="radio-main">Treated hypertension, well-controlled</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q5" value="4">
+            <div class="radio-label">
+              <div class="radio-main">Treated hypertension, sometimes elevated</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q5" value="6">
+            <div class="radio-label">
+              <div class="radio-main">Known high blood pressure, inadequately treated</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q5" value="3">
+            <div class="radio-label">
+              <div class="radio-main">Don't know my blood pressure status</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 6</div>
+        <div class="q-text">Have you been diagnosed with diabetes?</div>
+        <div class="q-hint">Diabetes significantly increases dementia risk through vascular and metabolic mechanisms.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q6" value="0">
+            <div class="radio-label">
+              <div class="radio-main">No diabetes</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q6" value="2">
+            <div class="radio-label">
+              <div class="radio-main">Pre-diabetes or borderline glucose</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q6" value="4">
+            <div class="radio-label">
+              <div class="radio-main">Type 2 diabetes, well-controlled (HbA1c <7%)</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q6" value="6">
+            <div class="radio-label">
+              <div class="radio-main">Type 2 diabetes, poorly controlled</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 7</div>
+        <div class="q-text">What is your body weight status?</div>
+        <div class="q-hint">Both obesity (especially in midlife) and significant underweight in later life increase dementia risk.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q7" value="0">
+            <div class="radio-label">
+              <div class="radio-main">Normal weight (BMI 18.5-24.9)</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q7" value="1">
+            <div class="radio-label">
+              <div class="radio-main">Slightly overweight (BMI 25-29.9)</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q7" value="3">
+            <div class="radio-label">
+              <div class="radio-main">Obese (BMI 30-34.9)</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q7" value="5">
+            <div class="radio-label">
+              <div class="radio-main">Very obese (BMI ≥35)</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q7" value="2">
+            <div class="radio-label">
+              <div class="radio-main">Underweight (BMI <18.5)</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 8</div>
+        <div class="q-text">How would you describe your current sleep quality?</div>
+        <div class="q-hint">Poor sleep quality and disorders like sleep apnea increase dementia risk by impairing brain clearance of toxic proteins.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q8" value="0">
+            <div class="radio-label">
+              <div class="radio-main">Excellent sleep quality (7-8 hours, refreshing)</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q8" value="2">
+            <div class="radio-label">
+              <div class="radio-main">Good sleep quality, occasional difficulties</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q8" value="4">
+            <div class="radio-label">
+              <div class="radio-main">Fair sleep quality, frequent difficulties</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q8" value="6">
+            <div class="radio-label">
+              <div class="radio-main">Poor sleep quality (insomnia, very restless)</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 9</div>
+        <div class="q-text">Do you have a history of untreated sleep apnea?</div>
+        <div class="q-hint">Sleep apnea, if untreated, significantly increases dementia risk due to repeated oxygen desaturation and sleep fragmentation.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q9" value="0">
+            <div class="radio-label">
+              <div class="radio-main">No sleep apnea / Successfully treated sleep apnea</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q9" value="2">
+            <div class="radio-label">
+              <div class="radio-main">Suspected sleep apnea, not yet evaluated</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q9" value="4">
+            <div class="radio-label">
+              <div class="radio-main">Known untreated sleep apnea</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 10</div>
+        <div class="q-text">Have you experienced a major depressive episode in the past 5 years?</div>
+        <div class="q-hint">Depression is both a risk factor for and early symptom of dementia. Treatment is important for both mental health and cognitive protection.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q10" value="0">
+            <div class="radio-label">
+              <div class="radio-main">No significant depression</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q10" value="2">
+            <div class="radio-label">
+              <div class="radio-main">Mild depression, well-managed</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q10" value="4">
+            <div class="radio-label">
+              <div class="radio-main">Moderate depression, receiving treatment</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q10" value="6">
+            <div class="radio-label">
+              <div class="radio-main">Severe or untreated depression</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 11</div>
+        <div class="q-text">How often do you experience chronic stress?</div>
+        <div class="q-hint">Chronic stress elevates cortisol and increases dementia risk. Managing stress through various techniques is protective.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q11" value="0">
+            <div class="radio-label">
+              <div class="radio-main">Rarely stressed, good coping mechanisms</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q11" value="1">
+            <div class="radio-label">
+              <div class="radio-main">Occasional stress, well-managed</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q11" value="2">
+            <div class="radio-label">
+              <div class="radio-main">Frequent stress, some difficulty managing</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q11" value="4">
+            <div class="radio-label">
+              <div class="radio-main">Chronic high stress, poor coping</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 12</div>
+        <div class="q-text">How much physical activity do you get per week?</div>
+        <div class="q-hint">Regular physical activity is one of the strongest protective factors against dementia. Aim for ≥150 min/week moderate activity plus resistance training.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q12" value="0">
+            <div class="radio-label">
+              <div class="radio-main">≥150 min/week moderate exercise + resistance training</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q12" value="1">
+            <div class="radio-label">
+              <div class="radio-main">Regular moderate exercise, 75-150 min/week</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q12" value="3">
+            <div class="radio-label">
+              <div class="radio-main">Light exercise, <75 min/week</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q12" value="5">
+            <div class="radio-label">
+              <div class="radio-main">Minimal exercise, mostly sedentary</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 13</div>
+        <div class="q-text">Do you have difficulty participating in activities due to muscle weakness or physical limitations?</div>
+        <div class="q-hint">Physical frailty and mobility limitations in older adults increase dementia risk, partly through reduced activity and social engagement.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q13" value="0">
+            <div class="radio-label">
+              <div class="radio-main">No physical limitations affecting activities</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q13" value="1">
+            <div class="radio-label">
+              <div class="radio-main">Mild limitations, doesn't affect most activities</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q13" value="2">
+            <div class="radio-label">
+              <div class="radio-main">Moderate limitations, affects some activities</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q13" value="3">
+            <div class="radio-label">
+              <div class="radio-main">Significant physical limitations</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 14</div>
+        <div class="q-text">Do you have untreated hearing loss?</div>
+        <div class="q-hint">Untreated hearing loss is a major modifiable dementia risk factor. The 2023 ACHIEVE trial confirmed that hearing aids reduce cognitive decline.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q14" value="0">
+            <div class="radio-label">
+              <div class="radio-main">No hearing problems / Well-treated hearing loss</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q14" value="2">
+            <div class="radio-label">
+              <div class="radio-main">Mild hearing difficulty, no treatment</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q14" value="4">
+            <div class="radio-label">
+              <div class="radio-main">Moderate hearing loss, untreated</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q14" value="6">
+            <div class="radio-label">
+              <div class="radio-main">Significant hearing loss, untreated</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 15</div>
+        <div class="q-text">How much formal education have you completed?</div>
+        <div class="q-hint">Higher education builds cognitive reserve that protects against dementia, even when brain pathology is present.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q15" value="3">
+            <div class="radio-label">
+              <div class="radio-main">Less than high school</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q15" value="2">
+            <div class="radio-label">
+              <div class="radio-main">High school diploma</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q15" value="1">
+            <div class="radio-label">
+              <div class="radio-main">Some college or trade school</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q15" value="0">
+            <div class="radio-label">
+              <div class="radio-main">College degree or higher</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 16</div>
+        <div class="q-text">How often do you engage in mentally stimulating activities?</div>
+        <div class="q-hint">Regular cognitive stimulation throughout life builds reserve against dementia. Examples include reading, learning, complex hobbies, strategic games.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q16" value="0">
+            <div class="radio-label">
+              <div class="radio-main">Daily mentally challenging activities</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q16" value="1">
+            <div class="radio-label">
+              <div class="radio-main">Regular mental stimulation (3-4x/week)</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q16" value="2">
+            <div class="radio-label">
+              <div class="radio-main">Occasional cognitive activities (1-2x/week)</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q16" value="3">
+            <div class="radio-label">
+              <div class="radio-main">Minimal cognitive stimulation</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="q-nav">
+        <button class="nav-btn prev" onclick="prevSection(2)">← Back to Baseline Risk</button>
+        <button class="nav-btn next" id="next-2" disabled onclick="nextSection(2)">Continue to Protective Factors</button>
+      </div>
+    </div>
+
+    <!-- SECTION 3: PROTECTIVE FACTORS -->
+    <div class="q-section" id="section-3">
+      <div class="section-header">
+        <div class="section-icon">🛡️</div>
+        <div class="section-title">
+          <h2>Protective Factors</h2>
+          <p>Diet, lifestyle, and social factors that reduce risk (20% of assessment)</p>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 17</div>
+        <div class="q-text">How closely does your diet follow a Mediterranean or MIND diet pattern?</div>
+        <div class="q-hint">Mediterranean and MIND diets, rich in vegetables, fish, whole grains, and olive oil, are associated with reduced dementia risk.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q17" value="-5">
+            <div class="radio-label">
+              <div class="radio-main">Very closely follows Mediterranean/MIND diet</div>
+              <div class="radio-sub">Daily vegetables, regular fish, olive oil, nuts, minimal processed foods</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q17" value="-3">
+            <div class="radio-label">
+              <div class="radio-main">Moderately follows healthy diet patterns</div>
+              <div class="radio-sub">Some adherence to Mediterranean principles</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q17" value="-1">
+            <div class="radio-label">
+              <div class="radio-main">Mixed diet, some healthy elements</div>
+              <div class="radio-sub">Average Western diet with some improvements</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q17" value="0">
+            <div class="radio-label">
+              <div class="radio-main">Poor diet quality</div>
+              <div class="radio-sub">High processed foods, low vegetables/fish</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 18</div>
+        <div class="q-text">How much quality sleep do you typically get per night?</div>
+        <div class="q-hint">Consistent, adequate sleep (7-8 hours for most adults) supports brain health and amyloid clearance.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q18" value="-3">
+            <div class="radio-label">
+              <div class="radio-main">Consistently 7-8 hours of quality sleep</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q18" value="-1">
+            <div class="radio-label">
+              <div class="radio-main">Usually 6-7 hours, decent quality</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q18" value="0">
+            <div class="radio-label">
+              <div class="radio-main">5-6 hours or poor quality sleep</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q18" value="1">
+            <div class="radio-label">
+              <div class="radio-main">Less than 5 hours or very poor sleep</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 19</div>
+        <div class="q-text">How would you describe your level of social engagement?</div>
+        <div class="q-hint">Strong social connections and regular interaction protect against dementia through cognitive stimulation and stress reduction.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q19" value="-4">
+            <div class="radio-label">
+              <div class="radio-main">Very socially active</div>
+              <div class="radio-sub">Regular contact with family/friends, community involvement</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q19" value="-2">
+            <div class="radio-label">
+              <div class="radio-main">Moderately social</div>
+              <div class="radio-sub">Regular but limited social activities</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q19" value="-1">
+            <div class="radio-label">
+              <div class="radio-main">Somewhat social</div>
+              <div class="radio-sub">Occasional social contact</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q19" value="0">
+            <div class="radio-label">
+              <div class="radio-main">Mostly isolated</div>
+              <div class="radio-sub">Very limited social interaction</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 20</div>
+        <div class="q-text">Do you regularly engage in learning new skills or pursuing new interests?</div>
+        <div class="q-hint">Lifelong learning and novel experiences build cognitive reserve and neuroplasticity that protect against cognitive decline.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q20" value="-3">
+            <div class="radio-label">
+              <div class="radio-main">Frequently learning new skills or pursuing new interests</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q20" value="-2">
+            <div class="radio-label">
+              <div class="radio-main">Occasionally learn new things</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q20" value="-1">
+            <div class="radio-label">
+              <div class="radio-main">Rarely try new learning experiences</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q20" value="0">
+            <div class="radio-label">
+              <div class="radio-main">Avoid new learning, prefer routine</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-label">Question 21</div>
+        <div class="q-text">Do you have a sense of purpose or meaning in your life?</div>
+        <div class="q-hint">A strong sense of purpose in life has been associated with reduced dementia risk and better cognitive aging in longitudinal studies.</div>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q21" value="-5">
+            <div class="radio-label">
+              <div class="radio-main">Very strong sense of purpose</div>
+              <div class="radio-sub">Clear goals, meaningful activities, feel needed</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q21" value="-3">
+            <div class="radio-label">
+              <div class="radio-main">Moderate sense of purpose</div>
+              <div class="radio-sub">Generally feel life has meaning</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q21" value="-1">
+            <div class="radio-label">
+              <div class="radio-main">Some sense of purpose</div>
+              <div class="radio-sub">Occasionally feel meaningful</div>
+            </div>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q21" value="0">
+            <div class="radio-label">
+              <div class="radio-main">Limited sense of purpose</div>
+              <div class="radio-sub">Often feel life lacks direction or meaning</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="q-nav">
+        <button class="nav-btn prev" onclick="prevSection(3)">← Back to Modifiable Risk</button>
+        <button class="nav-btn next" id="next-3" disabled onclick="calculateARI()">Calculate My Risk Profile</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS SECTION -->
+<section id="results-section" class="results-section">
+  <div class="results-hero">
+    <div class="hero-badge">Your Alzheimer's Risk Intelligence™ Report</div>
+    <h1>Personalized Risk Assessment Complete</h1>
+  </div>
+
+  <div class="assessment-main">
+    <div class="score-display">
+      <div class="score-header">
+        <div class="score-number" id="ari-score">0</div>
+        <div class="score-label">ARI Score (0-100)</div>
+        <div class="tier-badge" id="tier-badge">Calculating...</div>
+      </div>
+      
+      <div class="risk-scale">
+        <div class="scale-track"></div>
+        <div class="risk-needle" id="risk-needle"></div>
+        <div class="scale-labels">
+          <span>Low Risk</span>
+          <span>Mild</span>
+          <span>Moderate</span>
+          <span>High</span>
+          <span>Very High</span>
+        </div>
+      </div>
+
+      <div class="score-interp" id="score-interp">
+        Your personalized interpretation will appear here.
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div class="section-icon">📊</div>
+      <div class="section-title">
+        <h2>Risk Factor Breakdown</h2>
+        <p>Detailed analysis of each domain contributing to your overall risk profile</p>
+      </div>
+    </div>
+
+    <div class="domain-grid" id="domain-cards">
+      <!-- Domain cards will be populated by JavaScript -->
+    </div>
+
+    <div class="section-header">
+      <div class="section-icon">🎯</div>
+      <div class="section-title">
+        <h2>Your Personalized Action Plan</h2>
+        <p>Evidence-based interventions prioritized for your specific risk profile</p>
+      </div>
+    </div>
+
+    <div class="action-plan" id="action-plan">
+      <!-- Action plan will be populated by JavaScript -->
+    </div>
+
+    <div style="margin-top: 48px; padding: 24px; background: var(--gray-light); border-radius: 12px; text-align: center;">
+      <p style="font-size: 13px; color: var(--gray-dark); line-height: 1.5; margin-bottom: 12px;">
+        <strong>Important:</strong> This assessment is for educational purposes and should not replace professional medical advice. 
+        Please discuss these results with your healthcare provider to develop an appropriate prevention strategy.
+      </p>
+      <p style="font-size: 11px; color: var(--gray-mid);">
+        Based on research from the 2024 Lancet Commission on Dementia Prevention, FINGER Study, SPRINT-MIND Trial, ACHIEVE Trial, and other peer-reviewed sources.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const answers = {};
+  let currentSection = 1;
+  const totalQuestions = 21;
+
+  // ── PROGRESS TRACKING ──
+  function updateProgress(questionNum) {
+    const percent = (questionNum / totalQuestions) * 100;
+    document.getElementById('progress-bar').style.width = percent + '%';
+    document.getElementById('progress-text').textContent = `${questionNum} of ${totalQuestions} questions`;
+  }
+
+  // ── RADIO SELECTION ──
+  document.addEventListener('change', function(e) {
+    if (e.target.type === 'radio') {
+      const questionName = e.target.name;
+      const value = parseInt(e.target.value);
+      answers[questionName] = { value, score: value };
+
+      // Update selection styling
+      document.querySelectorAll(`input[name="${questionName}"]`).forEach(radio => {
+        radio.closest('.radio-option').classList.remove('selected');
+      });
+      e.target.closest('.radio-option').classList.add('selected');
+
+      // Enable next button if section is complete
+      checkSectionComplete(currentSection);
+      updateProgress(Object.keys(answers).length);
+    }
+  });
+
+  // ── SECTION VALIDATION ── 
+  function checkSectionComplete(section) {
+    let required = [];
+    if (section === 1) required = ['q1', 'q2', 'q3']; // q4 is optional
+    if (section === 2) required = ['q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12', 'q13', 'q14', 'q15', 'q16'];
+    if (section === 3) required = ['q17', 'q18', 'q19', 'q20', 'q21'];
+
+    const complete = required.every(q => answers[q]);
+    const nextBtn = document.getElementById(`next-${section}`);
+    if (nextBtn) {
+      nextBtn.disabled = !complete;
+    }
+  }
+
+  // ── NAVIGATION ──
+  function nextSection(from) {
+    document.getElementById(`section-${from}`).classList.remove('active');
+    currentSection = from + 1;
+    document.getElementById(`section-${currentSection}`).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function prevSection(from) {
+    document.getElementById(`section-${from}`).classList.remove('active');
+    currentSection = from - 1;
+    document.getElementById(`section-${currentSection}`).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── ARI CALCULATION ──
+  function calculateARI() {
+    // Baseline Risk (20% weight)
+    const baseline = (answers['q1']?.score || 0) + 
+                    (answers['q2']?.score || 0) + 
+                    (answers['q3']?.score || 0) + 
+                    (answers['q4']?.score || 0);
+
+    // Modifiable Risk Factors (60% weight)
+    const vascular = (answers['q5']?.score || 0) + 
+                    (answers['q6']?.score || 0) + 
+                    (answers['q7']?.score || 0);
+
+    const sleep = (answers['q8']?.score || 0) + 
+                 (answers['q9']?.score || 0);
+
+    const mental = (answers['q10']?.score || 0) + 
+                  (answers['q11']?.score || 0);
+
+    const activity = (answers['q12']?.score || 0) + 
+                    (answers['q13']?.score || 0);
+
+    const sensory = (answers['q14']?.score || 0);
+
+    const cognitive = (answers['q15']?.score || 0) + 
+                     (answers['q16']?.score || 0);
+
+    const modifiable = vascular + sleep + mental + activity + sensory + cognitive;
+
+    // Protective Factors (20% weight, negative scores)
+    const protective = (answers['q17']?.score || 0) + 
+                      (answers['q18']?.score || 0) + 
+                      (answers['q19']?.score || 0) + 
+                      (answers['q20']?.score || 0) + 
+                      (answers['q21']?.score || 0);
+
+    // Calculate weighted raw score
+    const raw = (baseline * 0.2) + (modifiable * 0.6) + (protective * 0.2);
+
+    // Normalize to 0-100 scale
+    const maxRaw = 80;
+    const ari = Math.min(100, Math.round((raw / maxRaw) * 100));
+
+    showResults(ari, {
+      baseline,
+      vascular, sleep, mental, activity, sensory, cognitive,
+      modifiable, protective
+    });
+  }
+
+  // ── SHOW RESULTS ──
+  function showResults(ari, domains) {
+    document.getElementById('assessment-section').style.display = 'none';
+    document.getElementById('results-section').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Score
+    document.getElementById('ari-score').textContent = ari;
+
+    // Tier
+    const tiers = [
+      { max: 20, label: 'Low Risk', cls: 'status-good', bg: '#E8F8F4', color: '#1A7A5E' },
+      { max: 40, label: 'Mildly Elevated', cls: 'status-moderate', bg: '#FEF3E8', color: '#D4720A' },
+      { max: 60, label: 'Moderate Risk', cls: 'status-moderate', bg: '#FEF3E8', color: '#D4720A' },
+      { max: 80, label: 'High Risk', cls: 'status-high', bg: '#FDEDEC', color: '#C0392B' },
+      { max: 100, label: 'Very High Risk', cls: 'status-high', bg: '#FDEDEC', color: '#C0392B' },
+    ];
+    const tier = tiers.find(t => ari <= t.max) || tiers[4];
+    const tierNumber = tiers.indexOf(tier) + 1;
+
+    const badge = document.getElementById('tier-badge');
+    badge.textContent = `Tier ${tierNumber}: ${tier.label}`;
+    badge.style.background = tier.bg;
+    badge.style.color = tier.color;
+
+    // Needle position
+    setTimeout(() => {
+      document.getElementById('risk-needle').style.left = Math.min(96, Math.max(4, ari)) + '%';
+    }, 300);
+
+    // Interpretation
+    const interps = [
+      `Your overall risk burden is below average for your age group. Your protective factors are working. Continue reinforcing your current habits.`,
+      `Your risk profile is mildly above average. There are specific modifiable factors worth addressing to meaningfully reduce your long-term risk.`,
+      `Your risk profile is above average for your age, driven primarily by modifiable factors. Targeted intervention now can significantly lower your trajectory.`,
+      `Your risk profile is elevated. Multiple modifiable risk factors are combining to increase your long-term risk. A structured prevention plan is strongly recommended.`,
+      `Your risk profile shows a high burden of modifiable and non-modifiable risk factors. A comprehensive, multidisciplinary prevention approach is recommended.`
+    ];
+    document.getElementById('score-interp').textContent = interps[tierNumber - 1];
+
+    // Domain cards
+    const domainData = [
+      {
+        name: 'Vascular & Metabolic', max: 20, score: domains.vascular,
+        getStatus: s => s <= 3 ? 'good' : s <= 10 ? 'moderate' : 'high',
+        getDetail: s => s === 0 ? 'No significant vascular risks identified' : `Score: ${s}/20 — ${s <= 3 ? 'Well managed' : s <= 10 ? 'Some risk present' : 'Significant risk factor'}`
+      },
+      {
+        name: 'Sleep & Circadian Health', max: 10, score: domains.sleep,
+        getStatus: s => s === 0 ? 'good' : s <= 4 ? 'moderate' : 'high',
+        getDetail: s => s === 0 ? 'Sleep patterns appear healthy' : `Score: ${s}/10 — Sleep quality needs attention`
+      },
+      {
+        name: 'Mental Health & Stress', max: 10, score: domains.mental,
+        getStatus: s => s === 0 ? 'good' : s <= 4 ? 'moderate' : 'high',
+        getDetail: s => s === 0 ? 'No significant mental health risk factors' : `Score: ${s}/10 — Consider targeted support`
+      },
+      {
+        name: 'Physical Activity', max: 8, score: domains.activity,
+        getStatus: s => s === 0 ? 'good' : s <= 3 ? 'moderate' : 'high',
+        getDetail: s => s === 0 ? 'Meeting exercise recommendations' : `Score: ${s}/8 — Increasing activity can significantly reduce risk`
+      },
+      {
+        name: 'Sensory Health', max: 6, score: domains.sensory,
+        getStatus: s => s === 0 ? 'good' : s <= 2 ? 'moderate' : 'high',
+        getDetail: s => s === 0 ? 'No untreated sensory deficits' : `Score: ${s}/6 — Hearing evaluation recommended`
+      },
+      {
+        name: 'Cognitive & Social Engagement', max: 6, score: domains.cognitive,
+        getStatus: s => s <= 1 ? 'good' : s <= 3 ? 'moderate' : 'high',
+        getDetail: s => s <= 1 ? 'Strong cognitive and social engagement' : `Score: ${s}/6 — Building cognitive reserve is beneficial`
+      },
+    ];
+
+    const protectiveScore = Math.abs(domains.protective);
+    domainData.push({
+      name: 'Protective Factors', max: 20, score: protectiveScore,
+      getStatus: s => s >= 12 ? 'good' : s >= 5 ? 'moderate' : 'high',
+      getDetail: s => `${s}/20 protective points earned — ${s >= 12 ? 'Strong resilience factors' : s >= 5 ? 'Building protective habits' : 'Significant opportunity here'}`
+    });
+
+    const grid = document.getElementById('domain-cards');
+    grid.innerHTML = domainData.map(d => {
+      const st = d.name === 'Protective Factors' ? d.getStatus(d.score) : d.getStatus(d.score);
+      const statusLabels = { good: 'On Track', moderate: 'Needs Attention', high: 'High Risk' };
+      const fillColors = { good: 'fill-green', moderate: 'fill-orange', high: 'fill-red' };
+      const pct = d.name === 'Protective Factors'
+        ? Math.round((d.score / d.max) * 100)
+        : Math.round((d.score / d.max) * 100);
+      return `
+        <div class="domain-card">
+          <div class="domain-card-top">
+            <div class="domain-name">${d.name}</div>
+            <div class="domain-status status-${st}">${statusLabels[st]}</div>
+          </div>
+          <div class="domain-bar-track">
+            <div class="domain-bar-fill ${fillColors[st]}" style="width:0%" data-width="${pct}%"></div>
+          </div>
+          <div class="domain-detail">${d.getDetail(d.score)}</div>
+        </div>`;
+    }).join('');
+
+    // Animate domain bars
+    setTimeout(() => {
+      document.querySelectorAll('.domain-bar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.width;
+      });
+    }, 400);
+
+    // Action Plan — generate based on scores
+    buildActionPlan(domains, tierNumber);
+  }
+
+  function buildActionPlan(d, tier) {
+    const actions = [];
+
+    if (d.vascular > 5) actions.push({
+      priority: 'high',
+      title: 'Optimize Blood Pressure & Vascular Health',
+      evidence: 'Strong Evidence',
+      desc: 'Maintaining blood pressure within guideline targets (below 130/80) has been shown to significantly reduce dementia risk, especially when addressed in midlife. Work with your physician to optimize your cardiometabolic profile.',
+      refs: 'SPRINT-MIND Trial · Lancet Commission 2024'
+    });
+
+    if (d.activity >= 3) actions.push({
+      priority: 'high',
+      title: 'Increase Physical Activity',
+      evidence: 'Strong Evidence',
+      desc: 'Target ≥150 minutes per week of moderate aerobic activity plus resistance training ≥2x/week. Physical activity is one of the highest-impact, most evidence-supported strategies for reducing dementia risk.',
+      refs: 'FINGER Study · NIH Exercise Cognition Trials'
+    });
+
+    if (d.sleep >= 3) actions.push({
+      priority: tier >= 3 ? 'high' : 'med',
+      title: 'Improve Sleep Quality & Screen for Sleep Apnea',
+      evidence: 'Moderate–Strong',
+      desc: 'Prioritize 7–8 hours of consistent, restorative sleep. If you snore loudly or feel unrefreshed, talk to your doctor about a sleep study. Sleep is when the brain clears amyloid and tau through the glymphatic system.',
+      refs: 'Xie et al., Science · Alzheimer\'s Assoc. Sleep Consensus'
+    });
+
+    if (d.sensory >= 2) actions.push({
+      priority: 'high',
+      title: 'Address Untreated Hearing Loss',
+      evidence: 'Strong Evidence',
+      desc: 'The 2023 ACHIEVE Trial confirmed that treating hearing loss reduces cognitive decline in higher-risk adults. Schedule a hearing evaluation and discuss appropriate interventions with an audiologist.',
+      refs: 'ACHIEVE Trial (JAMA 2023) · Lancet Commission'
+    });
+
+    if (d.mental >= 3) actions.push({
+      priority: 'med',
+      title: 'Treat Depression & Reduce Chronic Stress',
+      evidence: 'Moderate Evidence',
+      desc: 'Depression and chronic stress both independently increase dementia risk. Evidence-based approaches include CBT, mindfulness-based stress reduction, medication when appropriate, and strengthening social support.',
+      refs: 'Whitehall II Cohort · Lancet Psychiatry Reviews'
+    });
+
+    if (Math.abs(answers['q17']?.score || 0) < 3) actions.push({
+      priority: 'med',
+      title: 'Adopt a Mediterranean or MIND Diet',
+      evidence: 'Moderate–Strong',
+      desc: 'Emphasize vegetables, fish, whole grains, legumes, and olive oil. Minimize ultra-processed foods and red meat. The MIND diet has been specifically linked to reduced Alzheimer\'s risk in longitudinal studies.',
+      refs: 'MIND Diet Cohort Studies · PREDIMED Trial · Rotterdam Study'
+    });
+
+    if (d.cognitive >= 2) actions.push({
+      priority: 'med',
+      title: 'Increase Cognitive & Social Engagement',
+      evidence: 'Moderate Evidence',
+      desc: 'Regularly challenge your brain with novel learning, mentally demanding activities, and strong social connection. Cognitive reserve is a buffer against the effects of Alzheimer\'s pathology even when it exists.',
+      refs: 'Religious Orders Study · Rush Memory & Aging Project'
+    });
+
+    if (actions.length === 0) actions.push({
+      priority: 'low',
+      title: 'Maintain & Reinforce Your Current Habits',
+      evidence: 'Strong Evidence',
+      desc: 'Your profile shows a low risk burden. Continue your current protective behaviors — physical activity, diet, sleep, and social engagement. Reassess annually or if health circumstances change.',
+      refs: 'Lancet Commission on Dementia Prevention 2024'
+    });
+
+    const priorityColors = { high: 'priority-high', med: 'priority-med', low: 'priority-low' };
+    const priorityLabels = { high: '!', med: '2', low: '✓' };
+
+    document.getElementById('action-plan').innerHTML = actions.map((a, i) => `
+      <div class="action-card">
+        <div class="action-priority ${priorityColors[a.priority]}">${i + 1}</div>
+        <div class="action-content">
+          <div class="action-title">
+            ${a.title}
+            <span class="evidence-badge">${a.evidence}</span>
+          </div>
+          <div class="action-desc">${a.desc}<br><em style="font-size:11px;color:#8499B1;margin-top:6px;display:block;">Key references: ${a.refs}</em></div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Init
+  updateProgress(1);
+</script>
+
+</body>
+</html>
