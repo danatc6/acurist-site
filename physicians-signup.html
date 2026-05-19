@@ -76,7 +76,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:48px 5% 32px}
 .footer-col ul li{margin-bottom:9px}
 .footer-col ul li a{font-size:13px;color:rgba(255,255,255,0.38)}
 .footer-col ul li a:hover{color:rgba(255,255,255,0.8)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.trust-strip{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px;font-size:11px;font-weight:500;letter-spacing:0.5px;color:rgba(255,255,255,0.55);padding:20px 0;border-top:1px solid rgba(255,255,255,0.07);margin-top:12px}.trust-strip strong{color:rgba(255,255,255,0.85);font-weight:600}.trust-strip .ts-sep{color:rgba(255,255,255,0.2);font-weight:400}.footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
 .footer-badges{display:flex;gap:14px;align-items:center}
 .footer-badges img{height:26px;filter:brightness(0) invert(1) opacity(0.4)}
 .footer-copy{font-size:11px;color:rgba(255,255,255,0.28)}
@@ -111,18 +111,6 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:48px 5% 32px}
       <span class="pill"><span class="pill-check">&#10003;</span> HIPAA compliant</span>
     </div>
 
-    <div class="video-block">
-      <div class="video-label">Staff Training Video &mdash; Watch Before Your First Assessment</div>
-      <div class="video-wrap">
-        <iframe
-          src="https://www.youtube.com/embed/pDcQPR7NokE"
-          title="MCI Screen Demonstration Video with Q&A"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <p class="video-caption">MCI Screen Demonstration Video with Q&amp;A &middot; No prior clinical training required &middot; Most staff ready after one viewing</p>
-    </div>
 
     <div class="resources-row">
       <a href="https://www.acurist.ai/hubfs/47272843/MCI%20Screen_Report%20Interpration%20Guidelines.pdf" target="_blank" class="res-link">&#128214; Report Interpretation Guide</a>
@@ -135,7 +123,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:48px 5% 32px}
   <!-- RIGHT: FORM -->
   <div>
     <div class="form-card">
-      <h2>Request your free trial</h2>
+      <h2>Create your account and start your free 15-day trial</h2>
       <p class="form-sub">An Acurist.AI representative will contact you within one business day to get your account set up.</p>
       <div class="trial-banner">&#9989; Free 15-day trial &middot; No credit card required &middot; Full platform access</div>
 
@@ -171,8 +159,32 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:48px 5% 32px}
         </select>
       </div>
       <div class="rep-note">&#128073; <strong>Referred by an Acurist.AI representative?</strong> Enter their name below so they receive proper credit for your account.</div>
+      <div style="margin-top:18px;margin-bottom:6px;padding-top:18px;border-top:1px solid rgba(10,22,40,0.08)">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.6px;color:var(--teal);text-transform:uppercase;margin-bottom:4px">Create Your Account</div>
+        <div style="font-size:13px;color:var(--gray-mid);margin-bottom:14px">You&rsquo;ll use these credentials to sign in to the Acurist platform during your trial.</div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Choose a username</label>
+          <input type="text" placeholder="jane.smith">
+        </div>
+        <div class="form-group">
+          <label>Confirm your email</label>
+          <input type="email" placeholder="jane@clinic.com">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="At least 12 characters">
+        </div>
+        <div class="form-group">
+          <label>Confirm password</label>
+          <input type="password" placeholder="Re-enter password">
+        </div>
+      </div>
       <div class="form-group"><label>Acurist.AI Representative Name</label><input type="text" placeholder="Rep name or referral source"></div>
-      <button class="form-submit">Request My Free 15-Day Trial &rarr;</button>
+      <button class="form-submit">Create my account & start my free 15-day trial &rarr;</button>
       
       
       <p class="form-footer">HIPAA compliant &middot; SSL secured &middot; No IT required<br>Questions? <a href="tel:5408786754">540-878-6754</a> &middot; <a href="https://www.calendly.com/croomlawrence" target="_blank">Schedule a call</a></p>
@@ -206,7 +218,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:48px 5% 32px}
       <li><a href="#">HIPAA Notice</a></li>
     </ul></div>
   </div>
-  <div class="footer-bottom">
+  <div class="trust-strip"><span><strong>HIPAA</strong> Compliant</span><span class="ts-sep">|</span><span><strong>256-bit</strong> Encryption in Transit &amp; at Rest</span><span class="ts-sep">|</span><span><strong>SOC 2</strong> Aligned Controls</span><span class="ts-sep">|</span><span><strong>BAA</strong> Available</span><span class="ts-sep">|</span><span><strong>Audit-Ready</strong> Documentation</span></div><div class="footer-bottom">
     <div class="footer-badges">
       <img src="https://www.acurist.ai/hubfs/hipaa_with_bg-removebg-preview.png" alt="HIPAA">
       <img src="https://www.acurist.ai/hubfs/hsa%20fsa%20eligible%20logo%20no%20bg.png" alt="HSA/FSA">
