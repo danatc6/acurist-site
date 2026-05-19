@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Acurist &mdash; Sign in to your account</title>
+  <meta name="description" content="Acurist Portal — clinic dashboard for the MCI Screen. Launching soon. Get notified when access opens.">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Acurist Portal &mdash; Launching soon</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -74,74 +76,68 @@
         radial-gradient(circle at top, rgba(27,108,168,0.06) 0%, transparent 50%),
         var(--off-white);
     }
-    .login-wrap {
+    .portal-wrap {
       width: 100%;
-      max-width: 440px;
-    }
-    .pre-heading {
+      max-width: 520px;
       text-align: center;
-      font-size: 12px;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--teal-pale);
+      color: var(--teal);
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 1.2px;
-      color: var(--teal);
+      padding: 6px 14px;
+      border-radius: 50px;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      margin-bottom: 18px;
     }
     h1 {
       font-family: var(--serif);
-      font-size: 28px;
+      font-size: 34px;
       font-weight: 700;
       color: var(--navy);
-      text-align: center;
-      line-height: 1.25;
-      margin-bottom: 8px;
+      line-height: 1.2;
+      margin-bottom: 14px;
     }
-    .sub {
-      text-align: center;
-      font-size: 14px;
+    .lead {
+      font-size: 16px;
       color: var(--gray-dark);
-      line-height: 1.6;
-      margin-bottom: 28px;
+      line-height: 1.65;
+      margin-bottom: 32px;
     }
 
     /* Card */
-    .login-card {
+    .card {
       background: var(--white);
       border-radius: 14px;
       padding: 32px;
       border: 1px solid rgba(10,22,40,0.09);
       box-shadow: 0 8px 40px rgba(10,22,40,0.07);
+      text-align: left;
     }
-
-    /* Coming-soon banner */
-    .stub-banner {
-      display: none;
-      background: rgba(27,108,168,0.08);
-      border: 1px solid rgba(27,108,168,0.25);
-      color: var(--navy-mid);
-      border-radius: 8px;
-      padding: 14px 16px;
-      margin-bottom: 18px;
+    .card h2 {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .card .card-sub {
       font-size: 13px;
-      line-height: 1.5;
+      color: var(--gray-dark);
+      margin-bottom: 20px;
+      line-height: 1.55;
     }
-    .stub-banner.is-visible { display: block; }
-    .stub-banner strong { color: var(--teal); }
-
-    /* Form */
-    .form-group { margin-bottom: 16px; }
-    .form-group label {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--charcoal);
-      margin-bottom: 4px;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
+    .field {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
     }
-    .form-group input {
-      width: 100%;
-      padding: 11px 13px;
+    .field input[type="email"] {
+      flex: 1;
+      padding: 12px 14px;
       border: 1.5px solid rgba(10,22,40,0.14);
       border-radius: 6px;
       font-size: 14px;
@@ -150,78 +146,66 @@
       background: var(--off-white);
       outline: none;
       transition: border-color 0.2s, background 0.2s;
+      min-width: 0;
     }
-    .form-group input:focus {
+    .field input[type="email"]:focus {
       border-color: var(--teal);
       background: var(--white);
     }
-    .row-flex {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-      font-size: 13px;
-    }
-    .remember {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--gray-dark);
-      cursor: pointer;
-      user-select: none;
-    }
-    .remember input { margin: 0; cursor: pointer; }
-    .forgot {
-      font-size: 13px;
-      color: var(--teal);
-      font-weight: 500;
-    }
-    .login-submit {
-      width: 100%;
+    .field button {
       background: var(--teal);
       color: white;
-      padding: 13px;
+      padding: 12px 18px;
       border-radius: 6px;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
       border: none;
       cursor: pointer;
       font-family: var(--sans);
+      white-space: nowrap;
       transition: background 0.2s;
-      letter-spacing: 0.2px;
     }
-    .login-submit:hover { background: var(--navy-mid); }
+    .field button:hover { background: var(--navy-mid); }
 
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 22px 0 18px;
-      color: var(--gray-mid);
+    .fine-print {
       font-size: 12px;
-    }
-    .divider::before, .divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: rgba(10,22,40,0.08);
-    }
-
-    .alt-cta {
-      text-align: center;
-      font-size: 14px;
-      color: var(--gray-dark);
-    }
-    .alt-cta a { font-weight: 500; }
-
-    .helper-note {
-      text-align: center;
-      margin-top: 22px;
-      font-size: 13px;
       color: var(--gray-mid);
       line-height: 1.6;
     }
-    .helper-note a { color: var(--teal); }
+
+    .confirmation {
+      display: none;
+      background: rgba(27,108,168,0.06);
+      border: 1px solid rgba(27,108,168,0.18);
+      color: var(--navy-mid);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+    .confirmation.is-visible { display: block; }
+    .confirmation strong { color: var(--teal); }
+
+    .helper {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 14px;
+      color: var(--gray-dark);
+      line-height: 1.6;
+    }
+    .helper a { color: var(--teal); font-weight: 500; }
+    .helper-row {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--gray-mid);
+    }
+    .helper-row .dot { color: rgba(10,22,40,0.2); }
 
     /* Footer */
     footer {
@@ -255,8 +239,10 @@
     @media (max-width: 700px) {
       .nav-links li { display: none; }
       .nav-links li:has(.nav-login) { display: list-item; }
-      h1 { font-size: 24px; }
+      h1 { font-size: 26px; }
       main { padding: 36px 5% 56px; }
+      .field { flex-direction: column; }
+      .field button { width: 100%; }
     }
   </style>
 </head>
@@ -275,51 +261,37 @@
 </nav>
 
 <main>
-  <div class="login-wrap">
-    <div class="pre-heading">Acurist Portal</div>
-    <h1>Sign in to your account</h1>
-    <p class="sub">Access your clinic dashboard, MCI Screen results, and reports.</p>
+  <div class="portal-wrap">
+    <div class="badge">Acurist Portal</div>
+    <h1>Portal access is launching soon.</h1>
+    <p class="lead">Your clinic dashboard, MCI Screen results, and care-plan exports will live here. We&rsquo;re rolling out access to trial participants first &mdash; leave your email below and we&rsquo;ll notify you the moment your sign-in is ready.</p>
 
-    <div class="login-card">
+    <div class="card">
+      <h2>Get notified when sign-in opens</h2>
+      <p class="card-sub">No spam, no marketing &mdash; just a one-time note from your Acurist representative the day your account is provisioned.</p>
 
-      <div id="stubBanner" class="stub-banner">
-        <strong>Portal access is rolling out.</strong> If you&rsquo;ve created a trial account but can&rsquo;t sign in yet, an Acurist representative will reach out within one business day &mdash; or email
-        <a href="mailto:support@acurist.ai">support@acurist.ai</a>.
-      </div>
-
-      <form id="loginForm" novalidate>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="you@clinic.com" autocomplete="username" required>
+      <form id="notifyForm" novalidate>
+        <div class="field">
+          <input type="email" id="notifyEmail" placeholder="you@clinic.com" autocomplete="email" required>
+          <button type="submit">Notify me</button>
         </div>
-
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+        <p class="fine-print">We&rsquo;ll only use this address to send you portal-launch notifications.</p>
+        <div id="confirmation" class="confirmation">
+          <strong>Got it.</strong> We&rsquo;ll reach out the day your portal access is ready. In the meantime, you can email
+          <a href="mailto:support@acurist.ai">support@acurist.ai</a> with any questions.
         </div>
-
-        <div class="row-flex">
-          <label class="remember">
-            <input type="checkbox" id="remember" name="remember">
-            Remember me on this device
-          </label>
-          <a href="#" class="forgot" onclick="event.preventDefault(); document.getElementById('stubBanner').classList.add('is-visible');">Forgot password?</a>
-        </div>
-
-        <button type="submit" class="login-submit">Sign in</button>
       </form>
-
-      <div class="divider">or</div>
-
-      <p class="alt-cta">
-        Don&rsquo;t have an account yet?<br>
-        <a href="physicians-signup.html">Create a clinic account &rarr;</a>
-      </p>
     </div>
 
-    <p class="helper-note">
-      Trouble signing in? Email <a href="mailto:support@acurist.ai">support@acurist.ai</a> or call <a href="tel:5408786754">540-878-6754</a>.
+    <p class="helper">
+      Already submitted a trial application? <a href="physicians-signup.html">Track your trial setup here &rarr;</a>
     </p>
+    <div class="helper-row">
+      <span>Questions?</span>
+      <a href="mailto:support@acurist.ai">support@acurist.ai</a>
+      <span class="dot">&middot;</span>
+      <a href="tel:5408786754">540-878-6754</a>
+    </div>
   </div>
 </main>
 
@@ -341,12 +313,13 @@
 </footer>
 
 <script>
-  // The portal back-end isn't wired up yet — intercept the submit and surface
-  // a friendly note rather than leaving the user wondering why nothing happened.
-  document.getElementById('loginForm').addEventListener('submit', function (e) {
+  // Stub form: no backend yet. Show inline confirmation and clear the field.
+  document.getElementById('notifyForm').addEventListener('submit', function (e) {
     e.preventDefault();
-    document.getElementById('stubBanner').classList.add('is-visible');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    var input = document.getElementById('notifyEmail');
+    if (!input.value.trim()) { input.focus(); return; }
+    document.getElementById('confirmation').classList.add('is-visible');
+    input.value = '';
   });
 </script>
 
