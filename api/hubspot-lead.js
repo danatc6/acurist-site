@@ -9,7 +9,10 @@ const ALLOWED_FORMS = {
   "3ddec1fe-227e-4dc9-9e85-da203eb15923": true, // Physician Trial Signup
   "1635ee64-d006-4f63-a64a-3e7df962c2cf": true, // Payor ROI Calculator
   "50fe1b08-119b-40db-8c83-9fc79fc25920": true, // CRO ROI Calculator
-  "a28d12c0-1202-42ed-ad5d-30c62c418555": true  // CRO Partnership Meeting Request
+  "a28d12c0-1202-42ed-ad5d-30c62c418555": true, // CRO Partnership Meeting Request
+  "1fb0ccc0-d600-4f6d-8006-5ef139850954": true, // Health Systems Leadership Inquiry
+  "173d6e13-e816-46de-b528-cef88e8d091d": true, // Payor Introductory Meeting Request
+  "faabbe86-0ef5-4905-8186-6d141249f76b": true  // Portal Launch Notification
 };
 
 export default async function handler(req, res) {

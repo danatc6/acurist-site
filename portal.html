@@ -317,7 +317,16 @@
   document.getElementById('notifyForm').addEventListener('submit', function (e) {
     e.preventDefault();
     var input = document.getElementById('notifyEmail');
-    if (!input.value.trim()) { input.focus(); return; }
+    var email = input.value.trim();
+    if (!email) { input.focus(); return; }
+    fetch('/api/hubspot-lead', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        formId: 'faabbe86-0ef5-4905-8186-6d141249f76b',
+        fields: [{ objectTypeId: '0-1', name: 'email', value: email }],
+        context: { pageUri: location.href, pageName: 'Portal Launch Notification' }
+      })
+    });
     document.getElementById('confirmation').classList.add('is-visible');
     input.value = '';
   });
