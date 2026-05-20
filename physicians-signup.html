@@ -124,11 +124,11 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:48px 5% 32px}
       <div class="trial-banner">&#9989; Full platform access &middot; No credit card required &middot; Cancel anytime</div>
 
       <div class="form-row">
-        <div class="form-group"><label>First Name</label><input type="text" placeholder="Jane"></div>
-        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"></div>
+        <div class="form-group"><label>First Name</label><input id="suFirst" type="text" placeholder="Jane"></div>
+        <div class="form-group"><label>Last Name</label><input id="suLast" type="text" placeholder="Smith"></div>
       </div>
       <div class="form-group"><label>Role / Specialty</label>
-        <select>
+        <select id="suRole">
           <option value="">Select your role...</option>
           <option>Primary Care Physician</option>
           <option>Neurologist</option>
@@ -139,14 +139,14 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:48px 5% 32px}
           <option>Other</option>
         </select>
       </div>
-      <div class="form-group"><label>Practice / Organization</label><input type="text" placeholder="Smith Family Medicine"></div>
+      <div class="form-group"><label>Practice / Organization</label><input id="suCompany" type="text" placeholder="Smith Family Medicine"></div>
       <div class="form-row">
-        <div class="form-group"><label>Email</label><input type="email" placeholder="jane@clinic.com"></div>
-        <div class="form-group"><label>Phone</label><input type="tel" placeholder="(555) 000-0000"></div>
+        <div class="form-group"><label>Email</label><input id="suEmail" type="email" placeholder="jane@clinic.com"></div>
+        <div class="form-group"><label>Phone</label><input id="suPhone" type="tel" placeholder="(555) 000-0000"></div>
       </div>
-      <div class="form-group"><label>City &amp; State</label><input type="text" placeholder="Los Angeles, CA"></div>
+      <div class="form-group"><label>City &amp; State</label><input id="suCity" type="text" placeholder="Los Angeles, CA"></div>
       <div class="form-group"><label>Est. assessments per month</label>
-        <select>
+        <select id="suVolume">
           <option value="">Select estimate...</option>
           <option>1&ndash;10 (just getting started)</option>
           <option>10&ndash;50 per month</option>
@@ -162,25 +162,25 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:48px 5% 32px}
       <div class="form-row">
         <div class="form-group">
           <label>Choose a username</label>
-          <input type="text" placeholder="jane.smith">
+          <input id="suUser" type="text" placeholder="jane.smith">
         </div>
         <div class="form-group">
           <label>Confirm your email</label>
-          <input type="email" placeholder="jane@clinic.com">
+          <input id="suEmail2" type="email" placeholder="jane@clinic.com">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
           <label>Password</label>
-          <input type="password" placeholder="At least 12 characters">
+          <input id="suPass" type="password" placeholder="At least 12 characters">
         </div>
         <div class="form-group">
           <label>Confirm password</label>
-          <input type="password" placeholder="Re-enter password">
+          <input id="suPass2" type="password" placeholder="Re-enter password">
         </div>
       </div>
-      <div class="form-group"><label>Acurist.AI Representative Name</label><input type="text" placeholder="Rep name or referral source"></div>
-      <button class="form-submit">Create my account &rarr;</button>
+      <div class="form-group"><label>Acurist.AI Representative Name</label><input id="suRep" type="text" placeholder="Rep name or referral source"></div>
+      <button id="suSubmit" class="form-submit">Create my account &rarr;</button>
       
       
       <p class="form-footer">HIPAA compliant &middot; SSL secured &middot; No IT required<br>Questions? <a href="tel:5408786754">540-878-6754</a> &middot; <a href="https://www.calendly.com/croomlawrence" target="_blank">Schedule a call</a></p>
@@ -224,5 +224,47 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:48px 5% 32px}
   </div>
 </footer>
 
+<script>
+(function(){
+  var HS_PORTAL="47272843", HS_FORM="3ddec1fe-227e-4dc9-9e85-da203eb15923";
+  function val(id){ var e=document.getElementById(id); return e?e.value.trim():""; }
+  var btn=document.getElementById("suSubmit");
+  if(!btn) return;
+  btn.addEventListener("click", function(e){
+    e.preventDefault();
+    var email=val("suEmail");
+    if(!email){ alert("Please enter your email address."); var el=document.getElementById("suEmail"); if(el) el.focus(); return; }
+    var email2=val("suEmail2");
+    if(email2 && email2.toLowerCase()!==email.toLowerCase()){ alert("Your email addresses don't match."); return; }
+    var p1=val("suPass"), p2=val("suPass2");
+    if(p1 && p2 && p1!==p2){ alert("Your passwords don't match."); return; }
+    btn.disabled=true; btn.textContent="Submitting\u2026";
+    var fields=[{objectTypeId:"0-1",name:"email",value:email}];
+    function push(id,name){ var v=val(id); if(v) fields.push({objectTypeId:"0-1",name:name,value:v}); }
+    push("suFirst","firstname"); push("suLast","lastname"); push("suCompany","company");
+    push("suPhone","phone"); push("suRole","jobtitle"); push("suCity","city");
+    var rep=val("suRep"), vol=val("suVolume"), user=val("suUser");
+    var ctx="Physician Trial Signup";
+    if(rep) ctx+=" \u2014 referred by: "+rep;
+    if(vol) ctx+=" \u2014 est. volume: "+vol;
+    if(user) ctx+=" \u2014 username: "+user;
+    /* Note: password fields are intentionally NOT sent to the CRM. */
+    fetch("https://api.hsforms.com/submissions/v3/integration/submit/"+HS_PORTAL+"/"+HS_FORM,{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({fields:fields,context:{pageUri:location.href,pageName:ctx}})
+    }).then(done).catch(done);
+    function done(){
+      var card=document.querySelector(".form-card");
+      if(card){
+        card.innerHTML='<h2>Trial request received.</h2>'+
+          '<p class="form-sub" style="margin-bottom:0">Thanks &mdash; an Acurist.AI representative will reach out within one business day to activate your free 15-day trial and finish setting up your account. Questions in the meantime? Email <a href="mailto:support@acurist.ai" style="color:var(--teal)">support@acurist.ai</a>.</p>';
+        card.scrollIntoView({behavior:"smooth",block:"center"});
+      } else {
+        btn.textContent="Request received \u2713";
+      }
+    }
+  });
+})();
+</script>
 </body>
 </html>
