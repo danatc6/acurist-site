@@ -172,11 +172,9 @@
      $15,874,320 net benefit, 1,322.9% ROI (corrected revenue addition,
      $2.00 PMPM per the partner's stated Complete Solution price). ================================================= */
 
-  // --- Web3Forms: paste your access key between the quotes below. ---
-  // Get one free at https://web3forms.com  (enter info@acurist.ai;
-  // the key is emailed to you instantly). Until a real key is set, the
-  // full report still unlocks but no email is sent.
-  var WEB3FORMS_ACCESS_KEY = "REPLACE_WITH_WEB3FORMS_ACCESS_KEY";
+  // Lead capture posts to HubSpot form 6850b6c0-d8d7-4328-bc7c-3e044e5e3840
+  // (portal 47272843) via the public submissions endpoint — see the
+  // form-submit handler below.
 
   // Fixed model assumptions (CENTRAL scenario).
   var A = {
@@ -325,28 +323,19 @@
       $("roiFull").scrollIntoView({behavior:"smooth", block:"nearest"});
     }
 
-    if(WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY.indexOf("REPLACE_") === -1){
-      fetch("https://api.web3forms.com/submit", {
-        method:"POST",
-        headers:{"Content-Type":"application/json","Accept":"application/json"},
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: "New Health Systems ROI Calculator lead",
-          from_name: "Acurist ROI Calculator",
-          email: email,
-          "Covered lives": num(r.pop),
-          "Medicare Advantage members": num(r.ma),
-          "Confirmed MCI cases": num(r.confirmed),
-          "Net financial benefit": money(r.netBenefit),
-          "Annualized ROI": pct(r.roi),
-          "Total clinical savings": money(r.totalClinical),
-          "Total revenue & Star": money(r.totalRevenue)
-        })
-      }).then(function(){ unlock(); }).catch(function(){ unlock(); });
-    } else {
-      // No key configured yet — still unlock so the tool works.
-      unlock();
-    }
+    // Submit the lead to HubSpot — creates/updates a contact in the CRM.
+    // Public form-submission endpoint (no secret token needed client-side).
+    var summary = "ROI Calculator — " + num(r.pop) + " covered lives, " + num(r.ma)
+      + " MA members. Net benefit " + money(r.netBenefit) + ", ROI " + pct(r.roi)
+      + ", " + num(r.confirmed) + " confirmed MCI cases.";
+    fetch("https://api.hsforms.com/submissions/v3/integration/submit/47272843/6850b6c0-d8d7-4328-bc7c-3e044e5e3840", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({
+        fields:[{ objectTypeId:"0-1", name:"email", value:email }],
+        context:{ pageUri: location.href, pageName: "Health Systems ROI Calculator — " + summary }
+      })
+    }).then(function(){ unlock(); }).catch(function(){ unlock(); });
   });
 
   // initial paint
