@@ -6,7 +6,8 @@
 const PORTAL_ID = "47272843";
 const ALLOWED_FORMS = {
   "6850b6c0-d8d7-4328-bc7c-3e044e5e3840": true, // Health Systems ROI Calculator
-  "3ddec1fe-227e-4dc9-9e85-da203eb15923": true  // Physician Trial Signup
+  "3ddec1fe-227e-4dc9-9e85-da203eb15923": true, // Physician Trial Signup
+  "1635ee64-d006-4f63-a64a-3e7df962c2cf": true  // Payor ROI Calculator
 };
 
 export default async function handler(req, res) {
