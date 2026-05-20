@@ -16,7 +16,7 @@
       --off-white: #F8FBFE;
       --charcoal: #1C2B3A;
       --gray-dark: #4F5D6E;
-      --gray-mid: #8499B1;
+      --gray-mid: #627082;
       --gray-light: #E5EEF6;
       --white: #FFFFFF;
       --sans: 'DM Sans', system-ui, sans-serif;
@@ -244,7 +244,7 @@
       .field { flex-direction: column; }
       .field button { width: 100%; }
     }
-  </style>
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible,.tier-btn:focus-visible,.btn-white:focus-visible,.btn-outline-white:focus-visible{outline:3px solid #1B6CA8;outline-offset:2px;border-radius:3px}</style>
 </head>
 <body>
 
@@ -272,7 +272,7 @@
 
       <form id="notifyForm" novalidate>
         <div class="field">
-          <input type="email" id="notifyEmail" placeholder="you@clinic.com" autocomplete="email" required>
+          <input type="email" id="notifyEmail" placeholder="you@clinic.com" autocomplete="email" required aria-label="Your work email address">
           <button type="submit">Notify me</button>
         </div>
         <p class="fine-print">We&rsquo;ll only use this address to send you portal-launch notifications.</p>
