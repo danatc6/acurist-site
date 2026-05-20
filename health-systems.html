@@ -96,8 +96,8 @@
 <div class="roi-card roi-results">
 <div class="roi-results-label">Projected annual impact</div>
 <div class="roi-tiles">
-<div class="roi-tile roi-tile-hero"><div class="roi-tile-num" id="roiNet">$16,674,320</div><div class="roi-tile-label">Net Financial Benefit</div></div>
-<div class="roi-tile"><div class="roi-tile-num" id="roiRoi">1,852.7%</div><div class="roi-tile-label">Annualized ROI</div></div>
+<div class="roi-tile roi-tile-hero"><div class="roi-tile-num" id="roiNet">$15,874,320</div><div class="roi-tile-label">Net Financial Benefit</div></div>
+<div class="roi-tile"><div class="roi-tile-num" id="roiRoi">1,322.9%</div><div class="roi-tile-label">Annualized ROI</div></div>
 <div class="roi-tile"><div class="roi-tile-num" id="roiSavings">$11,034,720</div><div class="roi-tile-label">Total Clinical Savings</div></div>
 <div class="roi-tile"><div class="roi-tile-num" id="roiCases">5,400</div><div class="roi-tile-label">Confirmed MCI Cases</div></div>
 </div>
@@ -148,15 +148,15 @@
 <div class="roi-line"><span class="roi-line-label">CPT 99483 &mdash; cognitive assessment &amp; care plan</span><span class="roi-line-val" id="roiCpt">$486,000</span></div>
 <div class="roi-line"><span class="roi-line-label">Secondary clinical &amp; diagnostics</span><span class="roi-line-val" id="roiSecondary">$2,943,000</span></div>
 <div class="roi-line"><span class="roi-line-label">V28 RAF staging lift</span><span class="roi-line-val" id="roiV28Staging2">$1,587,600</span></div>
-<div class="roi-line roi-line-total"><span class="roi-line-label">Total Revenue &amp; Star</span><span class="roi-line-val" id="roiTotalRevenue">$6,539,600</span></div>
+<div class="roi-line roi-line-total"><span class="roi-line-label">Total Revenue &amp; Star</span><span class="roi-line-val" id="roiTotalRevenue">$6,039,600</span></div>
 </div>
 
 <div class="roi-block">
 <div class="roi-block-title">Consolidated Result</div>
 <div class="roi-line"><span class="roi-line-label">Total clinical savings</span><span class="roi-line-val" id="roiC1">$11,034,720</span></div>
-<div class="roi-line"><span class="roi-line-label">Total revenue &amp; Star</span><span class="roi-line-val" id="roiC2">$6,539,600</span></div>
-<div class="roi-line"><span class="roi-line-label">Annual program investment</span><span class="roi-line-val" id="roiC3">&minus;$900,000</span></div>
-<div class="roi-line roi-line-total"><span class="roi-line-label">Net Financial Benefit</span><span class="roi-line-val" id="roiC4">$16,674,320</span></div>
+<div class="roi-line"><span class="roi-line-label">Total revenue &amp; Star</span><span class="roi-line-val" id="roiC2">$6,039,600</span></div>
+<div class="roi-line"><span class="roi-line-label">Annual program investment</span><span class="roi-line-val" id="roiC3">&minus;$1,200,000</span></div>
+<div class="roi-line roi-line-total"><span class="roi-line-label">Net Financial Benefit</span><span class="roi-line-val" id="roiC4">$15,874,320</span></div>
 </div>
 
 <p class="roi-disclaimer" style="margin-top:0;border-top:none;padding-top:0">Confidential &amp; proprietary illustrative model. For a customized, claims-linked analysis tailored to your payer mix and demographics, contact the Acurist team at <a href="mailto:info@acurist.ai" style="color:var(--teal)">info@acurist.ai</a>.</p>
@@ -168,9 +168,9 @@
 <script>
 (function(){
   /* ====== Acurist Health Systems ROI calculator ======
-     Model replicates the partner's CENTRAL scenario. At the default
-     50,000 / 10,000 inputs it reproduces $16,674,320 net benefit and
-     1,852.7% ROI exactly. ================================================= */
+     Model replicates the partner's CENTRAL scenario. At the default 50,000 / 10,000 inputs:
+     $15,874,320 net benefit, 1,322.9% ROI (corrected revenue addition,
+     $2.00 PMPM per the partner's stated Complete Solution price). ================================================= */
 
   // --- Web3Forms: paste your access key between the quotes below. ---
   // Get one free at https://web3forms.com  (enter info@acurist.ai;
@@ -181,7 +181,7 @@
   // Fixed model assumptions (CENTRAL scenario).
   var A = {
     confirmRate: 0.90,
-    pmpm: 1.50,            // program cost basis — not displayed as a price
+    pmpm: 2.00,            // Complete Solution program-cost basis — not displayed as a price
     baselineRev: 12000,
     cliffRisk: 0.03,
     mitigation: 0.70,
