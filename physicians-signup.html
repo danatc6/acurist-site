@@ -249,9 +249,9 @@ footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:48px 5% 32px}
     if(vol) ctx+=" \u2014 est. volume: "+vol;
     if(user) ctx+=" \u2014 username: "+user;
     /* Note: password fields are intentionally NOT sent to the CRM. */
-    fetch("https://api.hsforms.com/submissions/v3/integration/submit/"+HS_PORTAL+"/"+HS_FORM,{
+    fetch("/api/hubspot-lead",{
       method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({fields:fields,context:{pageUri:location.href,pageName:ctx}})
+      body:JSON.stringify({formId:HS_FORM,fields:fields,context:{pageUri:location.href,pageName:ctx}})
     }).then(done).catch(done);
     function done(){
       var card=document.querySelector(".form-card");

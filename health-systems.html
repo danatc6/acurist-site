@@ -328,10 +328,11 @@
     var summary = "ROI Calculator — " + num(r.pop) + " covered lives, " + num(r.ma)
       + " MA members. Net benefit " + money(r.netBenefit) + ", ROI " + pct(r.roi)
       + ", " + num(r.confirmed) + " confirmed MCI cases.";
-    fetch("https://api.hsforms.com/submissions/v3/integration/submit/47272843/6850b6c0-d8d7-4328-bc7c-3e044e5e3840", {
+    fetch("/api/hubspot-lead", {
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body: JSON.stringify({
+        formId:"6850b6c0-d8d7-4328-bc7c-3e044e5e3840",
         fields:[{ objectTypeId:"0-1", name:"email", value:email }],
         context:{ pageUri: location.href, pageName: "Health Systems ROI Calculator — " + summary }
       })
