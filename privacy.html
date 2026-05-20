@@ -40,11 +40,11 @@ footer{background:var(--navy);color:#fff;padding:36px 5% 30px;}
 .footer-copy{font-size:12px;color:rgba(255,255,255,0.68);}
 @media(max-width:700px){.nav-links li:not(:last-child){display:none;}h1{font-size:27px;}}
 </style>
-</head>
+<style>.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;padding:0;background:none;border:0;cursor:pointer}.nav-toggle span{display:block;width:24px;height:2px;background:var(--charcoal);border-radius:2px;transition:transform .2s ease,opacity .2s ease}@media(max-width:768px){nav{flex-wrap:nowrap!important;height:64px!important;padding-top:0!important;padding-bottom:0!important;gap:0!important}.nav-toggle{display:flex!important;margin-left:auto}.nav-links{position:absolute!important;top:100%;left:0;right:0;flex-direction:column!important;flex-wrap:nowrap!important;align-items:stretch!important;justify-content:flex-start!important;gap:0!important;width:auto!important;background:var(--white);border-bottom:1px solid rgba(10,22,40,0.12);box-shadow:0 14px 28px rgba(10,22,40,0.13);padding:4px 6% 14px!important;margin:0!important;display:none!important}nav.nav-open .nav-links{display:flex!important}nav.nav-open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}nav.nav-open .nav-toggle span:nth-child(2){opacity:0}nav.nav-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}.nav-links li{width:100%!important;margin:0!important;display:block!important}.nav-links a{display:block!important;padding:14px 2px!important;font-size:15px!important;border-bottom:1px solid rgba(10,22,40,0.07);text-align:left;color:var(--gray-dark)}.nav-links li:last-child a{border-bottom:0}.nav-login{display:block!important;text-align:center!important;margin-top:12px!important;padding:12px!important;border-radius:8px!important;font-size:14px!important;color:var(--teal)!important}.nav-login:hover{background:var(--teal);color:#fff!important}}</style></head>
 <body>
 <nav>
 <a href="index.html" class="logo"><img src="assets/acurist-logo.png" alt="Acurist.AI home"></a>
-<ul class="nav-links">
+<ul class="nav-links" id="navLinks">
 <li><a href="patients.html">For Individuals</a></li>
 <li><a href="physicians.html">For Physicians</a></li>
 <li><a href="health-systems.html">For Health Systems</a></li>
@@ -52,7 +52,7 @@ footer{background:var(--navy);color:#fff;padding:36px 5% 30px;}
 <li><a href="cros.html">For CROs</a></li>
 <li><a href="portal.html" class="nav-login">Login</a></li>
 </ul>
-</nav>
+<button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button></nav>
 
 <main class="legal-wrap">
 <div class="legal-eyebrow">Legal</div>
@@ -126,5 +126,5 @@ footer{background:var(--navy);color:#fff;padding:36px 5% 30px;}
 <div class="footer-copy">&copy; 2026 Acurist.AI LLC. All rights reserved.</div>
 </div>
 </footer>
-</body>
+<script>(function(){var n=document.querySelector("nav");if(!n)return;var t=n.querySelector(".nav-toggle");if(!t)return;function set(o){n.classList.toggle("nav-open",o);t.setAttribute("aria-expanded",o?"true":"false");t.setAttribute("aria-label",o?"Close menu":"Open menu");}t.addEventListener("click",function(e){e.stopPropagation();set(!n.classList.contains("nav-open"));});document.addEventListener("click",function(e){if(n.classList.contains("nav-open")&&!n.contains(e.target))set(false);});})();</script></body>
 </html>
