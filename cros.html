@@ -43,7 +43,8 @@
 .ccalc-compare-mini .cmp-lit{color:var(--gray-mid);font-size:10.5px}
 .ccalc-compare-mini-note{font-size:10.5px;color:var(--gray-mid);margin-top:8px;line-height:1.55;font-style:italic}
 
-.ccalc-adv-field{margin-top:12px}
+.ccalc-adv-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 22px;margin-top:14px}
+.ccalc-adv-field{margin-top:0}
 .ccalc-adv-field label{display:block;font-size:10px;font-weight:600;color:var(--gray-dark);margin-bottom:3px;letter-spacing:0.3px;text-transform:uppercase}
 
 .ccalc-reset{margin-top:14px;background:none;border:none;color:var(--gray-mid);font-size:12px;font-family:var(--sans);cursor:pointer;text-decoration:underline;padding:0}
@@ -90,7 +91,7 @@
 .ccalc-line-val{font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums;white-space:nowrap}
 .ccalc-line.ccalc-line-total{border-top:2px solid var(--teal-pale);border-bottom:none;margin-top:4px;padding-top:10px}
 .ccalc-line.ccalc-line-total .ccalc-line-val{color:var(--teal)}
-@media(max-width:860px){.ccalc-grid{grid-template-columns:1fr}.ccalc-compare{font-size:11px}}
+@media(max-width:860px){.ccalc-grid{grid-template-columns:1fr}.ccalc-adv-grid{grid-template-columns:1fr;gap:10px}.ccalc-compare{font-size:11px}}
 </style>
 <div class="ccalc-inner">
 <div class="ccalc-head">
@@ -170,6 +171,7 @@ Adjust screening assumptions
 <div class="ccalc-compare-mini-note">Sensitivity is held at literature values &mdash; for the MoCA range, the upper bound (84%) is used. Specificity is what drives the screen-fail filter, so it&rsquo;s what you adjust.</div>
 </div>
 
+<div class="ccalc-adv-grid">
 <div class="ccalc-adv-field">
 <label>MoCA specificity</label>
 <div class="ccalc-srow"><input type="range" id="ccMoca" min="50" max="90" step="1" value="60"><span class="ccalc-sval" id="ccMocaV">60%</span></div>
@@ -192,6 +194,7 @@ Adjust screening assumptions
 <label>MCI Screen specificity</label>
 <div class="ccalc-srow"><input type="range" id="ccAcurist" min="75" max="98" step="1" value="90"><span class="ccalc-sval" id="ccAcuristV">90%</span></div>
 <span class="ccalc-cite"><b>Source:</b> Trenkle, Shankle &amp; Azen, 2007 (<em>J Alzheimer&rsquo;s Dis</em>); algorithm in Shankle et al., 2005 (<em>PNAS</em>). Published range 88&ndash;97%; default 90% chosen as a conservative midpoint.</span>
+</div>
 </div>
 
 <button type="button" class="ccalc-reset" id="ccReset">Reset to literature-anchored defaults</button>
