@@ -20,6 +20,8 @@
 
 /* "Adjust screening assumptions" panel — always open, visually distinct */
 .ccalc-advanced{margin-top:18px;background:linear-gradient(180deg,rgba(27,108,168,0.05) 0%,rgba(27,108,168,0.01) 100%);border:1px solid rgba(27,108,168,0.18);border-radius:11px;padding:18px 18px 16px;position:relative}
+.ccalc-inputs .ccalc-advanced{margin-top:0;background:transparent;border:none;border-radius:0;padding:0;position:static}
+.ccalc-inputs .ccalc-advanced::before{display:none}
 .ccalc-advanced::before{content:'';position:absolute;top:0;left:18px;right:18px;height:2px;background:linear-gradient(90deg,var(--teal) 0%,#7EC8E3 100%);border-radius:0 0 2px 2px}
 .ccalc-advanced-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}
 .ccalc-advanced-title{font-size:12px;font-weight:700;color:var(--navy);letter-spacing:0.4px;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px}
@@ -53,6 +55,10 @@
 /* Right-side results */
 .ccalc-results{padding:30px 28px}
 .ccalc-results-label{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--teal);text-transform:uppercase;margin-bottom:16px}
+.ccalc-your-trial{background:var(--off-white);border:1px solid rgba(10,22,40,0.08);border-radius:11px;padding:18px 20px;margin-bottom:22px}
+.ccalc-your-trial-h{font-size:11px;font-weight:700;letter-spacing:0.8px;color:var(--navy);text-transform:uppercase;margin-bottom:12px}
+.ccalc-your-trial .ccalc-field{margin-bottom:14px}
+.ccalc-your-trial .ccalc-field:last-child{margin-bottom:0}
 .ccalc-tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
 .ccalc-tile{background:var(--off-white);border:1px solid rgba(10,22,40,0.07);border-radius:11px;padding:18px 16px;text-align:center}
 .ccalc-tile.ccalc-tile-hero{background:linear-gradient(135deg,var(--teal) 0%,var(--navy-mid) 100%);border-color:transparent}
@@ -102,44 +108,12 @@
 <div class="ccalc-grid">
 
 <div class="ccalc-card ccalc-inputs">
-<h3>Your trial</h3>
-<p class="ccalc-note">Adjust the inputs below to model your own protocol. Default values are anchored to published literature.</p>
+<h3>Adjust screening assumptions</h3>
+<p class="ccalc-note">Drag any slider to model a different specificity scenario. Defaults are anchored to published literature &mdash; citations beside each control.</p>
 
-<div class="ccalc-field">
-<label for="ccEnrolled">Target participants to enroll</label>
-<input type="number" id="ccEnrolled" value="1000" min="50" max="100000" step="50">
-</div>
 
-<div class="ccalc-field">
-<label for="ccSfr">Trial screen-fail rate</label>
-<div class="ccalc-srow"><input type="range" id="ccSfr" min="50" max="95" step="1" value="88"><span class="ccalc-sval" id="ccSfrV">88%</span></div>
-<span class="ccalc-cite"><b>Source:</b> Industry consensus for prodromal-MCI anti-amyloid trials. The A4 prevention trial reported ~71% screen-fail (Sperling et al., 2020, <em>JAMA Neurology</em>); symptomatic MCI trials trend higher. <span style="color:#B0364A">[Sponsor-specific source for the 88% baseline &mdash; to confirm]</span></span>
-</div>
-
-<p class="ccalc-disclaimer">Illustrative projection comparing recruitment-funnel cost with traditional brief screens versus the MCI Screen. Biomarker and screening cost bases are built into the model. Results depend on protocol design, indication, and site mix, and are not a guarantee of outcomes or a pricing proposal.</p>
-</div>
-
-<div class="ccalc-card ccalc-results">
-<div class="ccalc-results-label">Projected recruitment impact</div>
-<div class="ccalc-tiles">
-<div class="ccalc-tile ccalc-tile-hero"><div class="ccalc-tile-num" id="ccNet">$7.4M</div><div class="ccalc-tile-label">Net Recruitment Savings</div></div>
-<div class="ccalc-tile"><div class="ccalc-tile-num" id="ccRatio">11.3&times;</div><div class="ccalc-tile-label">Value per $1 Invested</div></div>
-<div class="ccalc-tile"><div class="ccalc-tile-num" id="ccScans">1,797</div><div class="ccalc-tile-label">Wasted Biomarker Scans Avoided</div></div>
-<div class="ccalc-tile"><div class="ccalc-tile-num" id="ccReduction">65%</div><div class="ccalc-tile-label">Lower Recruitment Cost</div></div>
-</div>
-<div class="ccalc-summary-line" id="ccSummary"></div>
-
-<!-- Adjust screening assumptions — sits under the impact tiles so users see them update in real time -->
+<!-- Adjust screening assumptions — left card so the larger panel has room; mini-table mirrors slider values in sync -->
 <div class="ccalc-advanced">
-<div class="ccalc-advanced-head">
-<span class="ccalc-advanced-title">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
-Adjust screening assumptions
-</span>
-<span class="ccalc-advanced-badge">Interactive</span>
-</div>
-<p class="ccalc-advanced-lead">Drag any slider to model a different specificity scenario. Defaults reflect the literature values cited beside each control.</p>
-
 <!-- LIVE comparison mini-table (mirrors the slider values, so users see them in sync) -->
 <div class="ccalc-compare-mini">
 <div class="ccalc-compare-mini-h">Current modelled assumptions vs. published literature</div>
@@ -198,6 +172,34 @@ Adjust screening assumptions
 </div>
 
 <button type="button" class="ccalc-reset" id="ccReset">Reset to literature-anchored defaults</button>
+</div>
+
+
+<p class="ccalc-disclaimer">Illustrative projection comparing recruitment-funnel cost with traditional brief screens versus the MCI Screen. Biomarker and screening cost bases are built into the model. Results depend on protocol design, indication, and site mix, and are not a guarantee of outcomes or a pricing proposal.</p>
+</div>
+
+<div class="ccalc-card ccalc-results">
+<div class="ccalc-results-label">Projected recruitment impact</div>
+<div class="ccalc-tiles">
+<div class="ccalc-tile ccalc-tile-hero"><div class="ccalc-tile-num" id="ccNet">$7.4M</div><div class="ccalc-tile-label">Net Recruitment Savings</div></div>
+<div class="ccalc-tile"><div class="ccalc-tile-num" id="ccRatio">11.3&times;</div><div class="ccalc-tile-label">Value per $1 Invested</div></div>
+<div class="ccalc-tile"><div class="ccalc-tile-num" id="ccScans">1,797</div><div class="ccalc-tile-label">Wasted Biomarker Scans Avoided</div></div>
+<div class="ccalc-tile"><div class="ccalc-tile-num" id="ccReduction">65%</div><div class="ccalc-tile-label">Lower Recruitment Cost</div></div>
+</div>
+<div class="ccalc-summary-line" id="ccSummary"></div>
+<!-- Your trial — moved here so adjusting the screen-fail rate keeps the impact tiles in eye-line -->
+<div class="ccalc-your-trial">
+<div class="ccalc-your-trial-h">Your trial</div>
+<div class="ccalc-field">
+<label for="ccEnrolled">Target participants to enroll</label>
+<input type="number" id="ccEnrolled" value="1000" min="50" max="100000" step="50">
+</div>
+
+<div class="ccalc-field">
+<label for="ccSfr">Trial screen-fail rate</label>
+<div class="ccalc-srow"><input type="range" id="ccSfr" min="50" max="95" step="1" value="88"><span class="ccalc-sval" id="ccSfrV">88%</span></div>
+<span class="ccalc-cite"><b>Source:</b> Industry consensus for prodromal-MCI anti-amyloid trials. The A4 prevention trial reported ~71% screen-fail (Sperling et al., 2020, <em>JAMA Neurology</em>); symptomatic MCI trials trend higher. <span style="color:#B0364A">[Sponsor-specific source for the 88% baseline &mdash; to confirm]</span></span>
+</div>
 </div>
 
 <div class="ccalc-gate" id="ccGate">
