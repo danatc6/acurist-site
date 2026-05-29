@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Sign in &mdash; Acurist Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/portal.css">
+<style>
+  body { background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-mid) 60%, var(--teal) 130%); min-height: 100vh; display: flex; flex-direction: column; }
+  .login-top { padding: 24px 5%; display: flex; align-items: center; gap: 12px; }
+  .login-top a { display: flex; align-items: center; gap: 10px; }
+  .login-top img { height: 36px; width: auto; }
+  .login-top .env-pill {
+    margin-left: auto; font-size: 9px; letter-spacing: 1.4px; text-transform: uppercase;
+    color: var(--teal-bright); background: rgba(126,200,227,0.15);
+    border: 1px solid rgba(126,200,227,0.4); padding: 4px 12px; border-radius: 50px; font-weight: 600;
+  }
+  .login-wrap { flex: 1; display: grid; grid-template-columns: 1fr 460px; max-width: 1180px; width: 100%; margin: 0 auto; padding: 16px 5% 48px; gap: 64px; align-items: center; }
+  .login-pitch { color: white; max-width: 540px; }
+  .login-pitch .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase; color: var(--teal-bright); margin-bottom: 14px; }
+  .login-pitch h1 { font-family: var(--serif); font-size: 42px; line-height: 1.15; font-weight: 700; margin-bottom: 18px; }
+  .login-pitch h1 em { color: var(--teal-bright); font-style: italic; }
+  .login-pitch p { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.82); font-weight: 300; margin-bottom: 28px; }
+  .login-quotes { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 20px 22px; backdrop-filter: blur(8px); }
+  .login-quotes .q-text { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; font-style: italic; }
+  .login-quotes .q-attr { font-size: 12.5px; color: rgba(255,255,255,0.6); margin-top: 12px; }
+  .login-quotes .q-attr b { color: white; font-weight: 600; }
+  .login-card {
+    background: white; border-radius: 16px; padding: 36px 36px 30px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  }
+  .login-card h2 { font-family: var(--serif); font-size: 24px; color: var(--navy); font-weight: 700; margin-bottom: 6px; }
+  .login-card .sub { font-size: 13.5px; color: var(--gray-mid); margin-bottom: 26px; }
+  .login-card .field input { font-size: 14px; padding: 11px 14px; }
+  .login-card .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: -4px 0 18px; }
+  .login-card .row label { font-size: 12.5px; color: var(--gray-dark); display: inline-flex; align-items: center; gap: 6px; }
+  .login-card .row a { font-size: 12.5px; }
+  .btn-block { width: 100%; padding: 12px 16px; font-size: 14px; }
+  .mfa-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin: 14px 0 0;
+    font-size: 11.5px; color: var(--gray-dark);
+    background: var(--gray-soft); border-radius: 50px; padding: 5px 12px;
+  }
+  .mfa-pill::before { content: ''; display: inline-block; width: 12px; height: 12px;
+    background: no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231B6CA8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='11' width='18' height='11' rx='2'/><path d='M7 11V7a5 5 0 0 1 10 0v4'/></svg>"); }
+  .divider { text-align: center; margin: 22px 0 18px; position: relative; color: var(--gray-mid); font-size: 11.5px; letter-spacing: 0.6px; text-transform: uppercase; font-weight: 600; }
+  .divider::before, .divider::after { content: ''; position: absolute; top: 50%; width: 38%; height: 1px; background: rgba(10,22,40,0.08); }
+  .divider::before { left: 0; }
+  .divider::after { right: 0; }
+  .sso-btn {
+    width: 100%;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 11px; background: white; border: 1px solid rgba(10,22,40,0.15);
+    border-radius: 6px; font-size: 13.5px; font-weight: 500; color: var(--charcoal);
+    cursor: pointer; font-family: inherit; transition: border-color .12s;
+  }
+  .sso-btn:hover { border-color: var(--teal); }
+  .sso-btn svg { flex-shrink: 0; }
+  .footer-line { color: rgba(255,255,255,0.55); font-size: 12px; text-align: center; padding: 0 5% 28px; }
+  .footer-line a { color: rgba(255,255,255,0.78); text-decoration: underline; text-underline-offset: 2px; }
+  .demo-banner {
+    background: rgba(126,200,227,0.15); border: 1px dashed rgba(126,200,227,0.6);
+    border-radius: 10px; padding: 12px 14px;
+    color: white; font-size: 12.5px; line-height: 1.55;
+    margin-bottom: 22px;
+  }
+  .demo-banner b { color: var(--teal-bright); display: block; font-size: 11px; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 4px; }
+  @media (max-width: 900px) {
+    .login-wrap { grid-template-columns: 1fr; gap: 32px; }
+    .login-pitch h1 { font-size: 30px; }
+    .login-card { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+<header class="login-top">
+  <a href="../index.html"><img src="../assets/acurist-logo-footer.png" alt="Acurist"></a>
+  <span class="env-pill">Sandbox</span>
+</header>
+
+<main class="login-wrap">
+  <section class="login-pitch">
+    <div class="eyebrow">The Acurist Portal</div>
+    <h1>Catch decline earlier. <em>Act with clarity.</em></h1>
+    <p>Order the MCI Screen, see results the day they're taken, track each patient's cognitive trajectory over time &mdash; built into one place your team will actually use.</p>
+    <div class="login-quotes">
+      <div class="q-text">&ldquo;The Memory Performance Index has changed how we counsel patients. We're catching MCI two to three years earlier than we used to.&rdquo;</div>
+      <div class="q-attr"><b>Dr. Mark Reyes</b> &middot; Family Medicine, Oahu Primary Care &middot; 4-clinic pilot</div>
+    </div>
+  </section>
+
+  <section class="login-card">
+    <div class="demo-banner">
+      <b>Demo Mode</b>
+      Any email and password will sign you in &mdash; you'll see a sample patient panel for Dr. Sarah Chen at Pacific Family Medicine.
+    </div>
+
+    <h2>Sign in</h2>
+    <div class="sub">Access your patient panel and review screen results.</div>
+
+    <form id="loginForm" autocomplete="off">
+      <div class="field">
+        <label for="email">Work email</label>
+        <input type="email" id="email" name="email" required placeholder="you@yourpractice.com">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+      </div>
+      <div class="row">
+        <label><input type="checkbox" checked> Keep me signed in</label>
+        <a href="#" onclick="alert('Demo only. Real reset coming soon.');return false;">Forgot password?</a>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+      <div class="mfa-pill">Two-factor authentication required on first sign-in.</div>
+
+      <div class="divider">or</div>
+      <button type="button" class="sso-btn" onclick="alert('SSO coming soon. Use email + password for the demo.');">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
+        Continue with SSO (SAML / Google / Microsoft)
+      </button>
+    </form>
+  </section>
+</main>
+
+<div class="footer-line">
+  Don't have an account yet? <a href="../physicians.html">Request access</a> &nbsp;&middot;&nbsp;
+  <a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;
+  <a href="../hipaa-notice.html">HIPAA Notice</a> &nbsp;&middot;&nbsp;
+  &copy; 2026 Acurist.AI LLC
+</div>
+
+<script src="assets/session.js"></script>
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const email = document.getElementById('email').value || 'schen@pacificfamilymed.com';
+  AcuristPortal.login(email);
+  const params = new URLSearchParams(window.location.search);
+  const next = params.get('next');
+  window.location.href = (next && /^[a-zA-Z0-9._?=&\-]+$/.test(next)) ? next : 'dashboard.html';
+});
+// If already signed in, skip straight to the dashboard
+if (AcuristPortal.isLoggedIn()) {
+  // give the demo banner a beat so people see it; comment out to auto-skip
+  // window.location.href = 'dashboard.html';
+}
+</script>
+</body>
+</html>
