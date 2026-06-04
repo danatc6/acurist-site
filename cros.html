@@ -7,6 +7,7 @@
 .ccalc-inputs{padding:30px 28px}
 .ccalc-inputs h3{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--navy);margin-bottom:4px}
 .ccalc-inputs .ccalc-note{font-size:12px;color:var(--gray-mid);margin-bottom:22px;line-height:1.5}
+
 .ccalc-field{margin-bottom:18px}
 .ccalc-field label{display:block;font-size:11px;font-weight:600;color:var(--charcoal);margin-bottom:5px;letter-spacing:0.4px;text-transform:uppercase}
 .ccalc-field input[type=number]{width:100%;padding:11px 13px;border:1.5px solid rgba(10,22,40,0.14);border-radius:7px;font-size:15px;font-family:var(--sans);font-weight:600;color:var(--navy);background:var(--off-white);outline:none;transition:border-color .2s,background .2s}
@@ -14,17 +15,50 @@
 .ccalc-field .ccalc-srow{display:flex;align-items:center;gap:10px}
 .ccalc-field input[type=range]{flex:1;accent-color:var(--teal)}
 .ccalc-sval{font-size:14px;font-weight:700;color:var(--teal);min-width:48px;text-align:right}
-.ccalc-advanced{margin-top:6px;border-top:1px solid rgba(10,22,40,0.08);padding-top:14px}
-.ccalc-advanced summary{font-size:13px;font-weight:600;color:var(--teal);cursor:pointer;list-style:none;padding:4px 0}
-.ccalc-advanced summary::-webkit-details-marker{display:none}
-.ccalc-advanced summary::before{content:'\002B  ';font-weight:700}
-.ccalc-advanced[open] summary::before{content:'\2212  '}
-.ccalc-adv-field{margin-top:14px}
+.ccalc-cite{font-size:11px;color:var(--gray-mid);line-height:1.55;margin-top:6px;font-style:italic;display:block}
+.ccalc-cite b{color:var(--gray-dark);font-weight:600;font-style:normal}
+
+/* "Adjust screening assumptions" panel — always open, visually distinct */
+.ccalc-advanced{margin-top:18px;background:linear-gradient(180deg,rgba(27,108,168,0.05) 0%,rgba(27,108,168,0.01) 100%);border:1px solid rgba(27,108,168,0.18);border-radius:11px;padding:18px 18px 16px;position:relative}
+.ccalc-inputs .ccalc-advanced{margin-top:0;background:transparent;border:none;border-radius:0;padding:0;position:static}
+.ccalc-inputs .ccalc-advanced::before{display:none}
+.ccalc-advanced::before{content:'';position:absolute;top:0;left:18px;right:18px;height:2px;background:linear-gradient(90deg,var(--teal) 0%,#7EC8E3 100%);border-radius:0 0 2px 2px}
+.ccalc-advanced-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.ccalc-advanced-title{font-size:12px;font-weight:700;color:var(--navy);letter-spacing:0.4px;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px}
+.ccalc-advanced-title svg{width:14px;height:14px;color:var(--teal);flex-shrink:0}
+.ccalc-advanced-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:var(--teal);background:var(--white);border:1px solid rgba(27,108,168,0.25);padding:3px 9px;border-radius:50px}
+.ccalc-advanced-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 3px rgba(27,108,168,0.18)}
+.ccalc-advanced-lead{font-size:12px;color:var(--gray-mid);line-height:1.55;margin-bottom:14px}
+
+/* Compare-vs-literature mini panel */
+.ccalc-compare-mini{background:var(--white);border:1px solid rgba(10,22,40,0.08);border-radius:9px;padding:12px 14px;margin-bottom:14px}
+.ccalc-compare-mini-h{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--gray-mid);margin-bottom:8px}
+.ccalc-compare-mini table{width:100%;border-collapse:collapse;font-size:12px}
+.ccalc-compare-mini th{font-size:10px;font-weight:600;color:var(--gray-mid);text-align:right;padding:4px 6px;letter-spacing:0.4px;text-transform:uppercase}
+.ccalc-compare-mini th:first-child{text-align:left}
+.ccalc-compare-mini td{padding:6px 6px;color:var(--charcoal);font-variant-numeric:tabular-nums;text-align:right;border-top:1px solid rgba(10,22,40,0.05)}
+.ccalc-compare-mini td:first-child{text-align:left;font-weight:500}
+.ccalc-compare-mini tr.cmp-mci td{background:rgba(27,108,168,0.05);color:var(--teal);font-weight:700}
+.ccalc-compare-mini tr.cmp-mci td:first-child{color:var(--teal)}
+.ccalc-compare-mini .cmp-curr{font-weight:700;color:var(--navy)}
+.ccalc-compare-mini tr.cmp-mci .cmp-curr{color:var(--teal)}
+.ccalc-compare-mini .cmp-lit{color:var(--gray-mid);font-size:10.5px}
+.ccalc-compare-mini-note{font-size:10.5px;color:var(--gray-mid);margin-top:8px;line-height:1.55;font-style:italic}
+
+.ccalc-adv-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 22px;margin-top:14px}
+.ccalc-adv-field{margin-top:0}
 .ccalc-adv-field label{display:block;font-size:10px;font-weight:600;color:var(--gray-dark);margin-bottom:3px;letter-spacing:0.3px;text-transform:uppercase}
-.ccalc-reset{margin-top:16px;background:none;border:none;color:var(--gray-mid);font-size:12px;font-family:var(--sans);cursor:pointer;text-decoration:underline;padding:0}
+
+.ccalc-reset{margin-top:14px;background:none;border:none;color:var(--gray-mid);font-size:12px;font-family:var(--sans);cursor:pointer;text-decoration:underline;padding:0}
 .ccalc-disclaimer{font-size:11px;color:var(--gray-mid);line-height:1.55;margin-top:18px;padding-top:14px;border-top:1px solid rgba(10,22,40,0.08)}
+
+/* Right-side results */
 .ccalc-results{padding:30px 28px}
 .ccalc-results-label{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--teal);text-transform:uppercase;margin-bottom:16px}
+.ccalc-your-trial{background:var(--off-white);border:1px solid rgba(10,22,40,0.08);border-radius:11px;padding:18px 20px;margin-bottom:22px}
+.ccalc-your-trial-h{font-size:11px;font-weight:700;letter-spacing:0.8px;color:var(--navy);text-transform:uppercase;margin-bottom:12px}
+.ccalc-your-trial .ccalc-field{margin-bottom:14px}
+.ccalc-your-trial .ccalc-field:last-child{margin-bottom:0}
 .ccalc-tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
 .ccalc-tile{background:var(--off-white);border:1px solid rgba(10,22,40,0.07);border-radius:11px;padding:18px 16px;text-align:center}
 .ccalc-tile.ccalc-tile-hero{background:linear-gradient(135deg,var(--teal) 0%,var(--navy-mid) 100%);border-color:transparent}
@@ -63,7 +97,31 @@
 .ccalc-line-val{font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums;white-space:nowrap}
 .ccalc-line.ccalc-line-total{border-top:2px solid var(--teal-pale);border-bottom:none;margin-top:4px;padding-top:10px}
 .ccalc-line.ccalc-line-total .ccalc-line-val{color:var(--teal)}
-@media(max-width:860px){.ccalc-grid{grid-template-columns:1fr}.ccalc-compare{font-size:11px}}
+.ccalc-screener-field{grid-column:1 / -1}
+.ccalc-screener-toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px}
+.ccalc-screener-toggle button{padding:9px 12px;border:1.5px solid rgba(10,22,40,0.12);background:var(--white);border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;color:var(--gray-dark);cursor:pointer;transition:all .15s;line-height:1.2}
+.ccalc-screener-toggle button:hover{border-color:var(--teal)}
+.ccalc-screener-toggle button.active{background:var(--navy);color:white;border-color:var(--navy)}
+.ccalc-adv-grid .ccalc-adv-field.dim{opacity:0.55;transition:opacity .2s}
+.ccalc-adv-grid .ccalc-adv-field.dim::after{content:"not in this scenario";display:block;font-size:9.5px;color:var(--gray-mid);letter-spacing:0.3px;text-transform:uppercase;margin-top:4px;font-weight:600}
+.ccalc-compare-mini tr.cmp-selected td{background:rgba(91,79,162,0.07)}
+.ccalc-compare-mini tr.cmp-selected td:first-child::before{content:"\25B6  ";color:#5B4FA2;font-size:9px;font-weight:700}
+.ccalc-addons{background:var(--off-white);border:1px solid rgba(10,22,40,0.08);border-radius:11px;padding:14px 18px 8px;margin-bottom:22px}
+.ccalc-addons-h{font-size:11px;font-weight:700;letter-spacing:0.8px;color:var(--navy);text-transform:uppercase;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.ccalc-addons-sub{font-size:10px;font-weight:500;color:var(--gray-mid);letter-spacing:0.4px;text-transform:uppercase;background:var(--white);padding:2px 8px;border-radius:50px;border:1px solid rgba(10,22,40,0.08)}
+.ccalc-addon{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-top:1px solid rgba(10,22,40,0.05);cursor:pointer}
+.ccalc-addon:first-of-type{border-top:none}
+.ccalc-addon input[type=checkbox]{position:absolute;opacity:0;pointer-events:none}
+.ccalc-addon-tog{flex-shrink:0;display:inline-block;position:relative;width:34px;height:20px;border-radius:50px;background:rgba(10,22,40,0.18);transition:background .2s;margin-top:2px}
+.ccalc-addon-tog::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:white;box-shadow:0 1px 3px rgba(0,0,0,0.2);transition:transform .18s}
+.ccalc-addon input:checked + .ccalc-addon-tog{background:var(--teal)}
+.ccalc-addon input:checked + .ccalc-addon-tog::after{transform:translateX(14px)}
+.ccalc-addon-info{flex:1;min-width:0}
+.ccalc-addon-name{font-size:13.5px;font-weight:600;color:var(--navy);line-height:1.2}
+.ccalc-addon-desc{font-size:11.5px;color:var(--gray-mid);line-height:1.5;margin-top:3px}
+.ccalc-addon-cost{flex-shrink:0;font-size:12.5px;font-weight:700;color:var(--gray-mid);font-variant-numeric:tabular-nums;margin-top:2px}
+.ccalc-addon input:checked ~ .ccalc-addon-cost{color:var(--teal)}
+@media(max-width:860px){.ccalc-grid{grid-template-columns:1fr}.ccalc-adv-grid{grid-template-columns:1fr;gap:10px}.ccalc-compare{font-size:11px}}
 </style>
 <div class="ccalc-inner">
 <div class="ccalc-head">
@@ -74,36 +132,76 @@
 <div class="ccalc-grid">
 
 <div class="ccalc-card ccalc-inputs">
-<h3>Your trial</h3>
-<p class="ccalc-note">Start with two inputs. Open the panel below to model specific screening assumptions.</p>
-<div class="ccalc-field">
-<label for="ccEnrolled">Target participants to enroll</label>
-<input type="number" id="ccEnrolled" value="1000" min="50" max="100000" step="50">
+<h3>Adjust screening assumptions</h3>
+<p class="ccalc-note">Drag any slider to model a different specificity scenario. Defaults are anchored to published literature &mdash; citations beside each control.</p>
+
+
+<!-- Adjust screening assumptions — left card so the larger panel has room; mini-table mirrors slider values in sync -->
+<div class="ccalc-advanced">
+<!-- LIVE comparison mini-table (mirrors the slider values, so users see them in sync) -->
+<div class="ccalc-compare-mini">
+<div class="ccalc-compare-mini-h">Current modelled assumptions vs. published literature</div>
+<table>
+<thead>
+<tr><th>Screen</th><th>Sens.</th><th>Your spec.</th><th>Published spec.</th></tr>
+</thead>
+<tbody>
+<tr class="cmp-mci">
+<td><strong>MCI Screen</strong></td>
+<td>95%</td>
+<td class="cmp-curr"><span id="ccCmpAcSpec">—</span></td>
+<td class="cmp-lit">88&ndash;97%</td>
+</tr>
+<tr data-screener="MoCA">
+<td>MoCA</td>
+<td>74&ndash;84%</td>
+<td class="cmp-curr"><span id="ccCmpMocaSpec">—</span></td>
+<td class="cmp-lit">~60% (primary care)</td>
+</tr>
+<tr data-screener="MMSE">
+<td>MMSE</td>
+<td>71%</td>
+<td class="cmp-curr"><span id="ccCmpMmseSpec">—</span></td>
+<td class="cmp-lit">~81% (memory clinic)</td>
+</tr>
+</tbody>
+</table>
+<div class="ccalc-compare-mini-note">Sensitivity is held at literature values &mdash; for the MoCA range, the upper bound (84%) is used. Specificity is what drives the screen-fail filter, so it&rsquo;s what you adjust.</div>
 </div>
-<div class="ccalc-field">
-<label for="ccSfr">Trial screen-fail rate</label>
-<div class="ccalc-srow"><input type="range" id="ccSfr" min="50" max="95" step="1" value="88"><span class="ccalc-sval" id="ccSfrV">88%</span></div>
-</div>
-<details class="ccalc-advanced">
-<summary>Adjust screening assumptions</summary>
+
+<div class="ccalc-adv-grid">
 <div class="ccalc-adv-field">
 <label>MoCA specificity</label>
-<div class="ccalc-srow"><input type="range" id="ccMoca" min="50" max="75" step="1" value="58"><span class="ccalc-sval" id="ccMocaV">58%</span></div>
+<div class="ccalc-srow"><input type="range" id="ccMoca" min="50" max="90" step="1" value="60"><span class="ccalc-sval" id="ccMocaV">60%</span></div>
+<span class="ccalc-cite"><b>Source:</b> Davis et al., 2015 (<em>Cochrane Database Syst Rev</em>) &mdash; lower specificity in unselected primary-care populations. Higher figures (~87%) are reported in memory-clinic validation (Nasreddine et al., 2005).</span>
 </div>
+
 <div class="ccalc-adv-field">
 <label>MMSE specificity</label>
-<div class="ccalc-srow"><input type="range" id="ccMmse" min="75" max="95" step="1" value="83"><span class="ccalc-sval" id="ccMmseV">83%</span></div>
+<div class="ccalc-srow"><input type="range" id="ccMmse" min="30" max="95" step="1" value="36"><span class="ccalc-sval" id="ccMmseV">36%</span></div>
+<span class="ccalc-cite"><b>Source:</b> Trenkle, Shankle &amp; Azen, 2007 (<em>J Alzheimer&rsquo;s Dis</em>) primary-care comparison &mdash; 36% specificity for MCI vs. normal. Higher figures (~81%) reported in memory-clinic settings (Mitchell 2009).</span>
 </div>
-<div class="ccalc-adv-field">
-<label>Traditional mix &mdash; MoCA share</label>
-<div class="ccalc-srow"><input type="range" id="ccMix" min="0" max="100" step="5" value="70"><span class="ccalc-sval" id="ccMixV">70%</span></div>
+
+<div class="ccalc-adv-field ccalc-screener-field">
+<label>Reference screener in your protocol</label>
+<div class="ccalc-screener-toggle" id="ccScreener">
+<button type="button" class="active" data-screener="MoCA">MoCA</button>
+<button type="button" data-screener="MMSE">MMSE</button>
 </div>
+<span class="ccalc-cite"><b>Pick one.</b> The model compares the selected paper screener head-to-head against the MCI Screen. Switch to see how each would perform in your funnel.</span>
+</div>
+
 <div class="ccalc-adv-field">
 <label>MCI Screen specificity</label>
-<div class="ccalc-srow"><input type="range" id="ccAcurist" min="80" max="95" step="1" value="90"><span class="ccalc-sval" id="ccAcuristV">90%</span></div>
+<div class="ccalc-srow"><input type="range" id="ccAcurist" min="75" max="98" step="1" value="90"><span class="ccalc-sval" id="ccAcuristV">90%</span></div>
+<span class="ccalc-cite"><b>Source:</b> Trenkle, Shankle &amp; Azen, 2007 (<em>J Alzheimer&rsquo;s Dis</em>); algorithm in Shankle et al., 2005 (<em>PNAS</em>). Published range 88&ndash;97%; default 90% chosen as a conservative midpoint.</span>
 </div>
-<button type="button" class="ccalc-reset" id="ccReset">Reset to default scenario</button>
-</details>
+</div>
+
+<button type="button" class="ccalc-reset" id="ccReset">Reset to literature-anchored defaults</button>
+</div>
+
+
 <p class="ccalc-disclaimer">Illustrative projection comparing recruitment-funnel cost with traditional brief screens versus the MCI Screen. Biomarker and screening cost bases are built into the model. Results depend on protocol design, indication, and site mix, and are not a guarantee of outcomes or a pricing proposal.</p>
 </div>
 
@@ -116,16 +214,54 @@
 <div class="ccalc-tile"><div class="ccalc-tile-num" id="ccReduction">65%</div><div class="ccalc-tile-label">Lower Recruitment Cost</div></div>
 </div>
 <div class="ccalc-summary-line" id="ccSummary"></div>
+<!-- Your trial — moved here so adjusting the screen-fail rate keeps the impact tiles in eye-line -->
+<div class="ccalc-your-trial">
+<div class="ccalc-your-trial-h">Your trial</div>
+<div class="ccalc-field">
+<label for="ccEnrolled">Target participants to enroll</label>
+<input type="number" id="ccEnrolled" value="1000" min="50" max="100000" step="50">
+</div>
+
+<div class="ccalc-field">
+<label for="ccSfr">Trial screen-fail rate</label>
+<div class="ccalc-srow"><input type="range" id="ccSfr" min="50" max="95" step="1" value="88"><span class="ccalc-sval" id="ccSfrV">88%</span></div>
+<span class="ccalc-cite"><b>Source:</b> Industry estimate for prodromal-MCI trials. The A4 prevention trial reported ~71% (Sperling et al., 2020, <em>JAMA Neurology</em>); prodromal-MCI trials commonly cite 80&ndash;90%.</span>
+</div>
+</div>
+
+<!-- Protocol add-ons — optional Acurist line items that get added to the Acurist total cost -->
+<div class="ccalc-addons">
+<div class="ccalc-addons-h">Protocol add-ons <span class="ccalc-addons-sub">optional</span></div>
+<label class="ccalc-addon">
+<input type="checkbox" id="ccFast">
+<span class="ccalc-addon-tog" aria-hidden="true"></span>
+<div class="ccalc-addon-info">
+<div class="ccalc-addon-name">FAST staging</div>
+<div class="ccalc-addon-desc">$600 per randomized patient &mdash; adds Reisberg FAST staging to each enrolled subject.</div>
+</div>
+<div class="ccalc-addon-cost" id="ccFastCost">+$0</div>
+</label>
+<label class="ccalc-addon">
+<input type="checkbox" id="ccEnterprise">
+<span class="ccalc-addon-tog" aria-hidden="true"></span>
+<div class="ccalc-addon-info">
+<div class="ccalc-addon-name">Enterprise integration</div>
+<div class="ccalc-addon-desc">$35,000 one-time &mdash; custom API into your eCOA / EDC.</div>
+</div>
+<div class="ccalc-addon-cost" id="ccEnterpriseCost">+$0</div>
+</label>
+</div>
+
 
 <div class="ccalc-gate" id="ccGate">
 <h3>Get the full breakdown</h3>
 <p>See the side-by-side funnel comparison &mdash; referrals, biomarker scans, sunk cost, and total recruitment cost. We&rsquo;ll email the detailed report to you.</p>
 <form class="ccalc-form" id="ccForm">
 <input type="email" id="ccEmail" placeholder="you@cro.com" autocomplete="email" required aria-label="Your work email address">
-<button type="submit" id="ccSubmit">Email me the full report</button><p style="font-size:12px;line-height:1.5;color:#627082;margin:14px 0 0">By submitting this form, you agree to our <a href="privacy.html" style="color:#1B6CA8">Privacy Policy</a>.</p>
+<button type="submit" id="ccSubmit">Email me the full report</button>
 </form>
+<p style="font-size:12px;line-height:1.5;color:#627082;margin:14px 0 0">By submitting this form, you agree to our <a href="privacy.html" style="color:#1B6CA8">Privacy Policy</a>.</p>
 <p class="ccalc-gate-fine">No spam. Your figures are sent to the Acurist partnerships team so we can follow up with a study-specific analysis.</p>
-</form>
 </div>
 
 <div class="ccalc-full" id="ccFull" hidden>
@@ -164,15 +300,14 @@
 </div>
 <script>
 (function(){
-  /* ===== Acurist CRO ROI calculator ===================================
-     Replicates the partner's screening-funnel cost model. The partner's
-     source contained hardcoded "PDF-matching" overrides that fired
-     inconsistently (the MCI-Screen branch triggered at the defaults, the
-     traditional branch did not) — those are removed here so both funnels
-     compute from the same formula and the model is internally consistent.
-     ==================================================================== */
-  var BIOMARKER_COST = 4500;   // Amyloid/Tau PET + biomarker validation, per scan
-  var SCREEN_COST    = 79;     // MCI Screen digital pre-screen, per administration
+  /* ===== Acurist CRO ROI calculator =====
+     Defaults anchored to peer-reviewed literature; cited next to each slider.
+     Specificity drives the screen-fail filter (sensitivity is held constant). */
+  var BIOMARKER_COST = 4500;
+  var SCREEN_COST = 79;
+  var FAST_PER_PT = 600;
+  var ENTERPRISE_FEE = 35000;
+  var state = { screener: "MoCA", fast: false, enterprise: false };
 
   function $(id){ return document.getElementById(id); }
   function money(n){ return "$" + Math.round(n).toLocaleString("en-US"); }
@@ -190,50 +325,85 @@
     var sfr      = (parseFloat($("ccSfr").value) || 0) / 100;
     var mocaSpec = (parseFloat($("ccMoca").value) || 0) / 100;
     var mmseSpec = (parseFloat($("ccMmse").value) || 0) / 100;
-    var mocaMix  = (parseFloat($("ccMix").value) || 0) / 100;
     var acSpec   = (parseFloat($("ccAcurist").value) || 0) / 100;
 
     var successFraction = Math.max(0.01, 1 - sfr);
     var totalReferrals  = Math.ceil(enrolled / successFraction);
     var healthy         = totalReferrals - enrolled;
 
-    // Traditional funnel — weighted MoCA/MMSE false-positive pass-through
-    var passRate    = mocaMix * (1 - mocaSpec) + (1 - mocaMix) * (1 - mmseSpec);
-    var tradFails   = Math.round(healthy * passRate);
-    var tradScans   = enrolled + tradFails;
-    var tradSunk    = tradFails * BIOMARKER_COST;
-    var tradTotal   = tradSunk;
+    // Traditional: only the SELECTED screener's specificity drives the filter
+    var tradSpec   = state.screener === "MoCA" ? mocaSpec : mmseSpec;
+    var tradFails  = Math.round(healthy * (1 - tradSpec));
+    var tradScans  = enrolled + tradFails;
+    var tradSunk   = tradFails * BIOMARKER_COST;
+    var tradTotal  = tradSunk;  // paper screener: free line item
 
-    // MCI Screen funnel
-    var screenCost  = totalReferrals * SCREEN_COST;
-    var acFails     = Math.round(healthy * (1 - acSpec));
-    var acScans     = enrolled + acFails;
-    var acSunk      = acFails * BIOMARKER_COST;
-    var acTotal     = screenCost + acSunk;
+    // MCI Screen
+    var screenCost = totalReferrals * SCREEN_COST;
+    var acFails    = Math.round(healthy * (1 - acSpec));
+    var acScans    = enrolled + acFails;
+    var acSunk     = acFails * BIOMARKER_COST;
 
-    var grossSavings = tradSunk - acSunk;
-    var netSavings   = tradTotal - acTotal;
-    var ratio        = screenCost > 0 ? netSavings / screenCost : 0;
+    // Protocol add-ons
+    var fsFee         = state.fast       ? enrolled * FAST_PER_PT : 0;
+    var enterpriseFee = state.enterprise ? ENTERPRISE_FEE          : 0;
+    var integrationCost = fsFee + enterpriseFee;
+    var acTotal   = screenCost + acSunk + integrationCost;
+
+    var grossSavings  = tradSunk - acSunk;
+    var netSavings    = tradTotal - acTotal;
+    // ROI denominator includes pre-screen + FAST (per-patient line items)
+    // but NOT the one-time enterprise setup fee — matches the React model.
+    var acuristInvestment = screenCost + fsFee;
+    var ratio        = acuristInvestment > 0 ? netSavings / acuristInvestment : 0;
     var costReduction = tradTotal > 0 ? netSavings / tradTotal * 100 : 0;
 
     return { enrolled:enrolled, totalReferrals:totalReferrals, healthy:healthy,
              tradFails:tradFails, tradScans:tradScans, tradSunk:tradSunk, tradTotal:tradTotal,
              screenCost:screenCost, acFails:acFails, acScans:acScans, acSunk:acSunk, acTotal:acTotal,
+             fsFee:fsFee, enterpriseFee:enterpriseFee, integrationCost:integrationCost,
              grossSavings:grossSavings, netSavings:netSavings, ratio:ratio,
-             costReduction:costReduction, scansAvoided:(tradScans-acScans) };
+             costReduction:costReduction, scansAvoided:(tradScans-acScans),
+             tradSpecPct:Math.round(tradSpec*100),
+             mocaSpecPct:Math.round(mocaSpec*100), mmseSpecPct:Math.round(mmseSpec*100), acSpecPct:Math.round(acSpec*100) };
   }
 
   function render(){
     var r = compute();
+
+    // Live comparison mini-table — keeps slider values and the assumptions panel in sync
+    $("ccCmpAcSpec").textContent   = r.acSpecPct + "%";
+    $("ccCmpMocaSpec").textContent = r.mocaSpecPct + "%";
+    $("ccCmpMmseSpec").textContent = r.mmseSpecPct + "%";
+
+    // Highlight the selected screener row in the mini comparison table
+    document.querySelectorAll(".ccalc-compare-mini tbody tr").forEach(function(tr){ tr.classList.remove("cmp-selected"); });
+    var sel = document.querySelector('.ccalc-compare-mini tbody tr[data-screener="' + state.screener + '"]');
+    if (sel) sel.classList.add("cmp-selected");
+
+    // Dim the un-selected screener's specificity slider in the 2x2 grid
+    var mocaField = document.getElementById("ccMoca").closest(".ccalc-adv-field");
+    var mmseField = document.getElementById("ccMmse").closest(".ccalc-adv-field");
+    if (mocaField && mmseField){
+      mocaField.classList.toggle("dim", state.screener !== "MoCA");
+      mmseField.classList.toggle("dim", state.screener !== "MMSE");
+    }
+
+    // Protocol add-ons cost readout
+    $("ccFastCost").textContent       = r.fsFee         > 0 ? "+" + moneyShort(r.fsFee)         : "+$0";
+    $("ccEnterpriseCost").textContent = r.enterpriseFee > 0 ? "+" + moneyShort(r.enterpriseFee) : "+$0";
+
+    // Result tiles
     $("ccNet").textContent       = moneyShort(r.netSavings);
     $("ccRatio").textContent     = (Math.round(r.ratio*10)/10).toLocaleString("en-US") + "×";
     $("ccScans").textContent     = num(r.scansAvoided);
     $("ccReduction").textContent = Math.round(r.costReduction) + "%";
     $("ccSummary").innerHTML = "To enroll <strong>" + num(r.enrolled) + "</strong> participants, a "
       + "traditional MoCA/MMSE funnel runs <strong>" + num(r.tradScans) + "</strong> biomarker scans; "
-      + "the MCI Screen funnel runs <strong>" + num(r.acScans) + "</strong> — saving <strong>"
+      + "the MCI Screen funnel runs <strong>" + num(r.acScans) + "</strong> &mdash; saving <strong>"
       + moneyShort(r.netSavings) + "</strong> in net recruitment cost.";
-    // funnel comparison table
+
+    // Funnel comparison table
     $("ccCmpRef-t").textContent    = "—";
     $("ccCmpRef-a").textContent    = num(r.totalReferrals);
     $("ccCmpEnr-t").textContent    = num(r.enrolled);
@@ -248,7 +418,8 @@
     $("ccCmpSunk-a").textContent   = money(r.acSunk);
     $("ccCmpTotal-t").textContent  = money(r.tradTotal);
     $("ccCmpTotal-a").textContent  = money(r.acTotal);
-    // savings summary
+
+    // Savings summary
     $("ccGross").textContent   = money(r.grossSavings);
     $("ccInvest").textContent  = "−" + money(r.screenCost);
     $("ccNetLine").textContent = money(r.netSavings);
@@ -265,16 +436,34 @@
   bindSlider("ccSfr",     function(v){ return v+"%"; });
   bindSlider("ccMoca",    function(v){ return v+"%"; });
   bindSlider("ccMmse",    function(v){ return v+"%"; });
-  bindSlider("ccMix",     function(v){ return v+"%"; });
   bindSlider("ccAcurist", function(v){ return v+"%"; });
+
+  // Screener toggle (MoCA / MMSE)
+  document.getElementById("ccScreener").addEventListener("click", function(e){
+    var b = e.target.closest("button[data-screener]"); if (!b) return;
+    state.screener = b.getAttribute("data-screener");
+    this.querySelectorAll("button").forEach(function(x){ x.classList.toggle("active", x === b); });
+    render();
+  });
+  // Protocol add-on checkboxes
+  document.getElementById("ccFast").addEventListener("change", function(){
+    state.fast = this.checked; render();
+  });
+  document.getElementById("ccEnterprise").addEventListener("change", function(){
+    state.enterprise = this.checked; render();
+  });
 
   $("ccReset").addEventListener("click", function(){
     $("ccEnrolled").value=1000;
     $("ccSfr").value=88;     $("ccSfrV").textContent="88%";
-    $("ccMoca").value=58;    $("ccMocaV").textContent="58%";
-    $("ccMmse").value=83;    $("ccMmseV").textContent="83%";
-    $("ccMix").value=70;     $("ccMixV").textContent="70%";
+    $("ccMoca").value=60;    $("ccMocaV").textContent="60%";
+    $("ccMmse").value=36;    $("ccMmseV").textContent="36%";
     $("ccAcurist").value=90; $("ccAcuristV").textContent="90%";
+    state.screener = "MoCA"; state.fast = false; state.enterprise = false;
+    $("ccFast").checked = false; $("ccEnterprise").checked = false;
+    document.getElementById("ccScreener").querySelectorAll("button").forEach(function(x){
+      x.classList.toggle("active", x.getAttribute("data-screener") === "MoCA");
+    });
     render();
   });
 
@@ -308,7 +497,8 @@
   render();
 })();
 </script>
-</section><section class="crom-section" id="cro-contact"><style>
+</section>
+<section class="crom-section" id="cro-contact"><style>
 .crom-section{background:var(--white);padding:90px 5%}
 .crom-inner{max-width:620px;margin:0 auto}
 .crom-head{text-align:center;margin-bottom:32px}
