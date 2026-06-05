@@ -363,29 +363,124 @@ nav {
 .report-meta-val { font-size: 14px; font-weight: 700; color: var(--green); }
 .report-meta-val.warn { color: #C57A0A; }
 
-/* ===== Trust (4 simple) ===== */
-.trust { background: var(--bg-soft); }
-.trust-grid {
+/* ===== Science — comparison chart + credibility pills ===== */
+.science { background: var(--bg-soft); }
+.cmp-card {
+  max-width: 920px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--gray-line);
+  border-radius: 18px;
+  padding: 30px 38px 36px;
+  box-shadow: 0 12px 36px rgba(20,43,71,0.09);
+}
+.cmp-card-head {
+  display: flex; justify-content: space-between; gap: 16px;
+  font-size: 12px; font-weight: 700; color: var(--gray-soft); letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding-bottom: 18px; margin-bottom: 6px;
+  border-bottom: 1px solid var(--gray-line);
+}
+.cmp-row {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 26px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--gray-line);
+}
+.cmp-row:last-child { border-bottom: none; }
+.cmp-label h4 {
+  font-family: var(--serif);
+  font-size: 20px;
+  color: var(--navy);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.cmp-tag {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  color: white;
+  background: var(--teal);
+  padding: 3px 10px;
+  border-radius: 50px;
+  text-transform: uppercase;
+}
+.cmp-label p { font-size: 14.5px; color: var(--gray); line-height: 1.55; }
+.cmp-bar {
+  height: 38px;
+  background: #E6EFF8;
+  border-radius: 9px;
+  overflow: hidden;
+  position: relative;
+}
+.cmp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal-soft) 0%, var(--teal-mid) 100%);
+  display: flex; align-items: center; justify-content: flex-end;
+  padding-right: 14px;
+  transition: width .4s ease;
+}
+.cmp-bar-fill span {
+  color: white;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 18px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+.cmp-row.featured .cmp-label h4 { color: var(--teal-deep); }
+.cmp-row.featured .cmp-bar-fill {
+  background: linear-gradient(90deg, var(--teal) 0%, var(--teal-deep) 100%);
+  box-shadow: inset 0 -3px 0 var(--teal-deep);
+}
+.cmp-row.featured .cmp-bar-fill span { font-size: 21px; }
+.cmp-footnote {
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--gray-soft);
+  margin: 22px auto 0;
+  max-width: 800px;
+  line-height: 1.7;
+}
+.cmp-footnote em { color: var(--gray); font-style: italic; }
+
+.science-pills {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 18px;
+  max-width: 920px;
+  margin: 48px auto 0;
 }
-.trust-card {
+.science-pill {
   background: var(--card);
-  border-radius: 16px;
-  padding: 32px 28px;
+  border: 1px solid var(--gray-line);
+  border-radius: 14px;
+  padding: 26px 22px;
   text-align: center;
+  box-shadow: 0 6px 22px rgba(20,43,71,0.06);
 }
-.trust-icon {
-  width: 56px; height: 56px;
-  margin: 0 auto 18px;
-  border-radius: 16px;
-  background: var(--teal-pale);
+.science-pill-num {
+  font-family: var(--serif);
+  font-size: 38px;
+  font-weight: 700;
   color: var(--teal);
-  display: flex; align-items: center; justify-content: center;
+  line-height: 1;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
 }
-.trust-card h4 { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--navy); line-height: 1.3; margin-bottom: 10px; }
-.trust-card p { font-size: 15.5px; color: var(--gray); line-height: 1.65; }
+.science-pill-label {
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.55;
+}
 
 /* ===== Peace of mind (big photo + side text) ===== */
 .peace {
@@ -622,7 +717,14 @@ footer { background: var(--navy-rich); color: rgba(255,255,255,0.55); padding: 6
   .section-h { margin-bottom: 44px; }
   .section-title, .result-text h2 { font-size: 30px; }
   .section-sub { font-size: 18px; }
-  .steps, .trust-grid, .paths-grid { grid-template-columns: 1fr; gap: 22px; }
+  .steps, .paths-grid { grid-template-columns: 1fr; gap: 22px; }
+  .science-pills { grid-template-columns: 1fr 1fr; }
+  .cmp-card { padding: 22px 22px 26px; }
+  .cmp-card-head { flex-direction: column; gap: 4px; }
+  .cmp-row { grid-template-columns: 1fr; gap: 14px; padding: 16px 0; }
+  .cmp-label h4 { font-size: 18px; }
+  .cmp-bar { height: 32px; }
+  .cmp-bar-fill span { font-size: 16px; }
   .result-inner, .peace-inner { grid-template-columns: 1fr; gap: 44px; }
   .cta-final-inner { padding: 90px 6%; }
   .cta-final h2 { font-size: 34px; }
@@ -649,8 +751,8 @@ footer { background: var(--navy-rich); color: rgba(255,255,255,0.55); padding: 6
     <li><a href="#paths">Assessments</a></li>
     <li><a href="providers.html">Providers</a></li>
     <li><a href="partnerships.html">Partnerships</a></li>
-    <li><a href="#peace">Science</a></li>
-    <li><a href="#blog">Blog</a></li>
+    <li><a href="#science">Science</a></li>
+    <li><a href="https://www.homememoryscreen.com/blog">Blog</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <div class="nav-cta-group">
@@ -803,41 +905,67 @@ footer { background: var(--navy-rich); color: rgba(255,255,255,0.55); padding: 6
   </div>
 </section>
 
-<!-- TRUST -->
-<section class="section trust">
+<!-- SCIENCE — comparison stats + credibility -->
+<section class="section science" id="science">
   <div class="section-inner">
     <div class="section-h">
-      <div class="section-eyebrow">Why you can trust it</div>
-      <h2 class="section-title">Built on real science. <em>Not a guessing game.</em></h2>
+      <div class="section-eyebrow">The Science</div>
+      <h2 class="section-title">More accurate than every common memory test. <em>By a lot.</em></h2>
+      <p class="section-sub">The Home Memory Screen uses Acurist&rsquo;s MCI Screen &mdash; built specifically to catch mild cognitive impairment, where older tests were designed to catch full dementia. The difference shows up in the numbers.</p>
     </div>
-    <div class="trust-grid">
-      <div class="trust-card">
-        <div class="trust-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-        </div>
-        <h4>20 years of research</h4>
-        <p>Four peer-reviewed studies. 121,000+ participants.</p>
+
+    <div class="cmp-card">
+      <div class="cmp-card-head">
+        <span>How well each test rules out memory disease in someone who&rsquo;s actually fine</span>
+        <span class="cmp-card-axis">Higher = fewer false alarms</span>
       </div>
-      <div class="trust-card">
-        <div class="trust-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <div class="cmp-row featured">
+        <div class="cmp-label">
+          <h4>MCI Screen<span class="cmp-tag">Used here</span></h4>
+          <p>Built specifically for mild cognitive impairment.</p>
         </div>
-        <h4>Private by default</h4>
-        <p>No account. HIPAA-aligned. Never sold.</p>
+        <div class="cmp-bar"><div class="cmp-bar-fill" style="width:97%;"><span>97%</span></div></div>
       </div>
-      <div class="trust-card">
-        <div class="trust-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <div class="cmp-row">
+        <div class="cmp-label">
+          <h4>Mini-Cog</h4>
+          <p>3-item recall + clock drawing.</p>
         </div>
-        <h4>Doctor-ready</h4>
-        <p>A one-page summary your physician can read in a minute.</p>
+        <div class="cmp-bar"><div class="cmp-bar-fill" style="width:79%;"><span>79%</span></div></div>
       </div>
-      <div class="trust-card">
-        <div class="trust-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <div class="cmp-row">
+        <div class="cmp-label">
+          <h4>MoCA</h4>
+          <p>Most-used in primary care.</p>
         </div>
-        <h4>Used by 2M+ people</h4>
-        <p>Adopted by Cleveland Clinic, Mayo Clinic, and the NIH.</p>
+        <div class="cmp-bar"><div class="cmp-bar-fill" style="width:60%;"><span>60%</span></div></div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-label">
+          <h4>MMSE</h4>
+          <p>Standard 30-question screen.</p>
+        </div>
+        <div class="cmp-bar"><div class="cmp-bar-fill" style="width:36%;"><span>36%</span></div></div>
+      </div>
+    </div>
+    <p class="cmp-footnote">Specificity at distinguishing mild cognitive impairment from normal aging. <em>Sources: Trenkle, Shankle &amp; Azen, 2007 (J. Alzheimer&rsquo;s Dis.); Davis et al., 2015 (Cochrane); Mitchell, 2009 (J. Psychiatr Res.); Borson et al., 2006.</em></p>
+
+    <div class="science-pills">
+      <div class="science-pill">
+        <div class="science-pill-num">20</div>
+        <div class="science-pill-label">years of peer-reviewed research</div>
+      </div>
+      <div class="science-pill">
+        <div class="science-pill-num">4</div>
+        <div class="science-pill-label">published validation studies</div>
+      </div>
+      <div class="science-pill">
+        <div class="science-pill-num">121,000+</div>
+        <div class="science-pill-label">participants in validation cohorts</div>
+      </div>
+      <div class="science-pill">
+        <div class="science-pill-num">3+ yrs</div>
+        <div class="science-pill-label">earlier than waiting for symptoms</div>
       </div>
     </div>
   </div>
@@ -936,9 +1064,6 @@ footer { background: var(--navy-rich); color: rgba(255,255,255,0.55); padding: 6
   </div>
 </section>
 
-<!-- BLOG anchor stub -->
-<div id="blog" aria-hidden="true" style="position:relative; top:-80px; height:0;"></div>
-
 <!-- FINAL CTA -->
 <section class="cta-final">
   <div class="cta-final-bg">
@@ -980,7 +1105,7 @@ footer { background: var(--navy-rich); color: rgba(255,255,255,0.55); padding: 6
           <li><a href="#paths">Take the screen</a></li>
           <li><a href="providers.html">For providers</a></li>
           <li><a href="partnerships.html">For partners</a></li>
-          <li><a href="#peace">The science</a></li>
+          <li><a href="#science">The science</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
