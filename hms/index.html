@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home Memory Screen &mdash; Check your memory at home. In 3 minutes.</title>
+<meta name="description" content="A clinically validated memory check you can take at home in 3 minutes. Private. Free. Built on 20 years of peer-reviewed science.">
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Anchored to Acurist brand but warmer */
+  --navy: #0A1628;
+  --navy-soft: #1A3A5C;
+  --teal: #1B6CA8;
+  --teal-deep: #15568A;
+  --teal-bright: #7EC8E3;
+  --teal-pale: #E8F2FB;
+  --warm-cream: #FBF7EF;
+  --warm-paper: #FDFAF4;
+  --warm-card: #FFFFFF;
+  --warm-border: #EEE5D4;
+  --warm-accent: #D9763A;
+  --warm-accent-pale: #FCE9D8;
+  --green: #1A7A5E;
+  --green-pale: #E5F5EF;
+  --ink: #1F1B14;
+  --gray-warm: #5C5650;
+  --gray-soft: #8B847A;
+  --serif: 'Georgia', 'Times New Roman', serif;
+  --sans: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+  --shadow-soft: 0 4px 24px rgba(70,40,10,0.06);
+  --shadow-warm: 0 12px 40px rgba(70,40,10,0.10);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--warm-paper);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button { font-family: inherit; cursor: pointer; }
+
+/* === NAV === */
+nav {
+  background: rgba(253, 250, 244, 0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(70,40,10,0.06);
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-mark {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--navy) 100%);
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 19px;
+}
+.brand-word {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--navy);
+  letter-spacing: -0.2px;
+  line-height: 1.1;
+}
+.brand-sub {
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--gray-soft);
+  margin-top: 1px;
+}
+.nav-aside {
+  font-size: 12.5px;
+  color: var(--gray-warm);
+}
+.nav-aside a {
+  color: var(--gray-warm);
+  border-bottom: 1px solid rgba(70,40,10,0.15);
+  padding-bottom: 1px;
+}
+.nav-aside a:hover { color: var(--teal); border-color: var(--teal); text-decoration: none; }
+
+/* === Buttons === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 17px 32px;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .12s, box-shadow .12s, background .15s;
+  white-space: nowrap;
+}
+.btn:hover { text-decoration: none; transform: translateY(-1px); }
+.btn-primary {
+  background: var(--teal);
+  color: white;
+  box-shadow: 0 8px 28px rgba(27,108,168,0.32);
+}
+.btn-primary:hover { background: var(--teal-deep); box-shadow: 0 12px 34px rgba(27,108,168,0.38); }
+.btn-warm {
+  background: var(--warm-accent);
+  color: white;
+  box-shadow: 0 8px 28px rgba(217,118,58,0.32);
+}
+.btn-warm:hover { background: #C56428; }
+.btn-text {
+  background: transparent;
+  color: var(--teal);
+  font-weight: 600;
+  padding: 14px 8px;
+  border-radius: 8px;
+}
+.btn-text:hover { color: var(--navy); }
+.btn-sm { font-size: 14px; padding: 12px 22px; }
+
+/* === Hero === */
+.hero {
+  padding: 90px 6% 110px;
+  background:
+    radial-gradient(ellipse 800px 600px at 20% 25%, rgba(217,118,58,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 700px 500px at 90% 75%, rgba(27,108,168,0.08) 0%, transparent 65%),
+    var(--warm-cream);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -50px;
+  width: 460px; height: 460px;
+  background: radial-gradient(circle, rgba(126,200,227,0.18) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+.hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  color: var(--warm-accent);
+  background: var(--warm-accent-pale);
+  border: 1px solid rgba(217,118,58,0.25);
+  padding: 7px 16px;
+  border-radius: 50px;
+  margin-bottom: 26px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--warm-accent);
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: 58px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.08;
+  letter-spacing: -0.5px;
+  margin-bottom: 26px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--warm-accent);
+  font-weight: 700;
+}
+.hero-sub {
+  font-size: 19px;
+  line-height: 1.7;
+  color: var(--gray-warm);
+  margin-bottom: 36px;
+  max-width: 520px;
+}
+.hero-cta-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+.hero-micro {
+  font-size: 13.5px;
+  color: var(--gray-soft);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.hero-micro b { color: var(--gray-warm); font-weight: 600; }
+.hero-micro .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gray-soft); }
+
+/* Right column — illustration card */
+.hero-card {
+  background: var(--warm-card);
+  border-radius: 20px;
+  padding: 32px 34px;
+  box-shadow: var(--shadow-warm);
+  position: relative;
+  border: 1px solid var(--warm-border);
+}
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 80px; height: 80px;
+  background: linear-gradient(135deg, var(--warm-accent) 0%, var(--warm-accent-pale) 100%);
+  border-radius: 22px;
+  opacity: 0.18;
+  transform: rotate(-12deg);
+  z-index: -1;
+}
+.hero-card-head {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gray-warm);
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.steps-mini {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.step-mini {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 16px;
+  background: var(--warm-paper);
+  border-radius: 12px;
+  border: 1px solid var(--warm-border);
+}
+.step-mini .step-num {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--teal-pale);
+  color: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.step-mini .step-title {
+  font-weight: 600;
+  color: var(--navy);
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+.step-mini .step-sub {
+  font-size: 13px;
+  color: var(--gray-warm);
+  line-height: 1.5;
+}
+.timer-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--green-pale);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 11px;
+  border-radius: 50px;
+  margin-top: 16px;
+}
+
+/* === Reassurance section === */
+.reassure {
+  padding: 100px 6%;
+  background: var(--warm-paper);
+}
+.reassure-inner { max-width: 980px; margin: 0 auto; }
+.section-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--warm-accent);
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--gray-warm);
+  max-width: 620px;
+}
+.section-h {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 60px;
+}
+.section-h .section-sub { margin: 0 auto; }
+
+.assure-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.assure-card {
+  background: var(--warm-card);
+  border: 1px solid var(--warm-border);
+  border-radius: 16px;
+  padding: 32px 28px;
+}
+.assure-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: var(--warm-accent-pale);
+  color: var(--warm-accent);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.assure-card h3 {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+.assure-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--gray-warm);
+}
+
+/* === How it works === */
+.how {
+  padding: 100px 6%;
+  background: linear-gradient(180deg, var(--warm-paper) 0%, #F7EFE0 100%);
+}
+.how-inner { max-width: 1100px; margin: 0 auto; }
+.steps-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 48px;
+}
+.step-big {
+  background: var(--warm-card);
+  border-radius: 16px;
+  padding: 36px 30px;
+  border: 1px solid var(--warm-border);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+.step-big::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 40px; height: 4px;
+  background: var(--warm-accent);
+  border-radius: 0 0 4px 0;
+}
+.step-big .num {
+  font-family: var(--serif);
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+.step-big h3 {
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.step-big p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--gray-warm);
+}
+.step-big .timing {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--teal);
+  background: var(--teal-pale);
+  padding: 4px 12px;
+  border-radius: 50px;
+}
+
+/* === Why early matters === */
+.why-early {
+  padding: 100px 6%;
+  background: var(--navy);
+  color: white;
+}
+.why-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.why-early .section-eyebrow { color: var(--teal-bright); }
+.why-early .section-title { color: white; }
+.why-early p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.78);
+  margin-bottom: 18px;
+}
+.why-early p strong { color: white; font-weight: 600; }
+.why-stats {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  padding: 32px 34px;
+}
+.why-stat {
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.why-stat:first-child { padding-top: 0; }
+.why-stat:last-child { padding-bottom: 0; border-bottom: none; }
+.why-stat-num {
+  font-family: var(--serif);
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--teal-bright);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.why-stat-label {
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.5;
+}
+.why-stat-source {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 4px;
+}
+
+/* === Trust panel === */
+.trust {
+  padding: 90px 6%;
+  background: var(--warm-paper);
+  border-bottom: 1px solid var(--warm-border);
+}
+.trust-inner { max-width: 1080px; margin: 0 auto; text-align: center; }
+.trust-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 36px;
+}
+.trust-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--warm-card);
+  border: 1px solid var(--warm-border);
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: var(--gray-warm);
+  font-weight: 500;
+}
+.trust-pill strong { color: var(--navy); font-weight: 600; }
+.trust-fine {
+  margin-top: 32px;
+  font-size: 13px;
+  color: var(--gray-soft);
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.65;
+}
+
+/* === FAQ === */
+.faq {
+  padding: 100px 6%;
+  background: var(--warm-cream);
+}
+.faq-inner { max-width: 800px; margin: 0 auto; }
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 48px;
+}
+details.faq-item {
+  background: var(--warm-card);
+  border: 1px solid var(--warm-border);
+  border-radius: 14px;
+  padding: 22px 26px;
+  transition: box-shadow .12s, border-color .12s;
+}
+details.faq-item[open] { box-shadow: var(--shadow-soft); border-color: rgba(27,108,168,0.20); }
+details.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--navy);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  line-height: 1.35;
+}
+details.faq-item summary::-webkit-details-marker { display: none; }
+details.faq-item summary::after {
+  content: '+';
+  font-family: var(--sans);
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--teal);
+  flex-shrink: 0;
+  transition: transform .2s;
+  width: 28px;
+  text-align: center;
+}
+details.faq-item[open] summary::after { transform: rotate(45deg); }
+details.faq-item .faq-a {
+  margin-top: 14px;
+  padding-top: 16px;
+  border-top: 1px solid var(--warm-border);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--gray-warm);
+}
+
+/* === Final CTA === */
+.final-cta {
+  padding: 110px 6%;
+  background:
+    radial-gradient(ellipse 700px 500px at 30% 30%, rgba(217,118,58,0.10) 0%, transparent 60%),
+    var(--warm-paper);
+  text-align: center;
+}
+.final-cta-inner { max-width: 720px; margin: 0 auto; }
+.final-cta h2 {
+  font-family: var(--serif);
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.4px;
+}
+.final-cta h2 em { color: var(--warm-accent); font-style: italic; }
+.final-cta p {
+  font-size: 18px;
+  color: var(--gray-warm);
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+/* === Audience split === */
+.aud-split {
+  padding: 36px 6%;
+  background: var(--navy);
+  color: rgba(255,255,255,0.7);
+}
+.aud-split-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+.aud-split a {
+  color: var(--teal-bright);
+  font-weight: 500;
+}
+.aud-split a:hover { color: white; text-decoration: underline; }
+
+/* === Footer === */
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.55);
+  padding: 56px 6% 36px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.footer-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-brand .brand-mark { background: rgba(255,255,255,0.08); }
+.footer-brand .brand-word { color: white; }
+.footer-brand .brand-sub { color: rgba(255,255,255,0.5); }
+.footer-tagline {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.7);
+  margin-top: 16px;
+  max-width: 360px;
+}
+.footer-col h4 {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a {
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.72);
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-disc {
+  margin-top: 16px;
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.65;
+  max-width: 720px;
+}
+
+/* === Responsive === */
+@media (max-width: 880px) {
+  .hero { padding: 60px 6% 70px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 50px; }
+  .hero h1 { font-size: 38px; line-height: 1.15; }
+  .hero-sub { font-size: 17px; }
+  .section-title { font-size: 28px; }
+  .assure-grid, .steps-row { grid-template-columns: 1fr; }
+  .why-inner { grid-template-columns: 1fr; gap: 40px; }
+  .final-cta h2 { font-size: 30px; }
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+  .btn { padding: 15px 24px; font-size: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="brand">
+    <div class="brand-mark">A</div>
+    <div>
+      <div class="brand-word">Home Memory Screen</div>
+      <div class="brand-sub">by Acurist</div>
+    </div>
+  </div>
+  <div class="nav-aside">Clinician or health system? <a href="https://acurist.ai">Visit acurist.ai &rarr;</a></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">You&rsquo;re in the right place</div>
+      <h1>You noticed something.<br><em>That took courage.</em></h1>
+      <p class="hero-sub">If you&rsquo;re here, you&rsquo;re probably wondering whether what you&rsquo;ve been feeling is normal. Take three minutes to check &mdash; privately, gently, with a screen that&rsquo;s been studied for over twenty years.</p>
+      <div class="hero-cta-row">
+        <a href="#start" class="btn btn-warm">Check my memory &rarr;</a>
+        <a href="#how" class="btn btn-text">How it works</a>
+      </div>
+      <div class="hero-micro">
+        <span><b>3 minutes</b></span>
+        <span class="dot"></span>
+        <span><b>Free</b></span>
+        <span class="dot"></span>
+        <span><b>Private</b> &mdash; no account needed</span>
+        <span class="dot"></span>
+        <span><b>97.3% accurate</b></span>
+      </div>
+    </div>
+    <div>
+      <div class="hero-card">
+        <div class="hero-card-head">What you&rsquo;ll do</div>
+        <div class="steps-mini">
+          <div class="step-mini">
+            <div class="step-num">1</div>
+            <div>
+              <div class="step-title">Answer a few questions</div>
+              <div class="step-sub">About memory you&rsquo;ve noticed in everyday life.</div>
+            </div>
+          </div>
+          <div class="step-mini">
+            <div class="step-num">2</div>
+            <div>
+              <div class="step-title">Take a brief memory check</div>
+              <div class="step-sub">Validated, plain-language &mdash; works on your phone.</div>
+            </div>
+          </div>
+          <div class="step-mini">
+            <div class="step-num">3</div>
+            <div>
+              <div class="step-title">See your result, with context</div>
+              <div class="step-sub">Clear next steps. Nothing scary, nothing buried.</div>
+            </div>
+          </div>
+        </div>
+        <span class="timer-pill">&#9201; About 3 minutes total</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REASSURANCE -->
+<section class="reassure">
+  <div class="reassure-inner">
+    <div class="section-h">
+      <div class="section-eyebrow">It&rsquo;s normal to wonder</div>
+      <h2 class="section-title">Forgetting a name isn&rsquo;t the same as forgetting <em style="color:var(--warm-accent); font-style:italic">who</em>.</h2>
+      <p class="section-sub">Most memory changes are part of aging. A few are early signs of something we can act on. The hard part is not knowing the difference &mdash; and that&rsquo;s exactly what this is for.</p>
+    </div>
+    <div class="assure-grid">
+      <div class="assure-card">
+        <div class="assure-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11.5C9 12.328 8.328 13 7.5 13S6 12.328 6 11.5 6.672 10 7.5 10s1.5.672 1.5 1.5z"/><path d="M18 11.5c0 .828-.672 1.5-1.5 1.5s-1.5-.672-1.5-1.5.672-1.5 1.5-1.5 1.5.672 1.5 1.5z"/><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M8 15h8"/></svg>
+        </div>
+        <h3>Most of what you&rsquo;re feeling is normal.</h3>
+        <p>Walking into a room and forgetting why. Losing a word. Misplacing keys. These are usually attention or stress &mdash; not memory disease.</p>
+      </div>
+      <div class="assure-card">
+        <div class="assure-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+        </div>
+        <h3>Some changes are early signs.</h3>
+        <p>Repeating questions, getting lost on familiar routes, struggling with money or planning. These deserve a closer look &mdash; the earlier the better.</p>
+      </div>
+      <div class="assure-card">
+        <div class="assure-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.27 6.96 8.73 5.05 8.73-5.05"/><path d="M12 22.08V12"/></svg>
+        </div>
+        <h3>Knowing gives you options.</h3>
+        <p>If something&rsquo;s changing, catching it now &mdash; while there are still treatable causes and lifestyle changes that matter &mdash; gives you years you wouldn&rsquo;t otherwise have.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="section-h">
+      <div class="section-eyebrow">How the screen works</div>
+      <h2 class="section-title">Three steps. About three minutes.</h2>
+      <p class="section-sub">No login. No appointment. No medical jargon. You&rsquo;ll see your result the same minute you finish.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step-big">
+        <span class="num">01</span>
+        <h3>Tell us what you&rsquo;ve noticed</h3>
+        <p>A short, gentle set of questions about the things you or someone close to you have observed. No right or wrong answers.</p>
+        <span class="timing">~ 1 minute</span>
+      </div>
+      <div class="step-big">
+        <span class="num">02</span>
+        <h3>Take the memory check</h3>
+        <p>A validated short-form memory screen. You&rsquo;ll listen, remember, and respond. It&rsquo;s the part backed by 20 years of peer-reviewed science.</p>
+        <span class="timing">~ 2 minutes</span>
+      </div>
+      <div class="step-big">
+        <span class="num">03</span>
+        <h3>See your result &mdash; with what to do next</h3>
+        <p>An age-adjusted score in plain language, what it likely means, and a clear next step if one is recommended. Yours to keep, share, or print.</p>
+        <span class="timing">Instant</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY EARLY MATTERS -->
+<section class="why-early">
+  <div class="why-inner">
+    <div>
+      <div class="section-eyebrow">Why early matters</div>
+      <h2 class="section-title">The earlier you know, the more you can do.</h2>
+      <p>If memory changes are early signs of mild cognitive impairment (MCI), there&rsquo;s a window &mdash; often three years or more &mdash; where lifestyle, treatment of reversible causes, and supported planning can change the path you&rsquo;re on.</p>
+      <p>That window narrows the longer you wait. Most people who later receive an Alzheimer&rsquo;s diagnosis had years of subtle change before anyone screened them. <strong>You don&rsquo;t have to wait that long.</strong></p>
+    </div>
+    <div class="why-stats">
+      <div class="why-stat">
+        <div class="why-stat-num">3+ years</div>
+        <div class="why-stat-label">earlier detection vs. waiting for symptoms to be obvious.</div>
+        <div class="why-stat-source">Shankle et al. &middot; PNAS, 2005</div>
+      </div>
+      <div class="why-stat">
+        <div class="why-stat-num">7M+</div>
+        <div class="why-stat-label">Americans living with MCI right now &mdash; most of whom don&rsquo;t know.</div>
+        <div class="why-stat-source">Alzheimer&rsquo;s Association, 2024</div>
+      </div>
+      <div class="why-stat">
+        <div class="why-stat-num">97.3%</div>
+        <div class="why-stat-label">accuracy of the underlying MCI Screen at distinguishing normal aging from mild cognitive impairment.</div>
+        <div class="why-stat-source">Trenkle, Shankle &amp; Azen &middot; J. Alzheimer&rsquo;s Dis, 2007</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="trust-inner">
+    <div class="section-eyebrow">Built on real science</div>
+    <h2 class="section-title">Twenty years. Four independent studies. <em style="color:var(--warm-accent); font-style:italic">One hundred and twenty-one thousand people.</em></h2>
+    <p class="section-sub" style="margin: 18px auto 0;">The Home Memory Screen is built on Acurist&rsquo;s MCI Screen &mdash; the cognitive assessment used by health systems, researchers, and trial sponsors across the US and Japan.</p>
+    <div class="trust-pills">
+      <span class="trust-pill"><strong>Cleveland Clinic</strong></span>
+      <span class="trust-pill"><strong>Mayo Clinic</strong></span>
+      <span class="trust-pill"><strong>NIH</strong></span>
+      <span class="trust-pill"><strong>AstraZeneca</strong></span>
+      <span class="trust-pill"><strong>UC Irvine</strong></span>
+      <span class="trust-pill"><strong>USC</strong></span>
+      <span class="trust-pill"><strong>Hoag Hospital</strong></span>
+      <span class="trust-pill"><strong>Japanese Ministry of Health</strong></span>
+    </div>
+    <p class="trust-fine">Validated in PNAS, the Journal of Alzheimer&rsquo;s Disease, the American Journal of Alzheimer&rsquo;s Disease, and the Journal of Prevention of Alzheimer&rsquo;s Disease. HIPAA-aligned. Your responses stay private and are never sold.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-inner">
+    <div class="section-h">
+      <div class="section-eyebrow">Your questions, answered</div>
+      <h2 class="section-title">The things people ask before they start.</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Is this a diagnosis?</summary>
+        <div class="faq-a">No. This is a screen, not a diagnosis. It tells you whether your memory looks within the normal range for someone your age &mdash; and if it doesn&rsquo;t, what to do next. Only a clinician can give a diagnosis.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Is it really private?</summary>
+        <div class="faq-a">Yes. You don&rsquo;t need an account to take the screen. Your responses are stored under HIPAA-aligned privacy and are never sold to anyone. If you want, you can download your result and share it with your doctor &mdash; that&rsquo;s your choice, not ours.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Will it tell me I have Alzheimer&rsquo;s?</summary>
+        <div class="faq-a">No screen can do that, including this one. What this can tell you is whether your performance looks like normal aging or something worth a closer look. If your result suggests the latter, we&rsquo;ll point you toward the right next step.</div>
+      </details>
+      <details class="faq-item">
+        <summary>How is this different from the test my doctor might give me?</summary>
+        <div class="faq-a">Most quick cognitive screens used in doctor&rsquo;s offices &mdash; like the MMSE &mdash; were designed to detect dementia. By the time they&rsquo;re positive, the window for early action has already narrowed. The MCI Screen was built specifically to catch what comes before dementia: mild cognitive impairment.</div>
+      </details>
+      <details class="faq-item">
+        <summary>I&rsquo;m worried it&rsquo;ll be too hard. Or too sad.</summary>
+        <div class="faq-a">It&rsquo;s gentler than people expect. The questions are everyday, the memory check is short, and the result is written in plain language &mdash; no clinical scores you have to decode alone. If you&rsquo;d rather have someone with you, take it with a family member.</div>
+      </details>
+      <details class="faq-item">
+        <summary>What happens after I see my result?</summary>
+        <div class="faq-a">If your result is reassuring, you can simply put it away and check again in a year. If it suggests something to look into, you&rsquo;ll see a clear next step &mdash; usually a conversation with your primary-care doctor, with a printable summary they can put straight into your chart.</div>
+      </details>
+      <details class="faq-item">
+        <summary>I&rsquo;m taking this for a parent. Is that okay?</summary>
+        <div class="faq-a">Absolutely. Many people take it for a parent, partner, or sibling who isn&rsquo;t ready to do it themselves. There&rsquo;s a short version that lets you answer on their behalf &mdash; it&rsquo;s called an informant screen, and it&rsquo;s often the most accurate way for a worried family member to find out where things stand.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="start">
+  <div class="final-cta-inner">
+    <h2>When you&rsquo;re ready, <em>we&rsquo;re ready.</em></h2>
+    <p>Three minutes. Free. Whatever the result, you&rsquo;ll know more than you did when you started &mdash; and you&rsquo;ll know what to do next.</p>
+    <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
+      <a href="https://acurist.ai/alzheimers-risk-profile.html" class="btn btn-warm">Start the memory screen &rarr;</a>
+      <a href="#how" class="btn btn-text">Take a quick look first</a>
+    </div>
+    <p style="margin-top:22px; font-size:13px; color:var(--gray-soft); line-height:1.6;">
+      This screen is not a diagnosis. It&rsquo;s a starting point. If something concerning shows up, the next step is a conversation with a clinician &mdash; not a verdict.
+    </p>
+  </div>
+</section>
+
+<!-- AUDIENCE SPLIT -->
+<section class="aud-split">
+  <div class="aud-split-inner">
+    <span>You&rsquo;re on the patient-focused side of Acurist. <strong style="color:white">Looking for clinical, payer, or research tools instead?</strong></span>
+    <a href="https://acurist.ai">Visit acurist.ai &rarr;</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand" style="margin-bottom:4px;">
+          <div class="brand-mark">A</div>
+          <div>
+            <div class="brand-word">Home Memory Screen</div>
+            <div class="brand-sub">by Acurist</div>
+          </div>
+        </div>
+        <p class="footer-tagline">A consumer experience by Acurist.AI &mdash; the cognitive-health platform behind the MCI Screen, built on 20 years of peer-reviewed science.</p>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="https://acurist.ai">The science</a></li>
+          <li><a href="https://acurist.ai/physicians.html">For clinicians</a></li>
+          <li><a href="https://acurist.ai/health-systems.html">For health systems</a></li>
+          <li><a href="https://acurist.ai/cros.html">For researchers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Trust &amp; safety</h4>
+        <ul>
+          <li><a href="https://acurist.ai/privacy.html">Privacy policy</a></li>
+          <li><a href="https://acurist.ai/hipaa-notice.html">HIPAA notice</a></li>
+          <li><a href="https://acurist.ai/consumer-health-data.html">Consumer health data</a></li>
+          <li><a href="https://acurist.ai/terms.html">Terms of use</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Acurist.AI LLC. All rights reserved.</span>
+      <span>Home Memory Screen &middot; powered by Acurist&rsquo;s MCI Screen</span>
+    </div>
+    <p class="footer-disc">Home Memory Screen is a screening tool, not a diagnostic test. Results do not constitute medical advice. If your result raises concerns, please consult a qualified healthcare provider. If you are experiencing a medical emergency, call 911 or your local emergency number.</p>
+  </div>
+</footer>
+
+</body>
+</html>
