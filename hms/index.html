@@ -55,13 +55,14 @@ nav {
   padding: 0 6%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 64px;
+  gap: 32px;
+  height: 72px;
   position: sticky;
   top: 0;
   z-index: 100;
 }
-.brand { display: flex; align-items: center; gap: 10px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.brand:hover { text-decoration: none; }
 .brand-mark {
   width: 36px; height: 36px;
   border-radius: 10px;
@@ -87,16 +88,83 @@ nav {
   color: var(--gray-soft);
   margin-top: 1px;
 }
-.nav-aside {
-  font-size: 12.5px;
-  color: var(--gray-warm);
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
 }
-.nav-aside a {
+.nav-menu a {
   color: var(--gray-warm);
-  border-bottom: 1px solid rgba(70,40,10,0.15);
-  padding-bottom: 1px;
+  font-size: 14.5px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: color .15s, background .15s;
+  text-decoration: none;
+  letter-spacing: -0.1px;
 }
-.nav-aside a:hover { color: var(--teal); border-color: var(--teal); text-decoration: none; }
+.nav-menu a:hover {
+  color: var(--navy);
+  background: rgba(217,118,58,0.08);
+  text-decoration: none;
+}
+.nav-cta-group {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.nav-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--navy);
+  text-decoration: none;
+  transition: color .15s;
+}
+.nav-phone:hover { color: var(--warm-accent); text-decoration: none; }
+.nav-phone svg { color: var(--warm-accent); }
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  background: var(--warm-accent);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background .15s;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: #C56428; color: white; text-decoration: none; }
+
+/* Mobile toggle */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px; height: 42px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  margin-left: auto;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: transform .2s ease, opacity .2s ease;
+}
 
 /* === Buttons === */
 .btn {
@@ -690,7 +758,55 @@ footer {
 }
 
 /* === Responsive === */
+@media (max-width: 1100px) {
+  .nav-menu a { font-size: 13px; padding: 7px 10px; }
+  .nav-cta-group { gap: 14px; }
+}
 @media (max-width: 880px) {
+  nav {
+    height: 64px;
+    padding: 0 5%;
+  }
+  .nav-menu {
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    background: var(--warm-paper);
+    border-bottom: 1px solid var(--warm-border);
+    box-shadow: 0 16px 32px rgba(70,40,10,0.10);
+    padding: 8px 5% 18px;
+    gap: 0;
+    display: none;
+  }
+  nav.open .nav-menu { display: flex; }
+  .nav-menu li { width: 100%; }
+  .nav-menu a {
+    display: block;
+    padding: 14px 6px;
+    border-bottom: 1px solid rgba(70,40,10,0.06);
+    font-size: 16px;
+  }
+  .nav-cta-group { display: none; }
+  nav.open .nav-cta-group {
+    display: flex;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--warm-paper);
+    padding: 16px 5% 22px;
+    border-bottom: 1px solid var(--warm-border);
+    margin-top: 1px;
+    transform: translateY(295px);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  nav.open .nav-cta-group .nav-phone { justify-content: center; padding: 8px 0; font-size: 16px; }
+  nav.open .nav-cta-group .nav-cta { justify-content: center; padding: 14px; }
+  .nav-toggle { display: flex; }
+  nav.open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  nav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+  nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   .hero { padding: 60px 6% 70px; }
   .hero-inner { grid-template-columns: 1fr; gap: 50px; }
   .hero h1 { font-size: 38px; line-height: 1.15; }
@@ -707,15 +823,35 @@ footer {
 <body>
 
 <!-- NAV -->
-<nav>
-  <div class="brand">
+<nav id="hmsNav">
+  <a href="#" class="brand">
     <div class="brand-mark">A</div>
     <div>
       <div class="brand-word">Home Memory Screen</div>
       <div class="brand-sub">by Acurist</div>
     </div>
+  </a>
+
+  <ul class="nav-menu" id="hmsNavMenu">
+    <li><a href="#start">Assessments</a></li>
+    <li><a href="https://acurist.ai/physicians.html">Providers</a></li>
+    <li><a href="https://acurist.ai/cros.html">Partnerships</a></li>
+    <li><a href="#why">Science</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+
+  <div class="nav-cta-group">
+    <a href="tel:5408786754" class="nav-phone" aria-label="Call us">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+      540-878-6754
+    </a>
+    <a href="https://www.calendly.com/croomlawrence" class="nav-cta">Schedule a coach</a>
   </div>
-  <div class="nav-aside">Clinician or health system? <a href="https://acurist.ai">Visit acurist.ai &rarr;</a></div>
+
+  <button type="button" class="nav-toggle" id="hmsNavToggle" aria-label="Open menu" aria-expanded="false" aria-controls="hmsNavMenu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -837,7 +973,7 @@ footer {
 </section>
 
 <!-- WHY EARLY MATTERS -->
-<section class="why-early">
+<section class="why-early" id="why">
   <div class="why-inner">
     <div>
       <div class="section-eyebrow">Why early matters</div>
@@ -940,6 +1076,9 @@ footer {
   </div>
 </section>
 
+<!-- Blog anchor stub (Blog content lives elsewhere; nav anchor only) -->
+<div id="blog" aria-hidden="true" style="position:relative; top:-72px; height:0;"></div>
+
 <!-- AUDIENCE SPLIT -->
 <section class="aud-split">
   <div class="aud-split-inner">
@@ -989,5 +1128,28 @@ footer {
   </div>
 </footer>
 
+<script>
+(function(){
+  var nav = document.getElementById("hmsNav");
+  var btn = document.getElementById("hmsNavToggle");
+  if (!nav || !btn) return;
+  function setOpen(open){
+    nav.classList.toggle("open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+  btn.addEventListener("click", function(e){
+    e.stopPropagation();
+    setOpen(!nav.classList.contains("open"));
+  });
+  document.addEventListener("click", function(e){
+    if (nav.classList.contains("open") && !nav.contains(e.target)) setOpen(false);
+  });
+  // Close after a nav-menu link tap
+  document.querySelectorAll("#hmsNavMenu a").forEach(function(a){
+    a.addEventListener("click", function(){ setOpen(false); });
+  });
+})();
+</script>
 </body>
 </html>
