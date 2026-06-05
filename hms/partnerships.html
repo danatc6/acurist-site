@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Partnerships &mdash; Home Memory Screen</title>
+<meta name="description" content="Strategic partnerships for BioPharma, diagnostics, and digital innovators. AI-powered cognitive intelligence across the drug development lifecycle.">
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0A1628;
+  --navy-soft: #1A3A5C;
+  --teal: #1B6CA8;
+  --teal-deep: #15568A;
+  --teal-bright: #7EC8E3;
+  --teal-pale: #E8F2FB;
+  --warm-cream: #FBF7EF;
+  --warm-paper: #FDFAF4;
+  --warm-card: #FFFFFF;
+  --warm-border: #EEE5D4;
+  --warm-accent: #D9763A;
+  --warm-accent-pale: #FCE9D8;
+  --green: #1A7A5E;
+  --green-pale: #E5F5EF;
+  --ink: #1F1B14;
+  --gray-warm: #5C5650;
+  --gray-soft: #8B847A;
+  --serif: 'Georgia', 'Times New Roman', serif;
+  --sans: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+  --shadow-soft: 0 4px 24px rgba(70,40,10,0.06);
+  --shadow-warm: 0 12px 40px rgba(70,40,10,0.10);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--warm-paper); color: var(--ink); font-size: 17px; line-height: 1.65; overflow-x: hidden; }
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button { font-family: inherit; cursor: pointer; }
+
+/* NAV */
+nav { background: rgba(253, 250, 244, 0.96); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(70,40,10,0.06); padding: 0 6%; display: flex; align-items: center; gap: 32px; height: 72px; position: sticky; top: 0; z-index: 100; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.brand:hover { text-decoration: none; }
+.brand-mark { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--teal) 0%, var(--navy) 100%); color: white; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 700; font-size: 19px; }
+.brand-word { font-family: var(--serif); font-weight: 700; font-size: 17px; color: var(--navy); letter-spacing: -0.2px; line-height: 1.1; }
+.brand-sub { font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--gray-soft); margin-top: 1px; }
+.nav-menu { list-style: none; display: flex; gap: 2px; margin: 0; padding: 0; align-items: center; }
+.nav-menu a { color: var(--gray-warm); font-size: 14.5px; font-weight: 500; padding: 8px 14px; border-radius: 8px; transition: color .15s, background .15s; text-decoration: none; letter-spacing: -0.1px; }
+.nav-menu a.active { color: var(--navy); background: rgba(217,118,58,0.10); }
+.nav-menu a:hover { color: var(--navy); background: rgba(217,118,58,0.08); text-decoration: none; }
+.nav-cta-group { margin-left: auto; display: flex; align-items: center; gap: 18px; }
+.nav-phone { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 600; color: var(--navy); text-decoration: none; transition: color .15s; }
+.nav-phone:hover { color: var(--warm-accent); text-decoration: none; }
+.nav-phone svg { color: var(--warm-accent); }
+.nav-cta { display: inline-flex; align-items: center; background: var(--warm-accent); color: white; font-size: 14px; font-weight: 600; padding: 10px 20px; border-radius: 8px; text-decoration: none; transition: background .15s; white-space: nowrap; }
+.nav-cta:hover { background: #C56428; color: white; text-decoration: none; }
+.nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 42px; height: 42px; padding: 0; background: none; border: 0; cursor: pointer; margin-left: auto; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: transform .2s ease, opacity .2s ease; }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 17px 32px; border-radius: 10px; font-size: 17px; font-weight: 600; font-family: inherit; border: none; cursor: pointer; text-decoration: none; transition: transform .12s, box-shadow .12s, background .15s; white-space: nowrap; }
+.btn:hover { text-decoration: none; transform: translateY(-1px); }
+.btn-primary { background: var(--teal); color: white; box-shadow: 0 8px 28px rgba(27,108,168,0.32); }
+.btn-primary:hover { background: var(--teal-deep); color: white; }
+.btn-warm { background: var(--warm-accent); color: white; box-shadow: 0 8px 28px rgba(217,118,58,0.32); }
+.btn-warm:hover { background: #C56428; }
+.btn-text { background: transparent; color: var(--teal); font-weight: 600; padding: 14px 8px; border-radius: 8px; }
+
+/* HERO */
+.hero { padding: 90px 6% 100px; background: radial-gradient(ellipse 800px 600px at 75% 25%, rgba(91,79,162,0.10) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 10% 75%, rgba(217,118,58,0.07) 0%, transparent 65%), var(--warm-cream); position: relative; overflow: hidden; }
+.hero-inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 70px; align-items: center; position: relative; z-index: 1; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.6px; color: #5B4FA2; background: rgba(91,79,162,0.10); border: 1px solid rgba(91,79,162,0.22); padding: 7px 16px; border-radius: 50px; margin-bottom: 24px; }
+.hero-eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #5B4FA2; }
+.hero h1 { font-family: var(--serif); font-size: 52px; font-weight: 700; color: var(--navy); line-height: 1.1; letter-spacing: -0.4px; margin-bottom: 24px; }
+.hero h1 em { font-style: italic; color: #5B4FA2; font-weight: 700; }
+.hero-sub { font-size: 18px; line-height: 1.7; color: var(--gray-warm); margin-bottom: 32px; max-width: 540px; }
+.hero-cta-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 22px; }
+.hero-micro { font-size: 13.5px; color: var(--gray-soft); display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.hero-micro b { color: var(--gray-warm); font-weight: 600; }
+.hero-micro .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gray-soft); }
+.hero-card { background: var(--warm-card); border-radius: 18px; padding: 28px 30px; box-shadow: var(--shadow-warm); border: 1px solid var(--warm-border); }
+.hero-card-head { font-size: 11px; font-weight: 700; color: var(--gray-warm); letter-spacing: 0.9px; text-transform: uppercase; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--warm-border); }
+.partner-pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; background: var(--warm-paper); border: 1px solid var(--warm-border); border-radius: 50px; font-size: 13px; font-weight: 600; color: var(--navy); margin: 4px 4px 0 0; }
+.partner-pill .dot-svg { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
+
+/* Sections */
+.section { padding: 90px 6%; }
+.section-inner { max-width: 1080px; margin: 0 auto; }
+.section-eyebrow { font-size: 12px; font-weight: 700; color: var(--warm-accent); letter-spacing: 1.3px; text-transform: uppercase; margin-bottom: 14px; }
+.section-title { font-family: var(--serif); font-size: 38px; font-weight: 700; color: var(--navy); line-height: 1.2; letter-spacing: -0.3px; margin-bottom: 16px; }
+.section-sub { font-size: 18px; line-height: 1.7; color: var(--gray-warm); max-width: 640px; }
+.section-h { text-align: center; max-width: 760px; margin: 0 auto 60px; }
+.section-h .section-sub { margin: 0 auto; }
+
+/* Drug-development stages — stage cards arranged as a horizontal funnel */
+.stages-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; position: relative; }
+.stage-card { background: var(--warm-card); border: 1px solid var(--warm-border); border-radius: 16px; padding: 28px 22px; position: relative; transition: border-color .15s, transform .15s; display: flex; flex-direction: column; }
+.stage-card:hover { border-color: rgba(91,79,162,0.30); transform: translateY(-3px); }
+.stage-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #5B4FA2; background: rgba(91,79,162,0.08); border: 1px solid rgba(91,79,162,0.18); padding: 4px 10px; border-radius: 50px; align-self: flex-start; margin-bottom: 16px; }
+.stage-card h3 { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.3; }
+.stage-card ul { list-style: none; }
+.stage-card ul li { padding: 6px 0 6px 18px; position: relative; font-size: 13.5px; color: var(--gray-warm); line-height: 1.55; }
+.stage-card ul li::before { content: '\2192'; position: absolute; left: 0; top: 5px; color: #5B4FA2; font-weight: 600; font-size: 13px; }
+
+/* Capability cards */
+.cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.cap-card { background: var(--warm-card); border: 1px solid var(--warm-border); border-radius: 16px; padding: 32px 30px; }
+.cap-card .ic { width: 46px; height: 46px; border-radius: 12px; background: var(--warm-accent-pale); color: var(--warm-accent); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+.cap-card h3 { font-family: var(--serif); font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.35; }
+.cap-card p { font-size: 15px; line-height: 1.7; color: var(--gray-warm); }
+
+/* Why partner — split block */
+.why-partner { background: var(--navy); color: white; padding: 100px 6%; }
+.why-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.why-partner .section-eyebrow { color: var(--teal-bright); }
+.why-partner .section-title { color: white; }
+.why-partner p { font-size: 17px; line-height: 1.75; color: rgba(255,255,255,0.78); margin-bottom: 18px; }
+.why-partner p strong { color: white; font-weight: 600; }
+.why-stats { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); border-radius: 18px; padding: 32px 34px; }
+.why-stat { padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.why-stat:first-child { padding-top: 0; }
+.why-stat:last-child { padding-bottom: 0; border-bottom: none; }
+.why-stat-num { font-family: var(--serif); font-size: 38px; font-weight: 700; color: var(--teal-bright); line-height: 1; margin-bottom: 6px; }
+.why-stat-label { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.5; }
+.why-stat-source { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 4px; }
+
+/* Contact CTA (reused) */
+.contact-cta { padding: 100px 6%; background: var(--warm-cream); }
+.contact-inner { max-width: 920px; margin: 0 auto; background: var(--warm-card); border: 1px solid var(--warm-border); border-radius: 20px; padding: 56px 52px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; box-shadow: var(--shadow-soft); }
+.contact-inner h2 { font-family: var(--serif); font-size: 32px; font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
+.contact-inner h2 em { color: #5B4FA2; font-style: italic; }
+.contact-inner p { font-size: 16px; line-height: 1.7; color: var(--gray-warm); margin-bottom: 18px; }
+.contact-options { display: flex; flex-direction: column; gap: 14px; }
+.contact-row { display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: var(--warm-paper); border: 1px solid var(--warm-border); border-radius: 12px; }
+.contact-row .ic { width: 38px; height: 38px; border-radius: 10px; background: rgba(91,79,162,0.10); color: #5B4FA2; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.contact-row .label { font-size: 11px; font-weight: 700; color: var(--gray-warm); letter-spacing: 0.7px; text-transform: uppercase; margin-bottom: 2px; }
+.contact-row .val { font-size: 14.5px; font-weight: 600; color: var(--navy); }
+.contact-row .val a { color: var(--navy); }
+.contact-row .val a:hover { color: var(--teal); text-decoration: underline; }
+.btn-partner { background: #5B4FA2; color: white; box-shadow: 0 8px 28px rgba(91,79,162,0.32); }
+.btn-partner:hover { background: #483D8B; }
+
+/* Audience split */
+.aud-split { padding: 36px 6%; background: var(--navy); color: rgba(255,255,255,0.7); }
+.aud-split-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; font-size: 14px; }
+.aud-split a { color: var(--teal-bright); font-weight: 500; }
+.aud-split a:hover { color: white; text-decoration: underline; }
+
+/* Footer */
+footer { background: var(--navy); color: rgba(255,255,255,0.55); padding: 56px 6% 36px; border-top: 1px solid rgba(255,255,255,0.08); }
+.footer-inner { max-width: 1080px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.footer-brand .brand-mark { background: rgba(255,255,255,0.08); }
+.footer-brand .brand-word { color: white; }
+.footer-brand .brand-sub { color: rgba(255,255,255,0.5); }
+.footer-tagline { font-size: 13.5px; line-height: 1.7; color: rgba(255,255,255,0.7); margin-top: 16px; max-width: 360px; }
+.footer-col h4 { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.75); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { font-size: 13.5px; color: rgba(255,255,255,0.72); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(255,255,255,0.5); gap: 16px; flex-wrap: wrap; }
+.footer-disc { margin-top: 16px; font-size: 11.5px; color: rgba(255,255,255,0.45); line-height: 1.65; max-width: 720px; }
+
+/* Responsive */
+@media (max-width: 1100px) { .nav-menu a { font-size: 13px; padding: 7px 10px; } .nav-cta-group { gap: 14px; } }
+@media (max-width: 980px) { .stages-row { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 880px) {
+  nav { height: 64px; padding: 0 5%; }
+  .nav-menu { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; background: var(--warm-paper); border-bottom: 1px solid var(--warm-border); box-shadow: 0 16px 32px rgba(70,40,10,0.10); padding: 8px 5% 18px; gap: 0; display: none; }
+  nav.open .nav-menu { display: flex; }
+  .nav-menu li { width: 100%; }
+  .nav-menu a { display: block; padding: 14px 6px; border-bottom: 1px solid rgba(70,40,10,0.06); font-size: 16px; }
+  .nav-cta-group { display: none; }
+  nav.open .nav-cta-group { display: flex; position: absolute; top: 100%; left: 0; right: 0; background: var(--warm-paper); padding: 16px 5% 22px; border-bottom: 1px solid var(--warm-border); margin-top: 1px; transform: translateY(295px); flex-direction: column; align-items: stretch; gap: 12px; }
+  nav.open .nav-cta-group .nav-phone { justify-content: center; padding: 8px 0; font-size: 16px; }
+  nav.open .nav-cta-group .nav-cta { justify-content: center; padding: 14px; }
+  .nav-toggle { display: flex; }
+  nav.open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  nav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+  nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .hero { padding: 60px 6% 70px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 50px; }
+  .hero h1 { font-size: 36px; line-height: 1.15; }
+  .hero-sub { font-size: 17px; }
+  .section-title { font-size: 28px; }
+  .stages-row { grid-template-columns: 1fr; }
+  .cap-grid { grid-template-columns: 1fr; }
+  .why-inner { grid-template-columns: 1fr; gap: 40px; }
+  .contact-inner { grid-template-columns: 1fr; padding: 36px 28px; gap: 28px; }
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+  .btn { padding: 15px 24px; font-size: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="hmsNav">
+  <a href="index.html" class="brand">
+    <div class="brand-mark">A</div>
+    <div>
+      <div class="brand-word">Home Memory Screen</div>
+      <div class="brand-sub">by Acurist</div>
+    </div>
+  </a>
+  <ul class="nav-menu" id="hmsNavMenu">
+    <li><a href="index.html#start">Assessments</a></li>
+    <li><a href="providers.html">Providers</a></li>
+    <li><a href="partnerships.html" class="active">Partnerships</a></li>
+    <li><a href="index.html#why">Science</a></li>
+    <li><a href="index.html#blog">Blog</a></li>
+    <li><a href="index.html#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-cta-group">
+    <a href="tel:5408786754" class="nav-phone" aria-label="Call us">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+      540-878-6754
+    </a>
+    <a href="https://www.calendly.com/croomlawrence" class="nav-cta">Schedule a call</a>
+  </div>
+  <button type="button" class="nav-toggle" id="hmsNavToggle" aria-label="Open menu" aria-expanded="false" aria-controls="hmsNavMenu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">For BioPharma &amp; industry partners</div>
+      <h1>Strategic partnerships.<br><em>AI-powered cognitive intelligence.</em></h1>
+      <p class="hero-sub">For BioPharma, diagnostics, and digital innovators, the Home Memory Screen cognitive platform is a set of AI-powered, data-driven tools that sharpen drug development decisions at every phase &mdash; from pre-clinical planning through marketed-product expansion.</p>
+      <div class="hero-cta-row">
+        <a href="https://www.calendly.com/croomlawrence" class="btn btn-partner">Schedule a 30-minute call</a>
+        <a href="#stages" class="btn btn-text">See the four stages &rarr;</a>
+      </div>
+      <div class="hero-micro">
+        <span><b>97.3% accurate</b></span>
+        <span class="dot"></span>
+        <span><b>121,000+</b> participants validated</span>
+        <span class="dot"></span>
+        <span><b>4 published studies</b></span>
+      </div>
+    </div>
+    <div>
+      <div class="hero-card">
+        <div class="hero-card-head">Trusted by partners across the lifecycle</div>
+        <div>
+          <span class="partner-pill"><span class="dot-svg"></span>AstraZeneca</span>
+          <span class="partner-pill"><span class="dot-svg"></span>NIH</span>
+          <span class="partner-pill"><span class="dot-svg"></span>Mayo Clinic</span>
+          <span class="partner-pill"><span class="dot-svg"></span>Cleveland Clinic</span>
+          <span class="partner-pill"><span class="dot-svg"></span>USC</span>
+          <span class="partner-pill"><span class="dot-svg"></span>UC Irvine</span>
+          <span class="partner-pill"><span class="dot-svg"></span>Hoag Hospital</span>
+          <span class="partner-pill"><span class="dot-svg"></span>Japanese Ministry of Health</span>
+        </div>
+        <p style="font-size:12.5px; color:var(--gray-soft); margin-top:14px; line-height:1.6;">Published validation in PNAS, the Journal of Alzheimer&rsquo;s Disease, the American Journal of Alzheimer&rsquo;s Disease, and the Journal of Prevention of Alzheimer&rsquo;s Disease.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO / DRUG DEVELOPMENT -->
+<section class="section" style="background:var(--warm-paper);">
+  <div class="section-inner">
+    <div class="section-h">
+      <div class="section-eyebrow">Drug development</div>
+      <h2 class="section-title">Improve the accuracy of your drug-development program <em style="color:#5B4FA2; font-style:italic;">with AI-powered cognitive intelligence.</em></h2>
+      <p class="section-sub">The Memory Performance Index (MPI) and downstream analytics deliver a precise, longitudinal read on cognition &mdash; from pre-clinical compound screening to post-launch patient selection.</p>
+    </div>
+
+    <div class="stages-row" id="stages">
+      <div class="stage-card">
+        <span class="stage-tag">Pre-clinical</span>
+        <h3>Recruitment &amp; planning</h3>
+        <ul>
+          <li>Predict which brain pathways and cognitive processes are affected by screened compounds.</li>
+          <li>Identify viable candidate populations before IND.</li>
+          <li>Pre-cohort risk modeling using the Acurist Risk Index.</li>
+        </ul>
+      </div>
+      <div class="stage-card">
+        <span class="stage-tag">Phase 1</span>
+        <h3>Early proof of concept</h3>
+        <ul>
+          <li>Early proof of concept for new biologics.</li>
+          <li>Observe subtle cognitive abnormalities in test vs. control groups.</li>
+          <li>Sensitive enough to capture pre-symptomatic signals.</li>
+        </ul>
+      </div>
+      <div class="stage-card">
+        <span class="stage-tag">Phase 2 &ndash; 3</span>
+        <h3>Pre-screening &amp; enrichment</h3>
+        <ul>
+          <li>Screen candidates for trial enrollment with 97% specificity.</li>
+          <li>Reduce screen-fail rates and biomarker over-utilization.</li>
+          <li>Improve odds of trial success through tighter cohort enrichment.</li>
+        </ul>
+      </div>
+      <div class="stage-card">
+        <span class="stage-tag">Marketed product</span>
+        <h3>Patient selection &amp; outcomes</h3>
+        <ul>
+          <li>MCI Screen provides a complementary cognitive biomarker.</li>
+          <li>Lead generation for patient conversion programs.</li>
+          <li>Support patient-reported outcomes and drug-option selection.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="section" style="background:var(--warm-cream);">
+  <div class="section-inner">
+    <div class="section-h">
+      <div class="section-eyebrow">Platform capabilities</div>
+      <h2 class="section-title">What partners build on.</h2>
+      <p class="section-sub">A modular cognitive-intelligence platform you can deploy via API, eCOA, or directly into a remote-screening workflow &mdash; tuned to the protocol you're running.</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3>Memory Performance Index (MPI)</h3>
+        <p>Algorithmic 1&ndash;100 cognitive score, age- and education-adjusted, validated across 121,000+ participants. The output your statisticians can model against.</p>
+      </div>
+      <div class="cap-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="10"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></div>
+        <h3>Predictive AI &amp; longitudinal modeling</h3>
+        <p>Forecast cognitive decline 3+ years before symptom onset using baseline + follow-up data &mdash; ideal for prevention trials and enrichment studies.</p>
+      </div>
+      <div class="cap-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11.5C9 12.328 8.328 13 7.5 13S6 12.328 6 11.5 6.672 10 7.5 10s1.5.672 1.5 1.5z"/><path d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2"/><path d="m17 8 5 5"/><path d="m17 13 5-5"/></svg></div>
+        <h3>Decentralized administration</h3>
+        <p>Remote, phone, tablet, or staff-administered. Sub-10-minute completion. Patient burden engineered down so completion rates stay above 80% in real-world trials.</p>
+      </div>
+      <div class="cap-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg></div>
+        <h3>Audit-grade documentation</h3>
+        <p>21 CFR Part 11-aligned data capture, GCP-ready audit trails, and FHIR exports into your EDC / eCOA &mdash; with consent and chain-of-custody built in.</p>
+      </div>
+      <div class="cap-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3>White-label &amp; co-branded</h3>
+        <p>Deployable inside your study portal, branded for your sponsor or partner, with full API access for cohort management and outcome export.</p>
+      </div>
+      <div class="cap-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>Global reach</h3>
+        <p>Localized across US English and Japanese with deployment experience in both populations. Additional language support available under partnership terms.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY PARTNER -->
+<section class="why-partner">
+  <div class="why-inner">
+    <div>
+      <div class="section-eyebrow">Why partner with Acurist</div>
+      <h2 class="section-title">Better cohorts. Cleaner data. Faster decisions.</h2>
+      <p>For CROs and sponsors running Alzheimer&rsquo;s trials, the biggest controllable cost is wasted biomarker workups &mdash; expensive PET scans on participants who would never have progressed. The MCI Screen filters those out before they consume budget.</p>
+      <p><strong>For pharma, the same engine sharpens patient selection post-launch.</strong> Identify candidates likely to benefit, support patient-reported outcomes, and add a longitudinal cognitive signal to real-world evidence.</p>
+    </div>
+    <div class="why-stats">
+      <div class="why-stat">
+        <div class="why-stat-num">3+ years</div>
+        <div class="why-stat-label">predictive lead time before symptom onset using baseline MPI in longitudinal cohorts.</div>
+        <div class="why-stat-source">Shankle et al. &middot; PNAS, 2005</div>
+      </div>
+      <div class="why-stat">
+        <div class="why-stat-num">97.3%</div>
+        <div class="why-stat-label">accuracy at distinguishing MCI from normal aging vs. consensus diagnosis.</div>
+        <div class="why-stat-source">Trenkle, Shankle &amp; Azen &middot; J. Alzheimer&rsquo;s Dis, 2007</div>
+      </div>
+      <div class="why-stat">
+        <div class="why-stat-num">121,000+</div>
+        <div class="why-stat-label">participants across the US and Japan in published validation cohorts.</div>
+        <div class="why-stat-source">Four peer-reviewed studies, 2005&ndash;2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-cta">
+  <div class="contact-inner">
+    <div>
+      <h2>Reach out to set up <em>your account.</em></h2>
+      <p>A 30-minute conversation is enough to scope the fit. Bring your protocol, your indication, and one or two questions about the cohort. We&rsquo;ll come back with a tailored read on whether and how the Home Memory Screen platform belongs in your pipeline.</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;">
+        <a href="https://www.calendly.com/croomlawrence" class="btn btn-partner">Schedule a 30-minute call</a>
+        <a href="mailto:partnerships@acurist.ai" class="btn btn-text">Email us instead</a>
+      </div>
+    </div>
+    <div class="contact-options">
+      <div class="contact-row">
+        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div>
+          <div class="label">Partnerships</div>
+          <div class="val"><a href="tel:5408786754">540-878-6754</a></div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg></div>
+        <div>
+          <div class="label">Email</div>
+          <div class="val"><a href="mailto:partnerships@acurist.ai">partnerships@acurist.ai</a></div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div>
+          <div class="label">Book directly</div>
+          <div class="val"><a href="https://www.calendly.com/croomlawrence">calendly.com/croomlawrence</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE SPLIT -->
+<section class="aud-split">
+  <div class="aud-split-inner">
+    <span>Running a CRO or sponsor pipeline and want the full B2B treatment with ROI math?</span>
+    <a href="https://acurist.ai/cros.html">Visit acurist.ai &rarr;</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand" style="margin-bottom:4px;">
+          <div class="brand-mark">A</div>
+          <div>
+            <div class="brand-word">Home Memory Screen</div>
+            <div class="brand-sub">by Acurist</div>
+          </div>
+        </div>
+        <p class="footer-tagline">A consumer experience by Acurist.AI &mdash; the cognitive-health platform behind the MCI Screen, built on 20 years of peer-reviewed science.</p>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="index.html">Take the screen</a></li>
+          <li><a href="providers.html">For providers</a></li>
+          <li><a href="partnerships.html">For partners</a></li>
+          <li><a href="index.html#why">The science</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Trust &amp; safety</h4>
+        <ul>
+          <li><a href="https://acurist.ai/privacy.html">Privacy policy</a></li>
+          <li><a href="https://acurist.ai/hipaa-notice.html">HIPAA notice</a></li>
+          <li><a href="https://acurist.ai/consumer-health-data.html">Consumer health data</a></li>
+          <li><a href="https://acurist.ai/terms.html">Terms of use</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Acurist.AI LLC. All rights reserved.</span>
+      <span>Home Memory Screen &middot; powered by Acurist&rsquo;s MCI Screen</span>
+    </div>
+    <p class="footer-disc">Home Memory Screen is a screening tool, not a diagnostic test. Results do not constitute medical advice. If your result raises concerns, please consult a qualified healthcare provider. If you are experiencing a medical emergency, call 911 or your local emergency number.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav = document.getElementById("hmsNav");
+  var btn = document.getElementById("hmsNavToggle");
+  if (!nav || !btn) return;
+  function setOpen(open){
+    nav.classList.toggle("open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+  btn.addEventListener("click", function(e){ e.stopPropagation(); setOpen(!nav.classList.contains("open")); });
+  document.addEventListener("click", function(e){ if (nav.classList.contains("open") && !nav.contains(e.target)) setOpen(false); });
+  document.querySelectorAll("#hmsNavMenu a").forEach(function(a){ a.addEventListener("click", function(){ setOpen(false); }); });
+})();
+</script>
+</body>
+</html>
